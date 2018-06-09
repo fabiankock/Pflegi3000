@@ -13,7 +13,7 @@ import comfabiankock.httpsgithub.pflegi3000.feature.main.backBtnListener;
 
 public class patientsActivity extends Activity {
 
-    private TextView screenNameText, outputTxt;
+    private TextView screenNameText, outputFirstNameTxt, outputLastNameTxt, outputInsuranceNrTxt;
     private Button backBtn, dropBtn;
     private database db;
 
@@ -22,7 +22,7 @@ public class patientsActivity extends Activity {
 
         Cursor patientCursor;
         int id;
-        String firstN, lastN, inNr, outputData="";
+        String idStr="", firstN="", lastN="", inNr="";
 
         this.db = new database(this.getApplicationContext());
 
@@ -40,19 +40,22 @@ public class patientsActivity extends Activity {
         this.dropBtn.setText(R.string.drop_str);
         this.dropBtn.setOnClickListener(new dropBtnListener());
 
-        this.outputTxt = (TextView) findViewById(R.id.output);
+        this.outputFirstNameTxt = (TextView) findViewById(R.id.output_first_name);
+        this.outputLastNameTxt = (TextView) findViewById(R.id.output_last_name);
+        this.outputInsuranceNrTxt = (TextView) findViewById(R.id.output_insurance_number);
         patientCursor = this.db.getAllPatients();
+        //TODO Auswerten der Searchbox und anzeigen der relevantesten Ergebnisse
         if(patientCursor.getCount() > 0) {
 
             while(patientCursor.moveToNext()){
 
-                id = patientCursor.getInt(0);
-                firstN = patientCursor.getString(1);
-                lastN = patientCursor.getString(2);
-                inNr = patientCursor.getString(3);
-                outputData += ("ID: "+ id + " " + firstN + " " + lastN + " " + inNr + "\n");
+                firstN += (patientCursor.getString(1)+"\n");
+                lastN += (patientCursor.getString(2)+"\n");
+                inNr += (patientCursor.getString(3)+"\n");
             }
-            this.outputTxt.setText(outputData);
+            this.outputFirstNameTxt.setText(firstN);
+            this.outputLastNameTxt.setText(lastN);
+            this.outputInsuranceNrTxt.setText(inNr);
         }
         else{
             Log.d("PatientDatabase","Empty Data");

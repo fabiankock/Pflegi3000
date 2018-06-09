@@ -10,4 +10,5 @@
     <string name="submit_str">Speichern</string>
     <string name="add_patient_str">Patient hinzufügen</string>
     <string name="drop_str">Drop Table</string>
+    <string name="search_hint">Patienten durchsuchen</string>
 </resources>
