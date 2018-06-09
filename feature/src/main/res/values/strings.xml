@@ -9,4 +9,5 @@
     <string name="insurance_nr_str">Versicherungsnummer</string>
     <string name="submit_str">Speichern</string>
     <string name="add_patient_str">Patient hinzufügen</string>
+    <string name="drop_str">Drop Table</string>
 </resources>

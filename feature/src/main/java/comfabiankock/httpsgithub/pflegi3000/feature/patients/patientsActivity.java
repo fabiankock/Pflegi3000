@@ -14,7 +14,7 @@ import comfabiankock.httpsgithub.pflegi3000.feature.main.backBtnListener;
 public class patientsActivity extends Activity {
 
     private TextView screenNameText, outputTxt;
-    private Button backBtn;
+    private Button backBtn, dropBtn;
     private database db;
 
     @Override
@@ -36,11 +36,14 @@ public class patientsActivity extends Activity {
         this.backBtn.setText(R.string.back_str);
         this.backBtn.setOnClickListener(new backBtnListener());
 
+        this.dropBtn = (Button) findViewById(R.id.drop_button);
+        this.dropBtn.setText(R.string.drop_str);
+        this.dropBtn.setOnClickListener(new dropBtnListener());
+
         this.outputTxt = (TextView) findViewById(R.id.output);
         patientCursor = this.db.getAllPatients();
         if(patientCursor.getCount() > 0) {
 
-            patientCursor.moveToFirst();
             while(patientCursor.moveToNext()){
 
                 id = patientCursor.getInt(0);
