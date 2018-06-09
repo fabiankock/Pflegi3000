@@ -1,1 +1,6 @@
-<resources></resources>
+<resources>
+    <string name="app_name">Pflegi3000</string>
+    <string name="patient_str">Patienten</string>
+    <string name="event_str">Veranstaltungen</string>
+    <string name="back_str">Zurück</string>
+</resources>
