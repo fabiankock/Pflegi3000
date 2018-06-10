@@ -5,15 +5,26 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import comfabiankock.httpsgithub.pflegi3000.feature.R;
 import comfabiankock.httpsgithub.pflegi3000.feature.database.database;
 import comfabiankock.httpsgithub.pflegi3000.feature.main.backBtnListener;
+import comfabiankock.httpsgithub.pflegi3000.feature.patients.search.listViewAdapter;
+import comfabiankock.httpsgithub.pflegi3000.feature.patients.search.patientNames;
+import comfabiankock.httpsgithub.pflegi3000.feature.patients.search.searchListViewListener;
 
-public class patientsActivity extends Activity {
+public class patientsActivity extends Activity implements SearchView.OnQueryTextListener {
 
     private TextView screenNameText, outputFirstNameTxt, outputLastNameTxt, outputInsuranceNrTxt;
+    private ListView list;
+    private SearchView searchView;
+    private listViewAdapter adapter;
     private Button backBtn, dropBtn;
     private database db;
 
@@ -21,13 +32,13 @@ public class patientsActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
 
         Cursor patientCursor;
-        int id;
-        String idStr="", firstN="", lastN="", inNr="";
 
         this.db = new database(this.getApplicationContext());
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patients);
+
+        Log.d("Search", "Start patients activity");
 
         this.screenNameText = (TextView) findViewById(R.id.screen_name);
         this.screenNameText.setText(R.string.patient_str);
@@ -40,25 +51,51 @@ public class patientsActivity extends Activity {
         this.dropBtn.setText(R.string.drop_str);
         this.dropBtn.setOnClickListener(new dropBtnListener());
 
-        this.outputFirstNameTxt = (TextView) findViewById(R.id.output_first_name);
-        this.outputLastNameTxt = (TextView) findViewById(R.id.output_last_name);
-        this.outputInsuranceNrTxt = (TextView) findViewById(R.id.output_insurance_number);
-        patientCursor = this.db.getAllPatients();
-        //TODO Auswerten der Searchbox und anzeigen der relevantesten Ergebnisse
-        if(patientCursor.getCount() > 0) {
+        //get value of searchbox and display relevant search results in the ListView via adapter
+        this.searchView = (SearchView) findViewById(R.id.search_box);
+        CharSequence query = this.searchView.getQuery();
 
-            while(patientCursor.moveToNext()){
+        this.list = (ListView) findViewById(R.id.listview);
+        this.adapter = new listViewAdapter(this, this.getAllPatientNames());
+        this.list.setAdapter(this.adapter);
+        this.list.setOnItemClickListener(new searchListViewListener());
 
-                firstN += (patientCursor.getString(1)+"\n");
-                lastN += (patientCursor.getString(2)+"\n");
-                inNr += (patientCursor.getString(3)+"\n");
+        this.searchView.setOnQueryTextListener(this);
+
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+
+        adapter.filter(newText);
+
+        return false;
+    }
+
+    private ArrayList<patientNames> getAllPatientNames() {
+
+        patientNames tmp;
+        ArrayList<patientNames> list = new ArrayList<patientNames>();
+
+        Cursor c = this.db.getAllPatients();
+        if (c.getCount() > 0) {
+
+            while (c.moveToNext()) {
+
+                //save first and last name in tmp and add it to the arrayList
+                tmp = new patientNames(c.getString(1) + " " + c.getString(2));
+                list.add(tmp);
+                Log.d("Search", "add " +tmp.getPatientName());
             }
-            this.outputFirstNameTxt.setText(firstN);
-            this.outputLastNameTxt.setText(lastN);
-            this.outputInsuranceNrTxt.setText(inNr);
+        } else {
+            Log.d("PatientDatabase", "Empty Data");
         }
-        else{
-            Log.d("PatientDatabase","Empty Data");
-        }
+
+        return list;
     }
 }
