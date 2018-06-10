@@ -10,7 +10,7 @@ import comfabiankock.httpsgithub.pflegi3000.feature.R;
 
 public class MainActivity extends Activity {
 
-    private Button patientBtn, eventBtn, addBtn;
+    private Button patientBtn, eventBtn, addBtn, databaseBtn;
     private TextView appNameText;
 
     @Override
@@ -32,5 +32,9 @@ public class MainActivity extends Activity {
         this.addBtn = (Button) findViewById(R.id.add_button);
         this.addBtn.setText(R.string.add_str);
         this.addBtn.setOnClickListener(new addBtnListener());
+
+        this.databaseBtn = (Button) findViewById(R.id.database_button);
+        this.databaseBtn.setText(R.string.modify_database_str);
+        this.databaseBtn.setOnClickListener(new databaseBtnListener());
     }
 }

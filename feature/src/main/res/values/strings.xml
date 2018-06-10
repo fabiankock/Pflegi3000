@@ -11,4 +11,7 @@
     <string name="add_patient_str">Patient hinzufügen</string>
     <string name="drop_str">Drop Table</string>
     <string name="search_hint">Patienten durchsuchen</string>
+    <string name="modify_database_str">Datenbanken</string>
+    <string name="insurance_type">Versicherungstyp</string>
+    <string name="insurance_name">Versicherungsname</string>
 </resources>

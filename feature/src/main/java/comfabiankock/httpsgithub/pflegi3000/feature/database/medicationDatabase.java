@@ -13,7 +13,7 @@ public class medicationDatabase {
         this.db = theContext.openOrCreateDatabase(theContext.getDatabasePath(this.databaseName).getPath(), theContext.MODE_PRIVATE, null);
 
         this.db.execSQL("CREATE TABLE IF NOT EXISTS " +
-                "Medications(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "Medication(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "Name VARCHAR," +
                 "Description VARCHAR);");
     }

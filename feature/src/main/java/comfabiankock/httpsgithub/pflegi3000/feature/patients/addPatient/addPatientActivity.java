@@ -2,17 +2,24 @@ package comfabiankock.httpsgithub.pflegi3000.feature.patients.addPatient;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import comfabiankock.httpsgithub.pflegi3000.feature.R;
+import comfabiankock.httpsgithub.pflegi3000.feature.database.insuranceDatabase;
 
 public class addPatientActivity extends Activity {
 
     private EditText firstnameTxt, lastnameTxt, insuranceNrTxt;
+    private int insuranceID;
     private TextView headLine;
     private Button submitBtn;
+    private Spinner insuranceTypeDropdown;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +38,17 @@ public class addPatientActivity extends Activity {
         this.submitBtn = (Button) findViewById(R.id.submit_button);
         this.submitBtn.setText(R.string.submit_str);
         this.submitBtn.setOnClickListener(new submitBtnListener(this));
+
+        this.insuranceTypeDropdown = (Spinner) findViewById(R.id.insurance_type_spinner);
+        insuranceDatabase iDB = new insuranceDatabase(this);
+        ArrayList<String> values = iDB.getAllInsurances();
+        if(values.size() > 0) {
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, values);
+            //set the spinners adapter to the previously created one.
+            this.insuranceTypeDropdown.setAdapter(adapter);
+            this.insuranceTypeDropdown.setOnItemSelectedListener(new insuranceSpinnerListener(this));
+        }
+
     }
 
     public String getFirstName(){
@@ -46,5 +64,14 @@ public class addPatientActivity extends Activity {
     public String getInsuranceNr(){
 
         return this.insuranceNrTxt.getText().toString();
+    }
+
+    public void setInsuranceID(int val){
+        this.insuranceID = val;
+    }
+
+    public int getInsuranceID(){
+
+        return this.insuranceID;
     }
 }

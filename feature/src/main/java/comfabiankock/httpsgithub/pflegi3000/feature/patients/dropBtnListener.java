@@ -3,6 +3,7 @@ package comfabiankock.httpsgithub.pflegi3000.feature.patients;
 import android.view.View;
 
 import comfabiankock.httpsgithub.pflegi3000.feature.database.database;
+import comfabiankock.httpsgithub.pflegi3000.feature.database.insuranceDatabase;
 
 public class dropBtnListener implements View.OnClickListener{
 
@@ -11,5 +12,8 @@ public class dropBtnListener implements View.OnClickListener{
 
         database db = new database(v.getContext());
         db.dropTable();
+
+        insuranceDatabase inDB = new insuranceDatabase(v.getContext());
+        inDB.dropTable();
     }
 }
