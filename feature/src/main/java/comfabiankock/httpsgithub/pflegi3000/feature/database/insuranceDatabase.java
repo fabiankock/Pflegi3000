@@ -39,16 +39,15 @@ public class insuranceDatabase {
 
     public String getInsuranceOfPatientById(int id){
 
-        String selectQuery = "SELECT p.lastName, i.type, i.name FROM " +
+        String selectQuery = "SELECT i.type, i.name FROM " +
                              "Patients p, Insurance i WHERE p.iId=i.iId AND p.pId="+id+";";
         Cursor c = this.db.rawQuery(selectQuery, null);
 
         c.moveToFirst();
-        String name = c.getString(0);
-        String iType = c.getString(1);
-        String iName = c.getString(2);
+        String iType = c.getString(0);
+        String iName = c.getString(1);
 
-        return (name + " " + iType + ": " + iName + "\n");
+        return (iType + ", " + iName + "\n");
     }
 
     public ArrayList<String> getAllInsurances(){

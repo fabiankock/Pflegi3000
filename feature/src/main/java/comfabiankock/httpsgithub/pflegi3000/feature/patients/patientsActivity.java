@@ -87,8 +87,8 @@ public class patientsActivity extends Activity implements SearchView.OnQueryText
 
             while (c.moveToNext()) {
 
-                //save first and last name in tmp and add it to the arrayList
-                tmp = new patientNames(c.getString(1) + " " + c.getString(2));
+                //save Id, first and last name in tmp and add it to the arrayList
+                tmp = new patientNames(c.getString(0) + " " + c.getString(1) + " " + c.getString(2));
                 list.add(tmp);
                 Log.d("Search", "add " +tmp.getPatientName());
             }

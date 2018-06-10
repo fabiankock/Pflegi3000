@@ -53,6 +53,15 @@ public class database {
         return c;
     }
 
+    public String getPatientNameById(int id){
+
+        String selectQuery = "SELECT * FROM Patients WHERE pId="+id+";";
+
+        Cursor c = this.db.rawQuery(selectQuery, null);
+        c.moveToFirst();
+        return c.getString(1) + " " + c.getString(2);
+    }
+
     public void dropTable(){
 
         this.db.execSQL("DROP TABLE Patients");
