@@ -15,4 +15,7 @@
     <!--strings that are often used!-->
     <string name="back">Zurück</string>
     <string name="submit">Bestätigen</string>
+
+    <!--string for editable button-->
+    <string name="action_enable_editable">bearbeiten</string>
 </resources>

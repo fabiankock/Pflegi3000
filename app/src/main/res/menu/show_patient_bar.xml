@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_enable_editable"
+        android:title="@string/action_enable_editable"
+        android:icon="@drawable/editing_pencil_icon"
+        app:showAsAction="always" />
+</menu>
