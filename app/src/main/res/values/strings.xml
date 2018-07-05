@@ -1,3 +1,10 @@
 <resources>
+    <!--strings for the main menu !-->
     <string name="app_name">Pflegi3000</string>
+    <string name="patient_str">Patienten</string>
+    <string name="addpatient_str">Patient hinzufügen</string>
+    <!--strings for add patient activity !-->
+
+    <!--strings that are often used!-->
+    <string name="back">Zurück</string>
 </resources>
