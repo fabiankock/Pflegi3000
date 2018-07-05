@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".activities.show_patient_activity.ShowPatientActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/show_patient_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:label="@string/app_name"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
     <Button
         android:id="@+id/back_button_show_patientActivity"
         android:layout_width="wrap_content"
