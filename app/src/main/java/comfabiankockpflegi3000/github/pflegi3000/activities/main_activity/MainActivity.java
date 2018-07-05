@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 
 import comfabiankockpflegi3000.github.pflegi3000.R;
+import comfabiankockpflegi3000.github.pflegi3000.database.DaoFactory;
 
 public class MainActivity extends AppCompatActivity {
 

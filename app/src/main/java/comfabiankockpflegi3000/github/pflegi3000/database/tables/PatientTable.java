@@ -8,6 +8,8 @@ public class PatientTable {
     @DatabaseField(id = true, generatedId = false) public int id;
     @DatabaseField String firstname;
     @DatabaseField String lastname;
+    public MedikamentTable medi;
+    public TerminTable termi;
     public PatientTable() {/*ORMLite needs a default Constructor*/};
 
     public PatientTable(int id, String firstname, String lastname) {

@@ -10,14 +10,22 @@ import com.j256.ormlite.dao.Dao;
 
 import java.sql.SQLException;
 
+import comfabiankockpflegi3000.github.pflegi3000.database.tables.MedikamentTable;
 import comfabiankockpflegi3000.github.pflegi3000.database.tables.PatientTable;
+import comfabiankockpflegi3000.github.pflegi3000.database.tables.TerminTable;
 
-public class DaoFactory extends Application {
+public class DaoFactory extends android.app.Application {
 
     private SharedPreferences preferences;
     private DatabaseHelper databaseHelper = null;
 
     private Dao<PatientTable, Integer> patientDAO = null;
+    private Dao<PatientTable, Integer> terminDAO = null;
+    private Dao<PatientTable, Integer> medikamentDAO = null;
+
+    public DaoFactory(){
+
+    }
 
     @Override
     public void onCreate() {
