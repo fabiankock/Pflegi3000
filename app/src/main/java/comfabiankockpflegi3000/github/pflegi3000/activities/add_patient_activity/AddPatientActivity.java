@@ -16,7 +16,6 @@ public class AddPatientActivity extends AppCompatActivity {
     private EditText firstNameEditText, lastNameEditText;
     private AddPatientButtonListener btnListener;
     private ControllerAddPatientActivity controller;
-    private DaoFactory daofactory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

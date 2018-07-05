@@ -14,7 +14,6 @@ import comfabiankockpflegi3000.github.pflegi3000.database.tables.TerminTable;
 public class ControllerAddPatientActivity {
 
     private DaoFactory daofactory;
-
     private AddPatientActivity addPatientActivity;
 
     public ControllerAddPatientActivity(AddPatientActivity theActivity){

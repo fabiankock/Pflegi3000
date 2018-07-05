@@ -1,4 +1,4 @@
-package comfabiankockpflegi3000.github.pflegi3000.activities.search_patient_activity;
+package comfabiankockpflegi3000.github.pflegi3000.controller.search_patient_controller;
 
 public class PatientNames {
 
