@@ -13,6 +13,14 @@
         android:text="@string/back"
         app:layout_constraintBottom_toBottomOf="parent" />
 
+    <Button
+        android:id="@+id/open_showpatients_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/test_show_patients"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
     <SearchView
         android:id="@+id/search_bar_patients"
         android:layout_width="match_parent"

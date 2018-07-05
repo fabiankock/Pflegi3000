@@ -10,7 +10,7 @@ import comfabiankockpflegi3000.github.pflegi3000.R;
 public class MainActivity extends AppCompatActivity {
 
     private Button patientsBtn, addPatientsBtn;
-    private View.OnClickListener btnListener;
+    private MainActivityButtonListener btnListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

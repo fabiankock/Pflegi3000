@@ -5,11 +5,12 @@
     <string name="addpatient_str">Patient hinzufügen</string>
 
     <!--strings for add patient activity !-->
-    <string name = "firstname">Vorname</string>
-    <string name = "lastname">Nachname</string>
+    <string name="firstname">Vorname</string>
+    <string name="lastname">Nachname</string>
 
     <!--string for search patient activity!-->
-    <string name = "search_hint">Patienten suchen</string>
+    <string name="search_hint">Patienten suchen</string>
+    <string name="test_show_patients">Test show P</string>
 
     <!--strings that are often used!-->
     <string name="back">Zurück</string>

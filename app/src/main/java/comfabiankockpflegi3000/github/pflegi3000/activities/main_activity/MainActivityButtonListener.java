@@ -6,6 +6,7 @@ import android.view.View;
 
 import comfabiankockpflegi3000.github.pflegi3000.R;
 import comfabiankockpflegi3000.github.pflegi3000.activities.add_patient_activity.AddPatientActivity;
+import comfabiankockpflegi3000.github.pflegi3000.activities.android_helper.AndroidHelper;
 import comfabiankockpflegi3000.github.pflegi3000.activities.search_patient_activity.SearchPatientActivity;
 
 public class MainActivityButtonListener implements View.OnClickListener {
@@ -22,13 +23,11 @@ public class MainActivityButtonListener implements View.OnClickListener {
         switch(view.getId()) {
 
             case R.id.addpatient_button:
-                intent = new Intent(view.getContext(), AddPatientActivity.class);
-                view.getContext().startActivity(intent);
+                AndroidHelper.startNewActivity(view.getContext(), AddPatientActivity.class);
                 break;
 
             case R.id.patient_button:
-                intent = new Intent(view.getContext(), SearchPatientActivity.class);
-                view.getContext().startActivity(intent);
+                AndroidHelper.startNewActivity(view.getContext(), SearchPatientActivity.class);
                 break;
 
             default:
