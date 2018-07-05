@@ -3,8 +3,15 @@
     <string name="app_name">Pflegi3000</string>
     <string name="patient_str">Patienten</string>
     <string name="addpatient_str">Patient hinzufügen</string>
+
     <!--strings for add patient activity !-->
+    <string name = "firstname">Vorname</string>
+    <string name = "lastname">Nachname</string>
+
+    <!--string for search patient activity!-->
+    <string name = "search_hint">Patienten suchen</string>
 
     <!--strings that are often used!-->
     <string name="back">Zurück</string>
+    <string name="submit">Bestätigen</string>
 </resources>
