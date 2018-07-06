@@ -30,7 +30,7 @@ public class SearchPatientActivity extends AppCompatActivity{
         this.testShowPatientBtn.setOnClickListener(this.controller.getButtonListener());
 
         this.searchView = (SearchView) findViewById(R.id.search_bar_patients);
-        this.searchView.setOnQueryTextListener(this.controller);
+        this.searchView.setOnQueryTextListener(this.controller.getOnQueryTextListener());
 
         this.listView = (ListView) findViewById(R.id.listview);
         this.listView.setAdapter(this.controller.getListViewAdapter());

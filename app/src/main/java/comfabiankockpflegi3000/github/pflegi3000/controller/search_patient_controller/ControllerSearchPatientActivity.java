@@ -10,14 +10,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import comfabiankockpflegi3000.github.pflegi3000.activities.search_patient_activity.SearchPatientActivity;
+import comfabiankockpflegi3000.github.pflegi3000.controller.search_patient_controller.search_listener.SearchBarQueryTextListener;
 import comfabiankockpflegi3000.github.pflegi3000.controller.search_patient_controller.search_listener.SearchPatientButtonListener;
 import comfabiankockpflegi3000.github.pflegi3000.database.DaoFactory;
 import comfabiankockpflegi3000.github.pflegi3000.database.tables.PatientEntity;
 
-public class ControllerSearchPatientActivity implements SearchView.OnQueryTextListener{
+public class ControllerSearchPatientActivity {
 
     private ListViewAdapter listViewAdapter;
     private SearchPatientButtonListener btnListener;
+    private SearchBarQueryTextListener onQueryTextListener;
     private DaoFactory daofactory;
 
     public ControllerSearchPatientActivity(SearchPatientActivity a){
@@ -25,6 +27,7 @@ public class ControllerSearchPatientActivity implements SearchView.OnQueryTextLi
         this.daofactory = (DaoFactory) a.getApplication();
         this.listViewAdapter = new ListViewAdapter(a.getApplicationContext(), this.getAllPatientNames());
         this.btnListener = new SearchPatientButtonListener();
+        this.onQueryTextListener = new SearchBarQueryTextListener(this.listViewAdapter);
     }
 
     public ArrayList<PatientNames> getAllPatientNames() {
@@ -56,19 +59,11 @@ public class ControllerSearchPatientActivity implements SearchView.OnQueryTextLi
 
     public SearchPatientButtonListener getButtonListener() {
 
-        return btnListener;
+        return this.btnListener;
     }
 
-    @Override
-    public boolean onQueryTextSubmit(String s) {
-        return false;
-    }
+    public SearchBarQueryTextListener getOnQueryTextListener() {
 
-    @Override
-    public boolean onQueryTextChange(String s) {
-
-        this.listViewAdapter.filter(s);
-
-        return false;
+        return this.onQueryTextListener;
     }
 }
