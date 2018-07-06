@@ -18,7 +18,7 @@ public class AddInsuranceActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_insurance);
-        this.controller = new ControllerAddInsuranceActivity();
+        this.controller = new ControllerAddInsuranceActivity(this);
 
         this.insuranceNameET = (EditText) findViewById(R.id.edittext_insuranceName);
         this.insuranceTypeET = (EditText) findViewById(R.id.edittext_insuranceType);
