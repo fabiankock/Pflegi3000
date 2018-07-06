@@ -19,7 +19,7 @@ public class ControllerAddInsuranceActivity {
 
     public ControllerAddInsuranceActivity(AddInsuranceActivity a){
 
-        this.btnListener = new AddInsuranceButtonListener();
+        this.btnListener = new AddInsuranceButtonListener(this);
         this.theActivity = a;
     }
 

@@ -2,8 +2,10 @@ package comfabiankockpflegi3000.github.pflegi3000.activities.add_patient_activit
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import comfabiankockpflegi3000.github.pflegi3000.R;
 import comfabiankockpflegi3000.github.pflegi3000.controller.add_patient_controller.AddPatientButtonListener;
@@ -14,6 +16,7 @@ public class AddPatientActivity extends AppCompatActivity {
     private Button backBtn;
     private Button submitBtn;
     private EditText firstNameEditText, lastNameEditText, genderEditText, insuranceNrEditText;
+    private Spinner insuranceSpinner;
     private ControllerAddPatientActivity controller;
 
     @Override
@@ -33,6 +36,14 @@ public class AddPatientActivity extends AppCompatActivity {
         this.lastNameEditText = (EditText) findViewById(R.id.edittext_lastname);
         this.genderEditText = (EditText) findViewById(R.id.edittext_gender);
         this.insuranceNrEditText = (EditText) findViewById(R.id.edittext_insuranceNr);
+
+        this.insuranceSpinner = (Spinner) findViewById(R.id.insurance_spinner);
+        String[] items = this.controller.getAllInsurances();
+        if(items != null){
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
+            this.insuranceSpinner.setAdapter(adapter);
+        }
+
     }
 
     public String getFirstNameValue(){ return this.firstNameEditText.getText().toString(); }
