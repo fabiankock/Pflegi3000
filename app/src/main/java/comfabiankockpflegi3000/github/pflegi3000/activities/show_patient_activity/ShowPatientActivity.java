@@ -1,101 +1,136 @@
 package comfabiankockpflegi3000.github.pflegi3000.activities.show_patient_activity;
 
-import android.graphics.Color;
+import android.net.Uri;
+import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
+
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-
-import com.j256.ormlite.dao.Dao;
 
 import comfabiankockpflegi3000.github.pflegi3000.R;
-import comfabiankockpflegi3000.github.pflegi3000.controller.ControllerShowPatientActivity;
-import comfabiankockpflegi3000.github.pflegi3000.database.DaoFactory;
+import comfabiankockpflegi3000.github.pflegi3000.activities.show_patient_activity.ShowPatientFragmente.MedikamenteFragment;
+import comfabiankockpflegi3000.github.pflegi3000.activities.show_patient_activity.ShowPatientFragmente.PatientFragment;
+import comfabiankockpflegi3000.github.pflegi3000.activities.show_patient_activity.ShowPatientFragmente.PflegeFragment;
+import comfabiankockpflegi3000.github.pflegi3000.activities.show_patient_activity.ShowPatientFragmente.TerminFragment;
+import comfabiankockpflegi3000.github.pflegi3000.controller.show_patient_controller.ControllerPatientFragment;
 
-import static android.view.View.VISIBLE;
+public class ShowPatientActivity extends AppCompatActivity
+        implements PatientFragment.OnFragmentInteractionListener, MedikamenteFragment.OnFragmentInteractionListener,
+                    PflegeFragment.OnFragmentInteractionListener, TerminFragment.OnFragmentInteractionListener {
 
-public class ShowPatientActivity extends AppCompatActivity {
+    private SectionsPagerAdapter mSectionsPagerAdapter;
+    private ViewPager mViewPager;
+    private int position;
+    private ControllerPatientFragment controllerPatientFragment;
+    private PatientFragment fPatient;
 
-    private Button backBtn;
-    private EditText firstNameText, lastNameText;
-    private TextView firstNameView, lastNameView;
-    private Toolbar theToolbar;
-    private ShowPatientButtonListener btnListener;
-    private ControllerShowPatientActivity controller;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_show_patient);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+
+        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager.setAdapter(mSectionsPagerAdapter);
+
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                position = tab.getPosition();
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+        mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.show_patient_bar, menu);
         return true;
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public boolean onOptionsItemSelected(MenuItem item) {
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_patient);
-
-        controller = new ControllerShowPatientActivity(this);
-
-        this.btnListener = new ShowPatientButtonListener();
-        this.backBtn = (Button) findViewById(R.id.back_button_show_patientActivity);
-        this.backBtn.setOnClickListener(this.btnListener);
-
-        this.theToolbar = (Toolbar) findViewById(R.id.show_patient_toolbar);
-        this.theToolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-        this.theToolbar.setTitleTextColor(Color.WHITE);
-        this.getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
-        setSupportActionBar(this.theToolbar);
-
-        firstNameText = (EditText) findViewById(R.id.text_firstname);
-        firstNameText.setText("HansPeter");
-        lastNameText = (EditText) findViewById(R.id.text_lastname);
-        lastNameText.setText("Wurst");
-
-
-        firstNameView = (TextView) findViewById(R.id.view_firstname);
-        firstNameView.setText("HansPeter");
-        lastNameView = (TextView) findViewById(R.id.view_lastname);
-        lastNameView.setText("Wurst");
-
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem menuItem) {
-
-        switch (menuItem.getItemId()) {
+        int id = item.getItemId();
+        switch (id) {
 
             case R.id.action_enable_editable:
-                Log.d("Test", "this is a test");
-                if (firstNameView.getVisibility() == View.VISIBLE) {
-                    controller.ViewToEdit();
-                } else {
-                    controller.EditToView();
+                if (position == 0) {
+                    controllerPatientFragment.changeTextState();
                 }
-                return true;
+
+
         }
         return false;
     }
 
-    /*---------getter---------*/
-    public EditText getFirstNameText() {
-        return firstNameText;
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
-    public EditText getLastNameText() {
-        return lastNameText;
-    }
-    public TextView getFirstNameView() {
-        return firstNameView;
-    }
-    public TextView getLastNameView() {
-        return lastNameView;
+
+
+    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+
+        public SectionsPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        // Gibt je nach Position (Leiste oben) das jeweilige Fragment zurück
+        @Override
+        public Fragment getItem(int position) {
+
+            switch(position) {
+
+                case 0:
+                    fPatient = PatientFragment.newInstance();
+                    controllerPatientFragment = new ControllerPatientFragment(fPatient);
+                    return fPatient;
+
+                case 1:
+                    return MedikamenteFragment.newInstance("","");
+
+                case 2:
+                    return PflegeFragment.newInstance();
+
+                case 3:
+                    return TerminFragment.newInstance("","");
+
+            }
+            return null;
+        }
+
+        //Anzahl der Tabs
+        @Override
+        public int getCount() {
+            return 4;
+        }
     }
 }
