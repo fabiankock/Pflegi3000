@@ -6,16 +6,16 @@ import com.j256.ormlite.table.DatabaseTable;
 import java.util.Date;
 
 @DatabaseTable(tableName = "termin")
-public class TerminTable {
+public class TerminEntity {
 
     @DatabaseField(id = true, generatedId = false) public int id;
     @DatabaseField public String TName;
     @DatabaseField public Date timestamp;
     @DatabaseField public String TDescription;
     @DatabaseField public String TAddress;
-    public TerminTable() {/*Default Constructor for ORMLite*/}
+    public TerminEntity() {/*Default Constructor for ORMLite*/}
 
-    public TerminTable(String TName, Date timestamp, String TDescription, String TAddress) {
+    public TerminEntity(String TName, Date timestamp, String TDescription, String TAddress) {
 
         this.TName = TName;
         this.timestamp = timestamp;

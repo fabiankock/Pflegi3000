@@ -1,17 +1,26 @@
 package comfabiankockpflegi3000.github.pflegi3000.controller.search_patient_controller;
 
+import android.util.Log;
 import android.widget.SearchView;
 
+import com.j256.ormlite.dao.Dao;
+
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import comfabiankockpflegi3000.github.pflegi3000.activities.search_patient_activity.SearchPatientActivity;
+import comfabiankockpflegi3000.github.pflegi3000.database.DaoFactory;
+import comfabiankockpflegi3000.github.pflegi3000.database.tables.PatientEntity;
 
 public class ControllerSearchPatientActivity implements SearchView.OnQueryTextListener{
 
     private ListViewAdapter listViewAdapter;
+    private DaoFactory daofactory;
 
     public ControllerSearchPatientActivity(SearchPatientActivity a){
 
+        this.daofactory = (DaoFactory) a.getApplication();
         this.listViewAdapter = new ListViewAdapter(a.getApplicationContext(), this.getAllPatientNames());
     }
 
@@ -24,28 +33,19 @@ public class ControllerSearchPatientActivity implements SearchView.OnQueryTextLi
         PatientNames tmp;
         ArrayList<PatientNames> list = new ArrayList<PatientNames>();
 
-        //send query to database to get all patient names
-        /*Cursor c = this.db.getAllPatients();
-        if (c.getCount() > 0) {
+        try{
+            Dao<PatientEntity, Integer> pDao = daofactory.getPatientDAO();
 
-            while (c.moveToNext()) {
+            List<PatientEntity> allPatientEntities = pDao.queryForAll();
+            for(int i = 0; i < allPatientEntities.size(); i++){
 
-                //save first and last name in tmp and add it to the arrayList
-                tmp = new patientNames(c.getString(1) + " " + c.getString(2));
+                tmp = new PatientNames(allPatientEntities.get(i).getFirstname() + " " + allPatientEntities.get(i).getLastname());
                 list.add(tmp);
                 Log.d("Search", "add " +tmp.getPatientName());
             }
-        } else {
-            Log.d("PatientDatabase", "Empty Data");
-        }*/
-        tmp = new PatientNames("Hans Peter");
-        list.add(tmp);
-        tmp = new PatientNames("Rafael Hingerl");
-        list.add(tmp);
-        tmp = new PatientNames("Fabian Kock");
-        list.add(tmp);
-        tmp = new PatientNames("Hans Peter2");
-        list.add(tmp);
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
 
         return list;
     }

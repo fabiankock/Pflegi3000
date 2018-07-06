@@ -7,9 +7,9 @@ import java.util.Random;
 
 import comfabiankockpflegi3000.github.pflegi3000.activities.add_patient_activity.AddPatientActivity;
 import comfabiankockpflegi3000.github.pflegi3000.database.DaoFactory;
-import comfabiankockpflegi3000.github.pflegi3000.database.tables.MedikamentTable;
-import comfabiankockpflegi3000.github.pflegi3000.database.tables.PatientTable;
-import comfabiankockpflegi3000.github.pflegi3000.database.tables.TerminTable;
+import comfabiankockpflegi3000.github.pflegi3000.database.tables.MedikamentEntity;
+import comfabiankockpflegi3000.github.pflegi3000.database.tables.PatientEntity;
+import comfabiankockpflegi3000.github.pflegi3000.database.tables.TerminEntity;
 
 public class ControllerAddPatientActivity {
 
@@ -28,11 +28,11 @@ public class ControllerAddPatientActivity {
 
         try {
 
-            Dao<PatientTable, Integer> pDao = daofactory.getPatientDAO();
+            Dao<PatientEntity, Integer> pDao = daofactory.getPatientDAO();
 
-            MedikamentTable tpMedikament = new MedikamentTable();
-            TerminTable tpTermin = new TerminTable();
-            PatientTable tpPatient = new PatientTable();
+            MedikamentEntity tpMedikament = new MedikamentEntity();
+            TerminEntity tpTermin = new TerminEntity();
+            PatientEntity tpPatient = new PatientEntity();
 
             tpPatient.id = new Random().nextInt(100);
             tpPatient.setFirstname(firstname);

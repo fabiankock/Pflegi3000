@@ -1,7 +1,6 @@
 package comfabiankockpflegi3000.github.pflegi3000.database;
 
 import android.content.Context;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
@@ -9,9 +8,9 @@ import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
-import comfabiankockpflegi3000.github.pflegi3000.database.tables.MedikamentTable;
-import comfabiankockpflegi3000.github.pflegi3000.database.tables.PatientTable;
-import comfabiankockpflegi3000.github.pflegi3000.database.tables.TerminTable;
+import comfabiankockpflegi3000.github.pflegi3000.database.tables.MedikamentEntity;
+import comfabiankockpflegi3000.github.pflegi3000.database.tables.PatientEntity;
+import comfabiankockpflegi3000.github.pflegi3000.database.tables.TerminEntity;
 
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
@@ -27,9 +26,9 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
         try {
             Log.i(DatabaseHelper.class.getName(), "onCreate");
-            TableUtils.createTable(connectionSource, PatientTable.class);
-            TableUtils.createTable(connectionSource, MedikamentTable.class);
-            TableUtils.createTable(connectionSource, TerminTable.class);
+            TableUtils.createTable(connectionSource, PatientEntity.class);
+            TableUtils.createTable(connectionSource, MedikamentEntity.class);
+            TableUtils.createTable(connectionSource, TerminEntity.class);
         } catch (java.sql.SQLException e) {
             Log.e(DatabaseHelper.class.getName(), "Can't create database", e);
             throw new RuntimeException(e);
@@ -42,9 +41,9 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
         try {
             Log.i(DatabaseHelper.class.getName(), "onCreate");
-            TableUtils.dropTable(connectionSource, PatientTable.class, true);
-            TableUtils.dropTable(connectionSource, MedikamentTable.class, true);
-            TableUtils.dropTable(connectionSource, TerminTable.class, true);
+            TableUtils.dropTable(connectionSource, PatientEntity.class, true);
+            TableUtils.dropTable(connectionSource, MedikamentEntity.class, true);
+            TableUtils.dropTable(connectionSource, TerminEntity.class, true);
             onCreate(db,connectionSource);
         } catch (java.sql.SQLException e) {
             Log.e(DatabaseHelper.class.getName(), "Can't create database", e);

@@ -4,15 +4,15 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "patient")
-public class PatientTable {
+public class PatientEntity {
     @DatabaseField(id = true, generatedId = false) public int id;
     @DatabaseField String firstname;
     @DatabaseField String lastname;
-    public MedikamentTable medi;
-    public TerminTable termi;
-    public PatientTable() {/*ORMLite needs a default Constructor*/};
+    public MedikamentEntity medi;
+    public TerminEntity termi;
+    public PatientEntity() {/*ORMLite needs a default Constructor*/};
 
-    public PatientTable(int id, String firstname, String lastname) {
+    public PatientEntity(int id, String firstname, String lastname) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
