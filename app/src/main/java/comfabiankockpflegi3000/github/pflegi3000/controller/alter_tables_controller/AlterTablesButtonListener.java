@@ -5,6 +5,7 @@ import android.view.View;
 import java.sql.SQLException;
 
 import comfabiankockpflegi3000.github.pflegi3000.R;
+import comfabiankockpflegi3000.github.pflegi3000.activities.alter_tables_activity.add_insurance_activity.AddInsuranceActivity;
 import comfabiankockpflegi3000.github.pflegi3000.activities.main_activity.MainActivity;
 import comfabiankockpflegi3000.github.pflegi3000.android_helper.AndroidHelper;
 import comfabiankockpflegi3000.github.pflegi3000.database.DaoFactory;
@@ -44,6 +45,7 @@ public class AlterTablesButtonListener implements View.OnClickListener{
                 break;
 
             case R.id.edit_insurancetable_button:
+                AndroidHelper.startNewActivity(view.getContext(), AddInsuranceActivity.class);
                 break;
         }
     }

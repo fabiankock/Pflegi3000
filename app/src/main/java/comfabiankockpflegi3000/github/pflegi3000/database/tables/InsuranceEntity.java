@@ -11,9 +11,8 @@ public class InsuranceEntity {
     @DatabaseField(columnName = "Type") private String type;
 
     public InsuranceEntity(){}
-    public InsuranceEntity(int id, String name, String type){
+    public InsuranceEntity(String name, String type){
 
-        this.id = id;
         this.name = name;
         this.type = type;
     }

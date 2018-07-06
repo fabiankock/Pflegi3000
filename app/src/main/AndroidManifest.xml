@@ -22,7 +22,8 @@
         <activity
             android:name=".activities.show_patient_activity.ShowPatientActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".activities.alter_tables_activity.AlterTablesActivity"></activity>
+        <activity android:name=".activities.alter_tables_activity.AlterTablesActivity" />
+        <activity android:name=".activities.alter_tables_activity.add_insurance_activity.AddInsuranceActivity"></activity>
     </application>
 
 </manifest>
