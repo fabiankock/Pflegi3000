@@ -28,7 +28,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint="@string/firstname"
-        android:inputType="none"
+        android:inputType="text"
+        android:visibility="invisible"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
@@ -37,7 +38,25 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint="@string/lastname"
-        android:inputType="none"
+        android:inputType="text"
+        android:visibility="invisible"
         app:layout_constraintTop_toBottomOf="@id/text_firstname" />
+
+    <TextView
+        android:id="@+id/view_firstname"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="Vorname"
+        android:visibility="visible"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <TextView
+        android:id="@+id/view_lastname"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nachname"
+        android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@+id/view_firstname"/>
 
 </android.support.constraint.ConstraintLayout>

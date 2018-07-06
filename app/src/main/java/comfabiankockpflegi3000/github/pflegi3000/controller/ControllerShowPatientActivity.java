@@ -1,6 +1,9 @@
 package comfabiankockpflegi3000.github.pflegi3000.controller;
 
 import android.text.InputType;
+import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
 
 import comfabiankockpflegi3000.github.pflegi3000.activities.show_patient_activity.ShowPatientActivity;
 
@@ -13,13 +16,22 @@ public class ControllerShowPatientActivity {
         this.showPatientActivity = theActivity;
     }
 
-    public void setEditable() {
+    public void ViewToEdit() {
+        //TextView unsichtbar machen
+        showPatientActivity.getFirstNameView().setVisibility(View.INVISIBLE);
+        showPatientActivity.getLastNameView().setVisibility(View.INVISIBLE);
+        //EditText sichtbar machen
+        showPatientActivity.getFirstNameText().setVisibility(View.VISIBLE);
+        showPatientActivity.getLastNameText().setVisibility(View.VISIBLE);
+    }
 
+    public void EditToView() {
+        //TextView sichtbar machen
+        showPatientActivity.getFirstNameView().setVisibility(View.VISIBLE);
+        showPatientActivity.getLastNameView().setVisibility(View.VISIBLE);
+        //EditText unsichtbar machen
+        showPatientActivity.getFirstNameText().setVisibility(View.INVISIBLE);
+        showPatientActivity.getLastNameText().setVisibility(View.INVISIBLE);
 
-        if (showPatientActivity.getFirstNameText().getInputType() == InputType.TYPE_NULL) {
-            showPatientActivity.getLastNameText().setInputType(InputType.TYPE_CLASS_TEXT);
-        } else {
-            showPatientActivity.getLastNameText().setInputType(InputType.TYPE_CLASS_TEXT);
-        }
     }
 }
