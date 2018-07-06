@@ -1,4 +1,4 @@
-package comfabiankockpflegi3000.github.pflegi3000.controller;
+package comfabiankockpflegi3000.github.pflegi3000.controller.add_patient_controller;
 
 import com.j256.ormlite.dao.Dao;
 
@@ -15,10 +15,12 @@ public class ControllerAddPatientActivity {
 
     private DaoFactory daofactory;
     private AddPatientActivity addPatientActivity;
+    private AddPatientButtonListener btnListener;
 
     public ControllerAddPatientActivity(AddPatientActivity theActivity){
 
         this.addPatientActivity = theActivity;
+        this.btnListener = new AddPatientButtonListener(this);
     }
 
     public void processInput(String firstname, String lastname) {
@@ -47,6 +49,11 @@ public class ControllerAddPatientActivity {
         } catch (SQLException e) {
             System.out.println(e);
         }
+    }
+
+    public AddPatientButtonListener getButtonListener() {
+
+        return btnListener;
     }
 
     public String getFirstName(){

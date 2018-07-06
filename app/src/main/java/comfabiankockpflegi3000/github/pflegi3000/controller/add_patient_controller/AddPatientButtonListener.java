@@ -1,4 +1,4 @@
-package comfabiankockpflegi3000.github.pflegi3000.activities.add_patient_activity;
+package comfabiankockpflegi3000.github.pflegi3000.controller.add_patient_controller;
 
 import android.content.Intent;
 import android.view.View;
@@ -6,7 +6,7 @@ import android.view.View;
 import comfabiankockpflegi3000.github.pflegi3000.R;
 import comfabiankockpflegi3000.github.pflegi3000.android_helper.AndroidHelper;
 import comfabiankockpflegi3000.github.pflegi3000.activities.main_activity.MainActivity;
-import comfabiankockpflegi3000.github.pflegi3000.controller.ControllerAddPatientActivity;
+import comfabiankockpflegi3000.github.pflegi3000.controller.add_patient_controller.ControllerAddPatientActivity;
 
 public class AddPatientButtonListener implements View.OnClickListener {
 
@@ -31,8 +31,8 @@ public class AddPatientButtonListener implements View.OnClickListener {
             case R.id.submit_button_addPatientActivity:
                 this.controller.processInput(this.controller.getFirstName(),
                                              this.controller.getLastName());
-
                 AndroidHelper.startNewActivity(view.getContext(), MainActivity.class);
+                break;
 
             default:
                 break;

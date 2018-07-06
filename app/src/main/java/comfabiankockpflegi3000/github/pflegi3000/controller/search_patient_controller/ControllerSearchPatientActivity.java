@@ -10,22 +10,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import comfabiankockpflegi3000.github.pflegi3000.activities.search_patient_activity.SearchPatientActivity;
+import comfabiankockpflegi3000.github.pflegi3000.controller.search_patient_controller.search_listener.SearchPatientButtonListener;
 import comfabiankockpflegi3000.github.pflegi3000.database.DaoFactory;
 import comfabiankockpflegi3000.github.pflegi3000.database.tables.PatientEntity;
 
 public class ControllerSearchPatientActivity implements SearchView.OnQueryTextListener{
 
     private ListViewAdapter listViewAdapter;
+    private SearchPatientButtonListener btnListener;
     private DaoFactory daofactory;
 
     public ControllerSearchPatientActivity(SearchPatientActivity a){
 
         this.daofactory = (DaoFactory) a.getApplication();
         this.listViewAdapter = new ListViewAdapter(a.getApplicationContext(), this.getAllPatientNames());
-    }
-
-    public void processInput(String s){
-
+        this.btnListener = new SearchPatientButtonListener();
     }
 
     public ArrayList<PatientNames> getAllPatientNames() {
@@ -53,6 +52,11 @@ public class ControllerSearchPatientActivity implements SearchView.OnQueryTextLi
     public ListViewAdapter getListViewAdapter() {
 
         return this.listViewAdapter;
+    }
+
+    public SearchPatientButtonListener getButtonListener() {
+
+        return btnListener;
     }
 
     @Override

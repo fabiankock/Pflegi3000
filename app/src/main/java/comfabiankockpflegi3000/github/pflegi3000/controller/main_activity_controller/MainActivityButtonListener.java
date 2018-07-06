@@ -1,4 +1,4 @@
-package comfabiankockpflegi3000.github.pflegi3000.activities.main_activity;
+package comfabiankockpflegi3000.github.pflegi3000.controller.main_activity_controller;
 
 import android.content.Intent;
 import android.view.View;

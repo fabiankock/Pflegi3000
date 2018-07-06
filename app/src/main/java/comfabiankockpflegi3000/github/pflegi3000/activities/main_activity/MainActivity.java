@@ -2,28 +2,27 @@ package comfabiankockpflegi3000.github.pflegi3000.activities.main_activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 
 import comfabiankockpflegi3000.github.pflegi3000.R;
-import comfabiankockpflegi3000.github.pflegi3000.database.DaoFactory;
+import comfabiankockpflegi3000.github.pflegi3000.controller.main_activity_controller.ControllerMainActivity;
+import comfabiankockpflegi3000.github.pflegi3000.controller.main_activity_controller.MainActivityButtonListener;
 
 public class MainActivity extends AppCompatActivity {
 
     private Button patientsBtn, addPatientsBtn;
-    private MainActivityButtonListener btnListener;
+    private ControllerMainActivity controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        this.controller = new ControllerMainActivity();
 
         this.patientsBtn = (Button) findViewById(R.id.patient_button);
         this.addPatientsBtn = (Button) findViewById(R.id.addpatient_button);
 
-        this.btnListener = new MainActivityButtonListener();
-        System.out.println(this.btnListener.toString());
-        this.patientsBtn.setOnClickListener(this.btnListener);
-        this.addPatientsBtn.setOnClickListener(this.btnListener);
+        this.patientsBtn.setOnClickListener(this.controller.getButtonListener());
+        this.addPatientsBtn.setOnClickListener(this.controller.getButtonListener());
     }
 }
