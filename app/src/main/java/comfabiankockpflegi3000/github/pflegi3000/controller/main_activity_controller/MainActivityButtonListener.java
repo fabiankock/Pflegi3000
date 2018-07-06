@@ -5,6 +5,7 @@ import android.view.View;
 
 import comfabiankockpflegi3000.github.pflegi3000.R;
 import comfabiankockpflegi3000.github.pflegi3000.activities.add_patient_activity.AddPatientActivity;
+import comfabiankockpflegi3000.github.pflegi3000.activities.alter_tables_activity.AlterTablesActivity;
 import comfabiankockpflegi3000.github.pflegi3000.android_helper.AndroidHelper;
 import comfabiankockpflegi3000.github.pflegi3000.activities.search_patient_activity.SearchPatientActivity;
 
@@ -28,6 +29,9 @@ public class MainActivityButtonListener implements View.OnClickListener {
             case R.id.patient_button:
                 AndroidHelper.startNewActivity(view.getContext(), SearchPatientActivity.class);
                 break;
+
+            case R.id.edittables_button:
+                AndroidHelper.startNewActivity(view.getContext(), AlterTablesActivity.class);
 
             default:
                 break;

@@ -23,10 +23,13 @@ public class ControllerAddPatientActivity {
         this.btnListener = new AddPatientButtonListener(this);
     }
 
-    public void processInput(String firstname, String lastname) {
+    public void processInput() {
 
 
         daofactory = (DaoFactory) addPatientActivity.getApplication();
+
+        int insNr = Integer.parseInt(this.addPatientActivity.getInsuranceNrValue());
+        char gender = this.addPatientActivity.getGenderValue().toCharArray()[0];
 
         try {
 
@@ -34,14 +37,17 @@ public class ControllerAddPatientActivity {
 
             MedikamentEntity tpMedikament = new MedikamentEntity();
             TerminEntity tpTermin = new TerminEntity();
-            PatientEntity tpPatient = new PatientEntity();
+            PatientEntity tpPatient = new PatientEntity(this.addPatientActivity.getFirstNameValue(), this.addPatientActivity.getLastNameValue(),
+                                                        gender, insNr,
+                                                        /*insurance*/null,
+                                                        /*medications*/null, /*appointments*/null);
 
-            tpPatient.id = new Random().nextInt(100);
+            /*tpPatient.id = new Random().nextInt(100);
             tpPatient.setFirstname(firstname);
             tpPatient.setLastname(lastname);
 
             tpPatient.medi = tpMedikament;
-            tpPatient.termi = tpTermin;
+            tpPatient.termi = tpTermin;*/
 
             pDao.create(tpPatient);
             //Send Database query to insert new Patient
@@ -54,15 +60,5 @@ public class ControllerAddPatientActivity {
     public AddPatientButtonListener getButtonListener() {
 
         return btnListener;
-    }
-
-    public String getFirstName(){
-
-        return this.addPatientActivity.getFirstNameValue();
-    }
-
-    public String getLastName(){
-
-        return this.addPatientActivity.getLastNameValue();
     }
 }

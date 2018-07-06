@@ -6,10 +6,11 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = "medikament")
 public class MedikamentEntity {
 
-    @DatabaseField(id = true, generatedId = false) public int id;
-    @DatabaseField public String MName;
-    @DatabaseField public int MDose;
-    @DatabaseField public String MDescription;
+    @DatabaseField(columnName = "mId", generatedId = true) private int id;
+    @DatabaseField private String MName;
+    @DatabaseField private int MDose;
+    @DatabaseField private String MDescription;
+
     public MedikamentEntity() {/*Default Constructor*/}
 
     public MedikamentEntity(String MName, int MDose, String MDescription) {

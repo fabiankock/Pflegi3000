@@ -13,7 +13,7 @@ public class AddPatientActivity extends AppCompatActivity {
 
     private Button backBtn;
     private Button submitBtn;
-    private EditText firstNameEditText, lastNameEditText;
+    private EditText firstNameEditText, lastNameEditText, genderEditText, insuranceNrEditText;
     private ControllerAddPatientActivity controller;
 
     @Override
@@ -31,15 +31,15 @@ public class AddPatientActivity extends AppCompatActivity {
 
         this.firstNameEditText = (EditText) findViewById(R.id.edittext_firstname);
         this.lastNameEditText = (EditText) findViewById(R.id.edittext_lastname);
+        this.genderEditText = (EditText) findViewById(R.id.edittext_gender);
+        this.insuranceNrEditText = (EditText) findViewById(R.id.edittext_insuranceNr);
     }
 
-    public String getFirstNameValue(){
+    public String getFirstNameValue(){ return this.firstNameEditText.getText().toString(); }
 
-        return this.firstNameEditText.getText().toString();
-    }
+    public String getLastNameValue() { return this.lastNameEditText.getText().toString(); }
 
-    public String getLastNameValue() {
+    public String getGenderValue() { return this.genderEditText.getText().toString(); }
 
-        return this.lastNameEditText.getText().toString();
-    }
+    public String getInsuranceNrValue() { return this.insuranceNrEditText.getText().toString(); }
 }

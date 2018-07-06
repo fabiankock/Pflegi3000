@@ -36,4 +36,12 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 
+    <Button
+        android:id="@+id/edittables_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/altertables_str"
+        app:layout_constraintTop_toBottomOf="@id/addpatient_button"/>
+
 </android.support.constraint.ConstraintLayout>

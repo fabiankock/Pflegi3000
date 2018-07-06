@@ -3,10 +3,13 @@
     <string name="app_name">Pflegi3000</string>
     <string name="patient_str">Patienten</string>
     <string name="addpatient_str">Patient hinzufügen</string>
+    <string name="altertables_str">Tabellen bearbeiten</string>
 
     <!--strings for add patient activity !-->
     <string name="firstname">Vorname</string>
     <string name="lastname">Nachname</string>
+    <string name="gender">Geschlecht</string>
+    <string name="insuranceNr">Versicherungsnummer</string>
 
     <!--string for search patient activity!-->
     <string name="search_hint">Patienten suchen</string>
@@ -18,4 +21,9 @@
 
     <!--string for editable button-->
     <string name="action_enable_editable">bearbeiten</string>
+
+    <!--strings for alter Table activity !-->
+    <string name="drop_patient_table">Drop Patient Table</string>
+    <string name="edit_insurance_table">Versicherung hinzufügen</string>
+    <string name="drop_insurance_table">Drop Insurance Table</string>
 </resources>
