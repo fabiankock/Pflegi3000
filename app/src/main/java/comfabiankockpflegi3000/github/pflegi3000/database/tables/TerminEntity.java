@@ -8,11 +8,12 @@ import java.util.Date;
 @DatabaseTable(tableName = "termin")
 public class TerminEntity {
 
-    @DatabaseField(id = true, generatedId = false) public int id;
-    @DatabaseField public String TName;
-    @DatabaseField public Date timestamp;
-    @DatabaseField public String TDescription;
-    @DatabaseField public String TAddress;
+    @DatabaseField(columnName = "tId", generatedId = true) private int id;
+    @DatabaseField private String TName;
+    @DatabaseField private Date timestamp;
+    @DatabaseField private String TDescription;
+    @DatabaseField private String TAddress;
+
     public TerminEntity() {/*Default Constructor for ORMLite*/}
 
     public TerminEntity(String TName, Date timestamp, String TDescription, String TAddress) {

@@ -8,6 +8,7 @@ import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
+import comfabiankockpflegi3000.github.pflegi3000.database.tables.InsuranceEntity;
 import comfabiankockpflegi3000.github.pflegi3000.database.tables.MedikamentEntity;
 import comfabiankockpflegi3000.github.pflegi3000.database.tables.PatientEntity;
 import comfabiankockpflegi3000.github.pflegi3000.database.tables.TerminEntity;
@@ -26,9 +27,10 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
         try {
             Log.i(DatabaseHelper.class.getName(), "onCreate");
-            TableUtils.createTable(connectionSource, PatientEntity.class);
-            TableUtils.createTable(connectionSource, MedikamentEntity.class);
-            TableUtils.createTable(connectionSource, TerminEntity.class);
+            TableUtils.createTableIfNotExists(connectionSource, PatientEntity.class);
+            TableUtils.createTableIfNotExists(connectionSource, InsuranceEntity.class);
+            TableUtils.createTableIfNotExists(connectionSource, MedikamentEntity.class);
+            TableUtils.createTableIfNotExists(connectionSource, TerminEntity.class);
         } catch (java.sql.SQLException e) {
             Log.e(DatabaseHelper.class.getName(), "Can't create database", e);
             throw new RuntimeException(e);
@@ -42,6 +44,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         try {
             Log.i(DatabaseHelper.class.getName(), "onCreate");
             TableUtils.dropTable(connectionSource, PatientEntity.class, true);
+            TableUtils.dropTable(connectionSource, InsuranceEntity.class, true);
             TableUtils.dropTable(connectionSource, MedikamentEntity.class, true);
             TableUtils.dropTable(connectionSource, TerminEntity.class, true);
             onCreate(db,connectionSource);

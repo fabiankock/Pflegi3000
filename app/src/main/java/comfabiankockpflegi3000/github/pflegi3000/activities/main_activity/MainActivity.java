@@ -10,7 +10,7 @@ import comfabiankockpflegi3000.github.pflegi3000.controller.main_activity_contro
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button patientsBtn, addPatientsBtn;
+    private Button patientsBtn, addPatientsBtn, alterTablesBtn;
     private ControllerMainActivity controller;
 
     @Override
@@ -21,8 +21,10 @@ public class MainActivity extends AppCompatActivity {
 
         this.patientsBtn = (Button) findViewById(R.id.patient_button);
         this.addPatientsBtn = (Button) findViewById(R.id.addpatient_button);
+        this.alterTablesBtn = (Button) findViewById(R.id.edittables_button);
 
         this.patientsBtn.setOnClickListener(this.controller.getButtonListener());
         this.addPatientsBtn.setOnClickListener(this.controller.getButtonListener());
+        this.alterTablesBtn.setOnClickListener(this.controller.getButtonListener());
     }
 }

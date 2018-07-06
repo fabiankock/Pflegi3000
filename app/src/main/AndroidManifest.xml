@@ -21,8 +21,9 @@
         <activity android:name=".activities.search_patient_activity.SearchPatientActivity" />
         <activity
             android:name=".activities.show_patient_activity.ShowPatientActivity"
-            android:label="@string/title_activity_show_patient2"
+            android:label="@string/title_activity_show_patient"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".activities.alter_tables_activity.AlterTablesActivity"></activity>
     </application>
 
 </manifest>

@@ -29,8 +29,7 @@ public class AddPatientButtonListener implements View.OnClickListener {
                 break;
 
             case R.id.submit_button_addPatientActivity:
-                this.controller.processInput(this.controller.getFirstName(),
-                                             this.controller.getLastName());
+                this.controller.processInput();
                 AndroidHelper.startNewActivity(view.getContext(), MainActivity.class);
                 break;
 

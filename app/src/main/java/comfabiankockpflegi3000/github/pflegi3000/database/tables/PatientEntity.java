@@ -5,17 +5,28 @@ import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "patient")
 public class PatientEntity {
-    @DatabaseField(id = true, generatedId = false) public int id;
-    @DatabaseField String firstname;
-    @DatabaseField String lastname;
-    public MedikamentEntity medi;
-    public TerminEntity termi;
+    @DatabaseField(columnName = "pId", generatedId = true) private int p_id;
+    @DatabaseField(columnName = "FirstName") private String firstname;
+    @DatabaseField(columnName = "LastName") private String lastname;
+    @DatabaseField(columnName = "Gender") private char gender;
+    @DatabaseField(columnName = "InsuranceNr") private int insuranceNumber;
+    @DatabaseField(columnName = "InsuranceType", foreign = true) private InsuranceEntity insuranceEntity;
+    @DatabaseField(columnName = "Medications", foreign = true) private MedikamentEntity medi;
+    @DatabaseField(columnName = "Appointments",foreign = true) private TerminEntity termi;
+
     public PatientEntity() {/*ORMLite needs a default Constructor*/};
 
-    public PatientEntity(int id, String firstname, String lastname) {
-        this.id = id;
+    public PatientEntity(String firstname, String lastname,
+                         char gender, int insuranceNumber, InsuranceEntity insuranceEntity,
+                         MedikamentEntity medikamentEntity, TerminEntity terminEntity) {
+
         this.firstname = firstname;
         this.lastname = lastname;
+        this.gender = gender;
+        this.insuranceNumber = insuranceNumber;
+        this.insuranceEntity = insuranceEntity;
+        this.medi = medikamentEntity;
+        this.termi = terminEntity;
     }
 
     /*----------------Getter----------------*/
@@ -27,6 +38,16 @@ public class PatientEntity {
         return this.lastname;
     }
 
+    public char getGender() { return this.gender; }
+
+    public int getInsuranceNumber() { return insuranceNumber; }
+
+    public InsuranceEntity getInsuranceEntity() { return insuranceEntity; }
+
+    public MedikamentEntity getMedi() { return medi; }
+
+    public TerminEntity getTermi() { return termi; }
+
     /*----------------Setter----------------*/
     public void setFirstname(String name) {
         this.firstname = name;
@@ -36,4 +57,13 @@ public class PatientEntity {
         this.lastname = name;
     }
 
+    public void setGender(char gender) { this.gender = gender; }
+
+    public void setInsuranceNumber(int insuranceNumber) { this.insuranceNumber = insuranceNumber; }
+
+    public void setInsuranceEntity(InsuranceEntity insuranceEntity) { this.insuranceEntity = insuranceEntity; }
+
+    public void setMedi(MedikamentEntity medi) { this.medi = medi; }
+
+    public void setTermi(TerminEntity termi) { this.termi = termi; }
 }
