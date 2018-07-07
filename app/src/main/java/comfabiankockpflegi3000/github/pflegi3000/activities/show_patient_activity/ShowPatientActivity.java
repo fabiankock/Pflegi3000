@@ -32,19 +32,22 @@ public class ShowPatientActivity extends AppCompatActivity
     private int position;
     private ControllerPatientFragment controllerPatientFragment;
     private PatientFragment fPatient;
+    private int patient_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_patient);
 
-        String patient_pos = getIntent().getStringExtra(AndroidHelper.PATIENT_POSITION_EXTRA);
-        Log.i("Show", "p_id: " + patient_pos);
+        String patient_id_str = getIntent().getStringExtra(AndroidHelper.PATIENT_POSITION_EXTRA);
+        this.patient_id = Integer.parseInt(patient_id_str);
+        Log.i("Show", "p_id: " + this.patient_id);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        this.controllerPatientFragment = new ControllerPatientFragment(null, this);
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), this);
 
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
@@ -104,8 +107,11 @@ public class ShowPatientActivity extends AppCompatActivity
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-        public SectionsPagerAdapter(FragmentManager fm) {
+        private ShowPatientActivity sp_activity;
+
+        public SectionsPagerAdapter(FragmentManager fm, ShowPatientActivity a) {
             super(fm);
+            this.sp_activity = a;
         }
 
         // Gibt je nach Position (Leiste oben) das jeweilige Fragment zurück
@@ -115,8 +121,8 @@ public class ShowPatientActivity extends AppCompatActivity
             switch(position) {
 
                 case 0:
-                    fPatient = PatientFragment.newInstance();
-                    controllerPatientFragment = new ControllerPatientFragment(fPatient);
+                    fPatient = PatientFragment.newInstance(patient_id, controllerPatientFragment);
+                    controllerPatientFragment = new ControllerPatientFragment(fPatient, this.sp_activity);
                     return fPatient;
 
                 case 1:

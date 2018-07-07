@@ -14,11 +14,20 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.sql.SQLException;
+
 import comfabiankockpflegi3000.github.pflegi3000.R;
+import comfabiankockpflegi3000.github.pflegi3000.controller.show_patient_controller.ControllerPatientFragment;
+import comfabiankockpflegi3000.github.pflegi3000.database.tables.PatientEntity;
 
 public class PatientFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
+
+    private int patient_id;
+    private PatientEntity the_patient;
+
+    private ControllerPatientFragment controller;
 
     //Editierbare Felder
     private EditText firstNameText, lastNameText;
@@ -34,8 +43,15 @@ public class PatientFragment extends Fragment {
 
     public PatientFragment() {}
 
-    public static PatientFragment newInstance() {
-        PatientFragment fragment = new PatientFragment();
+    public PatientFragment(int p_id, ControllerPatientFragment c) {
+        this.patient_id = p_id;
+        this.controller = c;
+    }
+
+    public static PatientFragment newInstance(int p_id, ControllerPatientFragment c) {
+
+        PatientFragment fragment = new PatientFragment(p_id, c);
+
         return fragment;
     }
 
@@ -49,37 +65,43 @@ public class PatientFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_patient, container, false);
+        try {
+            this.the_patient = this.controller.getPatientByID(this.patient_id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-        //editierbare Felder
-        firstNameText = view.findViewById(R.id.text_firstname);
-        firstNameText.setText("Hans");
+        if(this.the_patient != null) {
+            //editierbare Felder
+            firstNameText = view.findViewById(R.id.text_firstname);
+            firstNameText.setText(this.the_patient.getFirstname());
 
-        lastNameText = view.findViewById(R.id.text_lastname);
-        lastNameText.setText("Peter");
+            lastNameText = view.findViewById(R.id.text_lastname);
+            lastNameText.setText(this.the_patient.getLastname());
 
-        rgGender = view.findViewById(R.id.radio_gender);
+            rgGender = view.findViewById(R.id.radio_gender);
 
-        insuranceNrText = view.findViewById(R.id.text_insuranceNr);
-        insuranceNrText.setText("12345678");
+            insuranceNrText = view.findViewById(R.id.text_insuranceNr);
+            insuranceNrText.setText(Integer.toString(this.the_patient.getInsuranceNumber()));
 
-        insuranceTypeSpinner = view.findViewById(R.id.spinner_insuranceType);
+            insuranceTypeSpinner = view.findViewById(R.id.spinner_insuranceType);
 
-        //nicht editierbare Felder
-        firstNameView = view.findViewById(R.id.view_firstname);
-        firstNameView.setText("Hans");
+            //nicht editierbare Felder
+            firstNameView = view.findViewById(R.id.view_firstname);
+            firstNameView.setText(this.the_patient.getFirstname());
 
-        lastNameView = view.findViewById(R.id.view_lastname);
-        lastNameView.setText("Peter");
+            lastNameView = view.findViewById(R.id.view_lastname);
+            lastNameView.setText(this.the_patient.getLastname());
 
-        genderView = view.findViewById(R.id.view_gender);
-        genderView.setText("Männlich");
+            genderView = view.findViewById(R.id.view_gender);
+            genderView.setText(Character.toString(this.the_patient.getGender()));
 
-        insuranceNrView = view.findViewById(R.id.view_insuranceNr);
-        insuranceNrView.setText("12345678");
+            insuranceNrView = view.findViewById(R.id.view_insuranceNr);
+            insuranceNrView.setText(Integer.toString(this.the_patient.getInsuranceNumber()));
 
-        insuranceTypeView = view.findViewById(R.id.view_insuranceType);
-        insuranceTypeView.setText("AOK");
-
+            insuranceTypeView = view.findViewById(R.id.view_insuranceType);
+            //insuranceTypeView.setText(this.the_patient.getInsuranceEntity().getName());
+        }
         return view;
 
     }
