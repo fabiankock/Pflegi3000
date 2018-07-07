@@ -39,7 +39,7 @@ public class ShowPatientActivity extends AppCompatActivity
         setContentView(R.layout.activity_show_patient);
 
         String patient_pos = getIntent().getStringExtra(AndroidHelper.PATIENT_POSITION_EXTRA);
-        Log.i("Show", "Position in array: " + patient_pos);
+        Log.i("Show", "p_id: " + patient_pos);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

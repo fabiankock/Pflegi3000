@@ -27,16 +27,16 @@ public class ControllerSearchPatientActivity {
     public ControllerSearchPatientActivity(SearchPatientActivity a){
 
         this.daofactory = (DaoFactory) a.getApplication();
-        this.listViewAdapter = new ListViewAdapter(a.getApplicationContext(), this.getAllPatientNames());
+        this.listViewAdapter = new ListViewAdapter(a.getApplicationContext(), this.getAllPatients());
         this.btnListener = new SearchPatientButtonListener();
         this.onQueryTextListener = new SearchBarQueryTextListener(this.listViewAdapter);
         this.onItemClickListener = new ListViewOnItemClickListener(a);
     }
 
-    public ArrayList<PatientNames> getAllPatientNames() {
+    public ArrayList<PatientEntity> getAllPatients() {
 
         PatientNames tmp;
-        ArrayList<PatientNames> list = new ArrayList<PatientNames>();
+        ArrayList<PatientEntity> list = new ArrayList<PatientEntity>();
 
         try{
             Dao<PatientEntity, Integer> pDao = daofactory.getPatientDAO();
@@ -44,9 +44,8 @@ public class ControllerSearchPatientActivity {
             List<PatientEntity> allPatientEntities = pDao.queryForAll();
             for(int i = 0; i < allPatientEntities.size(); i++){
 
-                tmp = new PatientNames(allPatientEntities.get(i).getFirstname() + " " + allPatientEntities.get(i).getLastname());
-                list.add(tmp);
-                Log.d("Search", "add " +tmp.getPatientName());
+                list.add(allPatientEntities.get(i));
+                Log.d("Search", "add " +allPatientEntities.get(i).getFirstname() + " " + allPatientEntities.get(i).getLastname());
             }
         }catch (SQLException e){
             e.printStackTrace();

@@ -28,6 +28,9 @@ public class PatientEntity {
     }
 
     /*----------------Getter----------------*/
+
+    public int getP_id() { return p_id; }
+
     public String getFirstname() {
         return this.firstname;
     }

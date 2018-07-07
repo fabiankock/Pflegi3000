@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Locale;
 
 import comfabiankockpflegi3000.github.pflegi3000.R;
+import comfabiankockpflegi3000.github.pflegi3000.database.tables.PatientEntity;
 
 public class ListViewAdapter extends BaseAdapter {
 
@@ -19,14 +20,14 @@ public class ListViewAdapter extends BaseAdapter {
 
     Context mContext;
     LayoutInflater inflater;
-    private List<PatientNames> patientNamesList = null;
-    private ArrayList<PatientNames> arraylist;
+    private List<PatientEntity> patientNamesList = null;
+    private ArrayList<PatientEntity> arraylist;
 
-    public ListViewAdapter(Context context, List<PatientNames> patientList) {
+    public ListViewAdapter(Context context, List<PatientEntity> patientList) {
         mContext = context;
         this.patientNamesList = patientList;
         inflater = LayoutInflater.from(mContext);
-        this.arraylist = new ArrayList<PatientNames>();
+        this.arraylist = new ArrayList<PatientEntity>();
         this.arraylist.addAll(this.patientNamesList);
     }
 
@@ -62,7 +63,7 @@ public class ListViewAdapter extends BaseAdapter {
             holder = (ViewHolder) view.getTag();
         }
         // Set the results into TextViews
-        holder.name.setText(patientNamesList.get(position).getPatientName());
+        holder.name.setText(patientNamesList.get(position).getFirstname() + " " + patientNamesList.get(position).getLastname());
         return view;
     }
 
@@ -75,8 +76,8 @@ public class ListViewAdapter extends BaseAdapter {
             this.patientNamesList.addAll(arraylist);
         } else {
             //Check if patient Names contains the search string
-            for (PatientNames wp : arraylist) {
-                if (wp.getPatientName().toLowerCase(Locale.getDefault()).contains(charText)) {
+            for (PatientEntity wp : arraylist) {
+                if (wp.getLastname().toLowerCase(Locale.getDefault()).contains(charText) || wp.getFirstname().toLowerCase(Locale.getDefault()).contains(charText)) {
                     this.patientNamesList.add(wp);
                 }
             }

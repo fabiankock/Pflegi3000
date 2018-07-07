@@ -9,6 +9,7 @@ import java.util.HashMap;
 import comfabiankockpflegi3000.github.pflegi3000.activities.search_patient_activity.SearchPatientActivity;
 import comfabiankockpflegi3000.github.pflegi3000.activities.show_patient_activity.ShowPatientActivity;
 import comfabiankockpflegi3000.github.pflegi3000.android_helper.AndroidHelper;
+import comfabiankockpflegi3000.github.pflegi3000.database.tables.PatientEntity;
 
 public class ListViewOnItemClickListener implements AdapterView.OnItemClickListener {
 
@@ -22,9 +23,10 @@ public class ListViewOnItemClickListener implements AdapterView.OnItemClickListe
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
+        PatientEntity entity = (PatientEntity) adapterView.getItemAtPosition(i);
         HashMap<String, String> extras = new HashMap<>();
-        extras.put(AndroidHelper.PATIENT_POSITION_EXTRA, String.valueOf(i));
-        Log.i("Show", "position: " + i);
+        extras.put(AndroidHelper.PATIENT_POSITION_EXTRA, String.valueOf(entity.getP_id()));
+        Log.i("Show", "p_id: " + entity.getP_id());
         AndroidHelper.startNewActivityWithExtras(view.getContext(), ShowPatientActivity.class, extras);
     }
 }
