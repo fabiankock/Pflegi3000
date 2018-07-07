@@ -11,7 +11,7 @@ import com.j256.ormlite.table.TableUtils;
 import comfabiankockpflegi3000.github.pflegi3000.database.tables.InsuranceEntity;
 import comfabiankockpflegi3000.github.pflegi3000.database.tables.MedikamentEntity;
 import comfabiankockpflegi3000.github.pflegi3000.database.tables.PatientEntity;
-import comfabiankockpflegi3000.github.pflegi3000.database.tables.TerminEntity;
+import comfabiankockpflegi3000.github.pflegi3000.database.tables.AppointmentEntity;
 
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
@@ -27,10 +27,10 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
         try {
             Log.i(DatabaseHelper.class.getName(), "onCreate");
-            TableUtils.createTableIfNotExists(connectionSource, PatientEntity.class);
             TableUtils.createTableIfNotExists(connectionSource, InsuranceEntity.class);
             TableUtils.createTableIfNotExists(connectionSource, MedikamentEntity.class);
-            TableUtils.createTableIfNotExists(connectionSource, TerminEntity.class);
+            TableUtils.createTableIfNotExists(connectionSource, PatientEntity.class);
+            TableUtils.createTableIfNotExists(connectionSource, AppointmentEntity.class);
         } catch (java.sql.SQLException e) {
             Log.e(DatabaseHelper.class.getName(), "Can't create database", e);
             throw new RuntimeException(e);
@@ -46,7 +46,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             TableUtils.dropTable(connectionSource, PatientEntity.class, true);
             TableUtils.dropTable(connectionSource, InsuranceEntity.class, true);
             TableUtils.dropTable(connectionSource, MedikamentEntity.class, true);
-            TableUtils.dropTable(connectionSource, TerminEntity.class, true);
+            TableUtils.dropTable(connectionSource, AppointmentEntity.class, true);
             onCreate(db,connectionSource);
         } catch (java.sql.SQLException e) {
             Log.e(DatabaseHelper.class.getName(), "Can't create database", e);

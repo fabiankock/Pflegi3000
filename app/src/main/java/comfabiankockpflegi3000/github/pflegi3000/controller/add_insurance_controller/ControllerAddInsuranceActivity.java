@@ -7,9 +7,6 @@ import java.sql.SQLException;
 import comfabiankockpflegi3000.github.pflegi3000.activities.alter_tables_activity.add_insurance_activity.AddInsuranceActivity;
 import comfabiankockpflegi3000.github.pflegi3000.database.DaoFactory;
 import comfabiankockpflegi3000.github.pflegi3000.database.tables.InsuranceEntity;
-import comfabiankockpflegi3000.github.pflegi3000.database.tables.MedikamentEntity;
-import comfabiankockpflegi3000.github.pflegi3000.database.tables.PatientEntity;
-import comfabiankockpflegi3000.github.pflegi3000.database.tables.TerminEntity;
 
 public class ControllerAddInsuranceActivity {
 

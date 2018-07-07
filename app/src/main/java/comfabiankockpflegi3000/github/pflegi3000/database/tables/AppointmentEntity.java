@@ -6,27 +6,29 @@ import com.j256.ormlite.table.DatabaseTable;
 import java.util.Date;
 
 @DatabaseTable(tableName = "termin")
-public class TerminEntity {
+public class AppointmentEntity {
 
     @DatabaseField(columnName = "tId", generatedId = true) private int id;
-    @DatabaseField private String TName;
-    @DatabaseField private Date timestamp;
-    @DatabaseField private String TDescription;
-    @DatabaseField private String TAddress;
+    @DatabaseField(columnName = "AName") private String AName;
+    @DatabaseField(columnName = "Date") private Date timestamp;
+    @DatabaseField(columnName = "Description") private String TDescription;
+    @DatabaseField(columnName = "Address") private String TAddress;
+    @DatabaseField(columnName = "Patient") private PatientEntity patient;
 
-    public TerminEntity() {/*Default Constructor for ORMLite*/}
+    public AppointmentEntity() {/*Default Constructor for ORMLite*/}
 
-    public TerminEntity(String TName, Date timestamp, String TDescription, String TAddress) {
+    public AppointmentEntity(String TName, Date timestamp, String TDescription, String TAddress, PatientEntity patient) {
 
-        this.TName = TName;
+        this.AName = AName;
         this.timestamp = timestamp;
         this.TDescription = TDescription;
         this.TAddress= TAddress;
+        this.patient = patient;
     }
 
     /*----------------Getter----------------*/
     public String getTName() {
-        return this.TName;
+        return this.AName;
     }
 
     public Date getTimestamp() {
@@ -41,9 +43,11 @@ public class TerminEntity {
         return this.TAddress;
     }
 
+    public PatientEntity getPatient() { return patient; }
+
     /*----------------Setter----------------*/
     public void setFirstname(String name) {
-        this.TName = name;
+        this.AName = name;
     }
 
     public void setTimestamp(Date time) {
@@ -57,4 +61,6 @@ public class TerminEntity {
     public void setTAddress(String address) {
         this.TAddress = address;
     }
+
+    public void setPatient(PatientEntity patient) { this.patient = patient; }
 }

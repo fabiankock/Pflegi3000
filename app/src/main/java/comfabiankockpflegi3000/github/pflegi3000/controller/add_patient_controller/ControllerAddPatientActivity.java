@@ -6,14 +6,13 @@ import com.j256.ormlite.dao.Dao;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Random;
 
 import comfabiankockpflegi3000.github.pflegi3000.activities.add_patient_activity.AddPatientActivity;
 import comfabiankockpflegi3000.github.pflegi3000.database.DaoFactory;
 import comfabiankockpflegi3000.github.pflegi3000.database.tables.InsuranceEntity;
 import comfabiankockpflegi3000.github.pflegi3000.database.tables.MedikamentEntity;
 import comfabiankockpflegi3000.github.pflegi3000.database.tables.PatientEntity;
-import comfabiankockpflegi3000.github.pflegi3000.database.tables.TerminEntity;
+import comfabiankockpflegi3000.github.pflegi3000.database.tables.AppointmentEntity;
 
 public class ControllerAddPatientActivity {
 
@@ -28,25 +27,20 @@ public class ControllerAddPatientActivity {
         this.daofactory = (DaoFactory) addPatientActivity.getApplication();
     }
 
-    public String[] getAllInsurances(){
+    public List<InsuranceEntity> getAllInsurances(){
 
-        String[] ret = null;
+        List<InsuranceEntity> insurances = null;
 
         try{
             Dao<InsuranceEntity, Integer> iDao = daofactory.getInsuranceDAO();
-            List<InsuranceEntity> insurances = iDao.queryForAll();
+            insurances = iDao.queryForAll();
 
             Log.d("insuranceDB", "size: "+insurances.size());
-            ret = new String[insurances.size()];
-            for(int i = 0; i < insurances.size(); i++){
-                ret[i] = insurances.get(i).getName() + " " + insurances.get(i).getType();
-                Log.d("insuranceDB", ret[i]);
-            }
         }catch(SQLException e){
             e.printStackTrace();
         }
 
-        return ret;
+        return insurances;
     }
 
     public void processInput() {
@@ -61,12 +55,12 @@ public class ControllerAddPatientActivity {
 
             MedikamentEntity tpMedikament = new MedikamentEntity();
             //Get the insurance Data
-            //InsuranceEntity insuranceEntity = iDao.queryForId()
-            TerminEntity tpTermin = new TerminEntity();
+            InsuranceEntity insuranceEntity = iDao.queryForAll().get(this.addPatientActivity.getInsuranceListPos());
+            AppointmentEntity tpTermin = new AppointmentEntity();
             PatientEntity tpPatient = new PatientEntity(this.addPatientActivity.getFirstNameValue(), this.addPatientActivity.getLastNameValue(),
                                                         gender, insNr,
-                                                        /*insurance*/null,
-                                                        /*medications*/null, /*appointments*/null);
+                                                        insuranceEntity,
+                                                        /*medications*/null);
 
             pDao.create(tpPatient);
             //Send Database query to insert new Patient

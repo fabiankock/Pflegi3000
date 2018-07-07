@@ -26,13 +26,14 @@ public class SearchPatientActivity extends AppCompatActivity{
         this.backBtn = (Button) findViewById(R.id.back_button_search_patient);
         this.backBtn.setOnClickListener(this.controller.getButtonListener());
 
-        this.testShowPatientBtn = (Button) findViewById(R.id.open_showpatients_button);
-        this.testShowPatientBtn.setOnClickListener(this.controller.getButtonListener());
+        //this.testShowPatientBtn = (Button) findViewById(R.id.open_showpatients_button);
+        //this.testShowPatientBtn.setOnClickListener(this.controller.getButtonListener());
 
         this.searchView = (SearchView) findViewById(R.id.search_bar_patients);
         this.searchView.setOnQueryTextListener(this.controller.getOnQueryTextListener());
 
         this.listView = (ListView) findViewById(R.id.listview);
         this.listView.setAdapter(this.controller.getListViewAdapter());
+        this.listView.setOnItemClickListener(this.controller.getOnItemClickListener());
     }
 }

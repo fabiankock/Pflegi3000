@@ -12,21 +12,19 @@ public class PatientEntity {
     @DatabaseField(columnName = "InsuranceNr") private int insuranceNumber;
     @DatabaseField(columnName = "InsuranceType", foreign = true) private InsuranceEntity insuranceEntity;
     @DatabaseField(columnName = "Medications", foreign = true) private MedikamentEntity medi;
-    @DatabaseField(columnName = "Appointments",foreign = true) private TerminEntity termi;
 
     public PatientEntity() {/*ORMLite needs a default Constructor*/};
 
     public PatientEntity(String firstname, String lastname,
                          char gender, int insuranceNumber, InsuranceEntity insuranceEntity,
-                         MedikamentEntity medikamentEntity, TerminEntity terminEntity) {
+                         MedikamentEntity medikamentEntity) {
 
         this.firstname = firstname;
         this.lastname = lastname;
         this.gender = gender;
         this.insuranceNumber = insuranceNumber;
-        this.insuranceEntity = insuranceEntity;
+        this.insuranceEntity = null;
         this.medi = medikamentEntity;
-        this.termi = terminEntity;
     }
 
     /*----------------Getter----------------*/
@@ -46,8 +44,6 @@ public class PatientEntity {
 
     public MedikamentEntity getMedi() { return medi; }
 
-    public TerminEntity getTermi() { return termi; }
-
     /*----------------Setter----------------*/
     public void setFirstname(String name) {
         this.firstname = name;
@@ -64,6 +60,4 @@ public class PatientEntity {
     public void setInsuranceEntity(InsuranceEntity insuranceEntity) { this.insuranceEntity = insuranceEntity; }
 
     public void setMedi(MedikamentEntity medi) { this.medi = medi; }
-
-    public void setTermi(TerminEntity termi) { this.termi = termi; }
 }

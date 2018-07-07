@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import comfabiankockpflegi3000.github.pflegi3000.activities.search_patient_activity.SearchPatientActivity;
+import comfabiankockpflegi3000.github.pflegi3000.controller.search_patient_controller.search_listener.ListViewOnItemClickListener;
 import comfabiankockpflegi3000.github.pflegi3000.controller.search_patient_controller.search_listener.SearchBarQueryTextListener;
 import comfabiankockpflegi3000.github.pflegi3000.controller.search_patient_controller.search_listener.SearchPatientButtonListener;
 import comfabiankockpflegi3000.github.pflegi3000.database.DaoFactory;
@@ -20,6 +21,7 @@ public class ControllerSearchPatientActivity {
     private ListViewAdapter listViewAdapter;
     private SearchPatientButtonListener btnListener;
     private SearchBarQueryTextListener onQueryTextListener;
+    private ListViewOnItemClickListener onItemClickListener;
     private DaoFactory daofactory;
 
     public ControllerSearchPatientActivity(SearchPatientActivity a){
@@ -28,6 +30,7 @@ public class ControllerSearchPatientActivity {
         this.listViewAdapter = new ListViewAdapter(a.getApplicationContext(), this.getAllPatientNames());
         this.btnListener = new SearchPatientButtonListener();
         this.onQueryTextListener = new SearchBarQueryTextListener(this.listViewAdapter);
+        this.onItemClickListener = new ListViewOnItemClickListener(a);
     }
 
     public ArrayList<PatientNames> getAllPatientNames() {
@@ -65,5 +68,9 @@ public class ControllerSearchPatientActivity {
     public SearchBarQueryTextListener getOnQueryTextListener() {
 
         return this.onQueryTextListener;
+    }
+
+    public ListViewOnItemClickListener getOnItemClickListener() {
+        return onItemClickListener;
     }
 }
