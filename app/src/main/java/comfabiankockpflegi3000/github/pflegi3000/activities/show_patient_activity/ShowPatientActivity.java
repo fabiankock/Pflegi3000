@@ -21,6 +21,7 @@ import comfabiankockpflegi3000.github.pflegi3000.activities.show_patient_activit
 import comfabiankockpflegi3000.github.pflegi3000.activities.show_patient_activity.ShowPatientFragmente.PflegeFragment;
 import comfabiankockpflegi3000.github.pflegi3000.activities.show_patient_activity.ShowPatientFragmente.TerminFragment;
 import comfabiankockpflegi3000.github.pflegi3000.android_helper.AndroidHelper;
+import comfabiankockpflegi3000.github.pflegi3000.controller.show_patient_controller.ControllerMedikamentFragment;
 import comfabiankockpflegi3000.github.pflegi3000.controller.show_patient_controller.ControllerPatientFragment;
 
 public class ShowPatientActivity extends AppCompatActivity
@@ -30,8 +31,13 @@ public class ShowPatientActivity extends AppCompatActivity
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
     private int position;
+
     private ControllerPatientFragment controllerPatientFragment;
     private PatientFragment fPatient;
+
+    private ControllerMedikamentFragment controllerMedikamentFragment;
+    private MedikamenteFragment fMedikament;
+
     private int patient_id;
 
     @Override
@@ -46,7 +52,10 @@ public class ShowPatientActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //Controller für die einzelnen Fragmente!
         this.controllerPatientFragment = new ControllerPatientFragment(null, this);
+        this.controllerMedikamentFragment = new ControllerMedikamentFragment(null, this);
+
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), this);
 
         mViewPager = (ViewPager) findViewById(R.id.container);
@@ -105,6 +114,7 @@ public class ShowPatientActivity extends AppCompatActivity
     }
 
 
+    //verantwortlich für die einzelnen Fragmente bzw. Seiten
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         private ShowPatientActivity sp_activity;
@@ -115,6 +125,7 @@ public class ShowPatientActivity extends AppCompatActivity
         }
 
         // Gibt je nach Position (Leiste oben) das jeweilige Fragment zurück
+        // erstellt einen neuen Controller mit den jeweiligen Frgamenten als parameter
         @Override
         public Fragment getItem(int position) {
 
@@ -126,7 +137,9 @@ public class ShowPatientActivity extends AppCompatActivity
                     return fPatient;
 
                 case 1:
-                    return MedikamenteFragment.newInstance("","");
+                    fMedikament = MedikamenteFragment.newInstance();
+                    controllerMedikamentFragment = new ControllerMedikamentFragment(fMedikament, this.sp_activity);
+                    return fMedikament;
 
                 case 2:
                     return PflegeFragment.newInstance();
@@ -138,7 +151,7 @@ public class ShowPatientActivity extends AppCompatActivity
             return null;
         }
 
-        //Anzahl der Tabs
+        //gibt Anzahl der Tabs zurück
         @Override
         public int getCount() {
             return 4;

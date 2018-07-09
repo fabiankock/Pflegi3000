@@ -1,5 +1,6 @@
 package comfabiankockpflegi3000.github.pflegi3000.activities.show_patient_activity.ShowPatientFragmente;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -43,6 +44,7 @@ public class PatientFragment extends Fragment {
 
     public PatientFragment() {}
 
+    @SuppressLint("ValidFragment")
     public PatientFragment(int p_id, ControllerPatientFragment c) {
         this.patient_id = p_id;
         this.controller = c;
