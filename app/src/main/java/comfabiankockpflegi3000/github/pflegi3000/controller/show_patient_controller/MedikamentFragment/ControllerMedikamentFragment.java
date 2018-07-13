@@ -1,6 +1,8 @@
-package comfabiankockpflegi3000.github.pflegi3000.controller.show_patient_controller;
+package comfabiankockpflegi3000.github.pflegi3000.controller.show_patient_controller.MedikamentFragment;
 
+import android.support.constraint.ConstraintLayout;
 import android.util.Log;
+import android.view.View;
 
 import com.j256.ormlite.dao.Dao;
 
@@ -8,6 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import comfabiankockpflegi3000.github.pflegi3000.R;
 import comfabiankockpflegi3000.github.pflegi3000.activities.show_patient_activity.ShowPatientActivity;
 import comfabiankockpflegi3000.github.pflegi3000.activities.show_patient_activity.ShowPatientFragmente.MedikamenteFragment;
 import comfabiankockpflegi3000.github.pflegi3000.controller.search_patient_controller.PatientNames;
@@ -18,11 +21,13 @@ import comfabiankockpflegi3000.github.pflegi3000.database.tables.PatientEntity;
 
 public class ControllerMedikamentFragment  {
 
-    public MedikamenteFragment activity;
-    public DaoFactory daofactory;
+    private MedikamenteFragment activity;
+    private ShowPatientActivity mainactivity;
+    private DaoFactory daofactory;
 
     public ControllerMedikamentFragment(MedikamenteFragment activity, ShowPatientActivity mainactivity) {
         this.activity = activity;
+        this.mainactivity = mainactivity;
         this.daofactory = (DaoFactory) mainactivity.getApplication();
 
     }
@@ -46,5 +51,21 @@ public class ControllerMedikamentFragment  {
             e.printStackTrace();
         }
         return list;
+    }
+
+
+    //funktion zum sichtbar und unsichtbar machen von add und show
+    public void switchAddShow() {
+
+        ConstraintLayout show = this.mainactivity.findViewById(R.id.show_medikament);
+        ConstraintLayout add = this.mainactivity.findViewById(R.id.add_medikament);
+
+        if (add.getVisibility() == View.INVISIBLE) {
+            show.setVisibility(View.INVISIBLE);
+            add.setVisibility(View.VISIBLE);
+        } else {
+            add.setVisibility(View.INVISIBLE);
+            show.setVisibility(View.VISIBLE);
+        }
     }
 }

@@ -18,8 +18,6 @@ public class MainActivityButtonListener implements View.OnClickListener {
     @Override
     public void onClick(View view) {
 
-        Intent intent;
-
         switch(view.getId()) {
 
             case R.id.addpatient_button:
