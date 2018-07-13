@@ -19,7 +19,7 @@ public class AppointmentEntity {
 
     public AppointmentEntity(String TName, long timestamp, String TDescription, String TAddress, PatientEntity patient) {
 
-        this.AName = AName;
+        this.AName = TName;
         this.timestamp = timestamp;
         this.TDescription = TDescription;
         this.TAddress= TAddress;

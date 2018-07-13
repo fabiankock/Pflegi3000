@@ -39,7 +39,7 @@ public class AppointmentFragment extends Fragment {
     private FloatingActionButton add_button;
     private Button save_button;
     private CalendarView calendarView;
-    private EditText name,description,address;
+    private EditText a_name,description,address;
     private ConstraintLayout edit_layout, show_layout;
 
     private View view;
@@ -83,7 +83,7 @@ public class AppointmentFragment extends Fragment {
         this.edit_layout = (ConstraintLayout) view.findViewById(R.id.fragment_appointment_add);
         this.show_layout = (ConstraintLayout) view.findViewById(R.id.fragment_appointment_show);
 
-        this.name = view.findViewById(R.id.edittext_appointment_name);
+        this.a_name = view.findViewById(R.id.edittext_appointment_name);
         this.description = view.findViewById(R.id.edittext_appointment_description);
         this.address = view.findViewById(R.id.edittext_appointment_address);
 
@@ -104,7 +104,7 @@ public class AppointmentFragment extends Fragment {
     }
 
     public String getName(){
-        return this.name.getText().toString();
+        return this.a_name.getText().toString();
     }
     public String getDescription(){
         return this.description.getText().toString();
