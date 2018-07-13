@@ -13,6 +13,7 @@ import comfabiankockpflegi3000.github.pflegi3000.activities.show_patient_activit
 import comfabiankockpflegi3000.github.pflegi3000.controller.search_patient_controller.PatientNames;
 import comfabiankockpflegi3000.github.pflegi3000.database.DaoFactory;
 import comfabiankockpflegi3000.github.pflegi3000.database.tables.AppointmentEntity;
+import comfabiankockpflegi3000.github.pflegi3000.database.tables.MedikamentEntity;
 import comfabiankockpflegi3000.github.pflegi3000.database.tables.PatientEntity;
 
 public class ControllerMedikamentFragment  {
@@ -23,22 +24,23 @@ public class ControllerMedikamentFragment  {
     public ControllerMedikamentFragment(MedikamenteFragment activity, ShowPatientActivity mainactivity) {
         this.activity = activity;
         this.daofactory = (DaoFactory) mainactivity.getApplication();
+
     }
 
     //Liste mit allen Medikamenten füllen
     // TODO muss noch nach Patient gefiltert werden
-    public ArrayList<AppointmentEntity> getAllMedicals() {
+    public ArrayList<MedikamentEntity> getAllMedicals() {
 
         PatientNames tmp;
-        ArrayList<AppointmentEntity> list = new ArrayList<>();
+        ArrayList<MedikamentEntity> list = new ArrayList<>();
 
         try{
-            Dao<AppointmentEntity, Integer> aDao = daofactory.getAppointmentDAO();
+            Dao<MedikamentEntity, Integer> aDao = daofactory.getMedikamentDAO();
 
-            List<AppointmentEntity> allAppointmentEntities = aDao.queryForAll();
-            for(int i = 0; i < allAppointmentEntities.size(); i++){
+            List<MedikamentEntity> allMedikamentEntities = aDao.queryForAll();
+            for(int i = 0; i < allMedikamentEntities.size(); i++){
 
-                list.add(allAppointmentEntities.get(i));
+                list.add(allMedikamentEntities.get(i));
             }
         }catch (SQLException e){
             e.printStackTrace();

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,7 @@ public class MedikamenteFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
     private ControllerMedikamentFragment controller;
     private int patient_id;
+    private FloatingActionButton fab;
 
     //Liste für die Medikamente
     private ListView list;
@@ -49,10 +51,13 @@ public class MedikamenteFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_medikamente, container, false);
 
         list = (ListView) view.findViewById(R.id.medikamente_list);
+        fab = (FloatingActionButton) view.findViewById(R.id.fab);
 
 
         return view;
     }
+
+
 
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
