@@ -25,8 +25,11 @@ public class AppointmentFragmentButtonListener implements View.OnClickListener {
                 break;
 
             case R.id.save_appointment_button:
+
+                this.controller.insertAppointment();
                 if(this.controller != null)
                     this.controller.changeVisibility();
+
                 break;
 
             default:

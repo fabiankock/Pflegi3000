@@ -118,6 +118,13 @@ public class ShowPatientActivity extends AppCompatActivity
 
     }
 
+    public AppointmentFragment getfAppointment() {
+        return fAppointment;
+    }
+
+    public int getPatient_id() {
+        return patient_id;
+    }
 
     //verantwortlich für die einzelnen Fragmente bzw. Seiten
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
