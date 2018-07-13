@@ -137,7 +137,7 @@ public class ShowPatientActivity extends AppCompatActivity
                     return fPatient;
 
                 case 1:
-                    fMedikament = MedikamenteFragment.newInstance();
+                    fMedikament = MedikamenteFragment.newInstance(patient_id, controllerMedikamentFragment);
                     controllerMedikamentFragment = new ControllerMedikamentFragment(fMedikament, this.sp_activity);
                     return fMedikament;
 

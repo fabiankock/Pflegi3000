@@ -13,7 +13,7 @@ public class AppointmentEntity {
     @DatabaseField(columnName = "Date") private Date timestamp;
     @DatabaseField(columnName = "Description") private String TDescription;
     @DatabaseField(columnName = "Address") private String TAddress;
-    @DatabaseField(columnName = "Patient") private PatientEntity patient;
+    @DatabaseField(columnName = "Patient", foreign = true) private PatientEntity patient;
 
     public AppointmentEntity() {/*Default Constructor for ORMLite*/}
 
