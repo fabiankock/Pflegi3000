@@ -53,14 +53,12 @@ public class ControllerAddPatientActivity {
             Dao<PatientEntity, Integer> pDao = daofactory.getPatientDAO();
             Dao<InsuranceEntity, Integer> iDao = daofactory.getInsuranceDAO();
 
-            MedikamentEntity tpMedikament = new MedikamentEntity();
             //Get the insurance Data
             InsuranceEntity insuranceEntity = iDao.queryForAll().get(this.addPatientActivity.getInsuranceListPos());
             AppointmentEntity tpTermin = new AppointmentEntity();
             PatientEntity tpPatient = new PatientEntity(this.addPatientActivity.getFirstNameValue(), this.addPatientActivity.getLastNameValue(),
                                                         gender, insNr,
-                                                        insuranceEntity,
-                                                        /*medications*/null);
+                                                        insuranceEntity);
 
             pDao.create(tpPatient);
             //Send Database query to insert new Patient

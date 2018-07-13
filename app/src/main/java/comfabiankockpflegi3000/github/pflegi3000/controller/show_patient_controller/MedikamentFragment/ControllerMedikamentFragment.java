@@ -16,8 +16,10 @@ import comfabiankockpflegi3000.github.pflegi3000.activities.show_patient_activit
 import comfabiankockpflegi3000.github.pflegi3000.controller.search_patient_controller.PatientNames;
 import comfabiankockpflegi3000.github.pflegi3000.database.DaoFactory;
 import comfabiankockpflegi3000.github.pflegi3000.database.tables.AppointmentEntity;
+import comfabiankockpflegi3000.github.pflegi3000.database.tables.InsuranceEntity;
 import comfabiankockpflegi3000.github.pflegi3000.database.tables.MedikamentEntity;
 import comfabiankockpflegi3000.github.pflegi3000.database.tables.PatientEntity;
+import comfabiankockpflegi3000.github.pflegi3000.database.tables.PatientMedikamentConnection;
 
 public class ControllerMedikamentFragment  {
 
@@ -32,8 +34,9 @@ public class ControllerMedikamentFragment  {
 
     }
 
-    //Liste mit allen Medikamenten füllen
+    //allen Medikamenten aus der Tabelle auslesen und die Liste damit füllen
     // TODO muss noch nach Patient gefiltert werden
+
     public ArrayList<MedikamentEntity> getAllMedicals() {
 
         PatientNames tmp;
@@ -51,6 +54,32 @@ public class ControllerMedikamentFragment  {
             e.printStackTrace();
         }
         return list;
+    }
+
+    public void processInput() {
+
+        activity = mainactivity.getfMedikament();
+        int patientID = activity.getPatient_id();
+
+        String mName = activity.getMNameValue();
+        int mDosis = Integer.parseInt(activity.getMDosisValue());
+        int mStundenAbstand = Integer.parseInt(activity.getMStundenAbstandValue());
+
+        try {
+
+            Dao<MedikamentEntity, Integer> mDao = daofactory.getMedikamentDAO();
+            Dao<PatientMedikamentConnection, Integer> pmDao = daofactory.getPatientMedikamentDAO();
+            Dao<PatientEntity, Integer> pDao = daofactory.getPatientDAO();
+
+            MedikamentEntity newMedikament = new MedikamentEntity(mName, mDosis,mStundenAbstand);
+            PatientMedikamentConnection newConnection = new PatientMedikamentConnection(pDao.queryForId(patientID), newMedikament);
+
+            mDao.create(newMedikament);
+            pmDao.create(newConnection);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 

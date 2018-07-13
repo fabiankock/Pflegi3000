@@ -118,6 +118,9 @@ public class ShowPatientActivity extends AppCompatActivity
 
     }
 
+    public MedikamenteFragment getfMedikament() {
+        return fMedikament;
+    }
 
     //verantwortlich für die einzelnen Fragmente bzw. Seiten
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
@@ -163,5 +166,6 @@ public class ShowPatientActivity extends AppCompatActivity
         public int getCount() {
             return 4;
         }
+
     }
 }

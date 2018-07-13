@@ -12,6 +12,7 @@ import comfabiankockpflegi3000.github.pflegi3000.database.tables.InsuranceEntity
 import comfabiankockpflegi3000.github.pflegi3000.database.tables.MedikamentEntity;
 import comfabiankockpflegi3000.github.pflegi3000.database.tables.PatientEntity;
 import comfabiankockpflegi3000.github.pflegi3000.database.tables.AppointmentEntity;
+import comfabiankockpflegi3000.github.pflegi3000.database.tables.PatientMedikamentConnection;
 
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
@@ -31,6 +32,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             TableUtils.createTableIfNotExists(connectionSource, MedikamentEntity.class);
             TableUtils.createTableIfNotExists(connectionSource, PatientEntity.class);
             TableUtils.createTableIfNotExists(connectionSource, AppointmentEntity.class);
+            TableUtils.createTableIfNotExists(connectionSource, PatientMedikamentConnection.class);
         } catch (java.sql.SQLException e) {
             Log.e(DatabaseHelper.class.getName(), "Can't create database", e);
             throw new RuntimeException(e);
@@ -47,6 +49,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             TableUtils.dropTable(connectionSource, InsuranceEntity.class, true);
             TableUtils.dropTable(connectionSource, MedikamentEntity.class, true);
             TableUtils.dropTable(connectionSource, AppointmentEntity.class, true);
+            TableUtils.dropTable(connectionSource, PatientMedikamentConnection.class, true);
             onCreate(db,connectionSource);
         } catch (java.sql.SQLException e) {
             Log.e(DatabaseHelper.class.getName(), "Can't create database", e);

@@ -58,6 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/add_mDosis"
+            android:inputType="numberDecimal"
             app:layout_constraintTop_toBottomOf="@id/add_mName"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"/>
@@ -66,6 +67,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/add_mStundenAbstand"
+            android:inputType="numberDecimal"
             app:layout_constraintTop_toBottomOf="@id/add_mDosis"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"/>
@@ -75,6 +77,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/add_mCommit"
             android:layout_marginBottom="70dp"
+            android:text="hinzufügen"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"/>

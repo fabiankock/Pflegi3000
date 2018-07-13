@@ -9,18 +9,23 @@ public class MedikamentEntity {
     @DatabaseField(columnName = "mId", generatedId = true) private int id;
     @DatabaseField private String MName;
     @DatabaseField private int MDose;
-    @DatabaseField private String MDescription;
+    @DatabaseField private int MStundenAbstand;
 
     public MedikamentEntity() {/*Default Constructor*/}
 
-    public MedikamentEntity(String MName, int MDose, String MDescription) {
+    public MedikamentEntity(String MName, int MDose, int MStundenAbstand) {
 
         this.MName = MName;
         this.MDose = MDose;
-        this.MDescription = MDescription;
+        this.MStundenAbstand = MStundenAbstand;
     }
 
     /*----------------Getter----------------*/
+
+    public int getId() {
+        return this.id;
+    }
+
     public String getMName() {
         return this.MName;
     }
@@ -29,8 +34,8 @@ public class MedikamentEntity {
         return this.MDose;
     }
 
-    public String getMDescription() {
-        return this.MDescription;
+    public int getMStundenAbstand() {
+        return this.MStundenAbstand;
     }
 
     /*----------------Setter----------------*/
@@ -42,8 +47,8 @@ public class MedikamentEntity {
         this.MDose = dose;
     }
 
-    public void setMDescription (String description) {
-        this.MDescription = description;
+    public void setMStundenAbstand (int abstand) {
+        this.MStundenAbstand = abstand;
     }
 }
 

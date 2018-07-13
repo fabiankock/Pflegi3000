@@ -14,6 +14,7 @@ import comfabiankockpflegi3000.github.pflegi3000.database.tables.AppointmentEnti
 import comfabiankockpflegi3000.github.pflegi3000.database.tables.InsuranceEntity;
 import comfabiankockpflegi3000.github.pflegi3000.database.tables.MedikamentEntity;
 import comfabiankockpflegi3000.github.pflegi3000.database.tables.PatientEntity;
+import comfabiankockpflegi3000.github.pflegi3000.database.tables.PatientMedikamentConnection;
 
 public class DaoFactory extends android.app.Application {
 
@@ -24,6 +25,7 @@ public class DaoFactory extends android.app.Application {
     private Dao<InsuranceEntity, Integer> insuranceDAO = null;
     private Dao<AppointmentEntity, Integer> appointmentDAO = null;
     private Dao<MedikamentEntity, Integer> medikamentDAO = null;
+    private Dao<PatientMedikamentConnection, Integer> patientMedikamentDAO = null;
 
     public DaoFactory(){
 
@@ -69,6 +71,13 @@ public class DaoFactory extends android.app.Application {
             appointmentDAO = databaseHelper.getDao(AppointmentEntity.class);
         }
         return appointmentDAO;
+    }
+
+    public Dao<PatientMedikamentConnection, Integer> getPatientMedikamentDAO() throws SQLException {
+        if (patientMedikamentDAO == null) {
+            patientMedikamentDAO = databaseHelper.getDao(PatientMedikamentConnection.class);
+        }
+        return patientMedikamentDAO;
     }
 
     public void dropInsuranceTable() throws SQLException {

@@ -6,6 +6,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,9 +76,25 @@ public class MedikamenteFragment extends Fragment {
         return view;
     }
 
+    /*----------getter----------*/
 
+    public String getMNameValue() {
+        return  mName.getText().toString();
+    }
 
+    public String getMDosisValue() {
+        return  mDosis.getText().toString();
+    }
 
+    public String getMStundenAbstandValue() {
+        return  mStundenAbstand.getText().toString();
+    }
+
+    public int getPatient_id() {
+        return patient_id;
+    }
+
+    //keine ahnung was das is
 
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {

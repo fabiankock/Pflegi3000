@@ -25,8 +25,7 @@ public class ListenerMedikamentFragment implements View.OnClickListener{
 
             case R.id.add_mCommit:
 
-                //was halt passieren soll
-
+                controller.processInput();
                 controller.switchAddShow();
                 break;
         }
