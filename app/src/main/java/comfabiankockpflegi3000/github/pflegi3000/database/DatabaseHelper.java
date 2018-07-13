@@ -15,7 +15,7 @@ import comfabiankockpflegi3000.github.pflegi3000.database.tables.AppointmentEnti
 
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
-    private static final String DATABASE_NAME = "db_pflegi.db";
+    private static final String DATABASE_NAME = "db_pflegi3000.db";
     private static final int DATABASE_VERSION = 1;
 
     public DatabaseHelper(Context context) {
