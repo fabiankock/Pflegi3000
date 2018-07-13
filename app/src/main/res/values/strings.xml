@@ -39,4 +39,12 @@
     <string name="drop_insurance_table">Drop Insurance Table</string>
     <string name="insurance_name">Versicherungsname</string>
     <string name="insurance_type">Versicherungstyp</string>
+
+    <!--strings for add Appointment-->
+    <string name="appointment_name_str">Termin Name</string>
+    <string name="appointment_date_str">Datum</string>
+    <string name="appointment_description_str">Beschreibung</string>
+    <string name="appointment_address_str">Adresse</string>
+
+    <string name="plus_str">+</string>
 </resources>

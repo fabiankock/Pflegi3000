@@ -16,17 +16,18 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import comfabiankockpflegi3000.github.pflegi3000.R;
+import comfabiankockpflegi3000.github.pflegi3000.activities.show_patient_activity.ShowPatientFragmente.AppointmentFragment;
 import comfabiankockpflegi3000.github.pflegi3000.activities.show_patient_activity.ShowPatientFragmente.MedikamenteFragment;
 import comfabiankockpflegi3000.github.pflegi3000.activities.show_patient_activity.ShowPatientFragmente.PatientFragment;
 import comfabiankockpflegi3000.github.pflegi3000.activities.show_patient_activity.ShowPatientFragmente.PflegeFragment;
-import comfabiankockpflegi3000.github.pflegi3000.activities.show_patient_activity.ShowPatientFragmente.TerminFragment;
 import comfabiankockpflegi3000.github.pflegi3000.android_helper.AndroidHelper;
 import comfabiankockpflegi3000.github.pflegi3000.controller.show_patient_controller.MedikamentFragment.ControllerMedikamentFragment;
+import comfabiankockpflegi3000.github.pflegi3000.controller.show_patient_controller.ControllerAppointmentFragment.ControllerAppointmentFragment;
 import comfabiankockpflegi3000.github.pflegi3000.controller.show_patient_controller.ControllerPatientFragment;
 
 public class ShowPatientActivity extends AppCompatActivity
         implements PatientFragment.OnFragmentInteractionListener, MedikamenteFragment.OnFragmentInteractionListener,
-                    PflegeFragment.OnFragmentInteractionListener, TerminFragment.OnFragmentInteractionListener {
+                    PflegeFragment.OnFragmentInteractionListener, AppointmentFragment.OnFragmentInteractionListener {
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
@@ -37,6 +38,9 @@ public class ShowPatientActivity extends AppCompatActivity
 
     private ControllerMedikamentFragment controllerMedikamentFragment;
     private MedikamenteFragment fMedikament;
+
+    private ControllerAppointmentFragment controllerAppointmentFragment;
+    private AppointmentFragment fAppointment;
 
     private int patient_id;
 
@@ -55,6 +59,7 @@ public class ShowPatientActivity extends AppCompatActivity
         //Controller für die einzelnen Fragmente!
         this.controllerPatientFragment = new ControllerPatientFragment(null, this);
         this.controllerMedikamentFragment = new ControllerMedikamentFragment(null, this);
+        this.controllerAppointmentFragment = new ControllerAppointmentFragment(this);
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), this);
 
@@ -145,7 +150,9 @@ public class ShowPatientActivity extends AppCompatActivity
                     return PflegeFragment.newInstance();
 
                 case 3:
-                    return TerminFragment.newInstance("","");
+                    fAppointment = AppointmentFragment.newInstance(patient_id, controllerAppointmentFragment);
+                    controllerAppointmentFragment = new ControllerAppointmentFragment(this.sp_activity);
+                    return fAppointment;
 
             }
             return null;
