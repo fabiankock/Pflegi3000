@@ -7,13 +7,20 @@ import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CalendarView;
+import android.widget.EditText;
+
+import java.util.Date;
+import java.util.List;
 
 import comfabiankockpflegi3000.github.pflegi3000.R;
 import comfabiankockpflegi3000.github.pflegi3000.controller.show_patient_controller.ControllerAppointmentFragment.ControllerAppointmentFragment;
+import comfabiankockpflegi3000.github.pflegi3000.database.tables.AppointmentEntity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,6 +38,8 @@ public class AppointmentFragment extends Fragment {
 
     private FloatingActionButton add_button;
     private Button save_button;
+    private CalendarView calendarView;
+    private EditText name,description,address;
     private ConstraintLayout edit_layout, show_layout;
 
     private View view;
@@ -68,13 +77,44 @@ public class AppointmentFragment extends Fragment {
         this.add_button.setOnClickListener(this.controller.getBtnListener());
         this.save_button.setOnClickListener(this.controller.getBtnListener());
 
+        this.calendarView = (CalendarView) view.findViewById(R.id.calendar_view);
+        this.calendarView.setOnDateChangeListener(this.controller.getCalendarListener());
+
         this.edit_layout = (ConstraintLayout) view.findViewById(R.id.fragment_appointment_add);
         this.show_layout = (ConstraintLayout) view.findViewById(R.id.fragment_appointment_show);
+
+        this.name = view.findViewById(R.id.edittext_appointment_name);
+        this.description = view.findViewById(R.id.edittext_appointment_description);
+        this.address = view.findViewById(R.id.edittext_appointment_address);
 
         this.edit_layout.setVisibility(View.INVISIBLE);
         this.show_layout.setVisibility(View.VISIBLE);
 
+        List<AppointmentEntity> aEntities = this.controller.getAllAppointments();
+
+        for(int i = 0; i < aEntities.size(); i++){
+
+            Log.i("appointments", aEntities.get(i).getTName() + " "
+                                        + aEntities.get(i).getTimestamp() + " "
+                                        + aEntities.get(i).getTDescription() + " "
+                                        + aEntities.get(i).getTAddress());
+        }
+
         return view;
+    }
+
+    public String getName(){
+        return this.name.getText().toString();
+    }
+    public String getDescription(){
+        return this.description.getText().toString();
+    }
+    public String getAddress(){
+        return this.address.getText().toString();
+    }
+
+    public long getDate(){
+        return this.calendarView.getDate();
     }
 
     // TODO: Rename method, update argument and hook method into UI event

@@ -10,14 +10,14 @@ public class AppointmentEntity {
 
     @DatabaseField(columnName = "tId", generatedId = true) private int id;
     @DatabaseField(columnName = "AName") private String AName;
-    @DatabaseField(columnName = "Date") private Date timestamp;
+    @DatabaseField(columnName = "Date") private long timestamp;
     @DatabaseField(columnName = "Description") private String TDescription;
     @DatabaseField(columnName = "Address") private String TAddress;
     @DatabaseField(columnName = "Patient", foreign = true) private PatientEntity patient;
 
     public AppointmentEntity() {/*Default Constructor for ORMLite*/}
 
-    public AppointmentEntity(String TName, Date timestamp, String TDescription, String TAddress, PatientEntity patient) {
+    public AppointmentEntity(String TName, long timestamp, String TDescription, String TAddress, PatientEntity patient) {
 
         this.AName = AName;
         this.timestamp = timestamp;
@@ -31,7 +31,7 @@ public class AppointmentEntity {
         return this.AName;
     }
 
-    public Date getTimestamp() {
+    public long getTimestamp() {
         return this.timestamp;
     }
 
@@ -50,7 +50,7 @@ public class AppointmentEntity {
         this.AName = name;
     }
 
-    public void setTimestamp(Date time) {
+    public void setTimestamp(long time) {
         this.timestamp = time;
     }
 
