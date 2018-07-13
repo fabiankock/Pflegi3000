@@ -39,4 +39,6 @@
     <string name="drop_insurance_table">Drop Insurance Table</string>
     <string name="insurance_name">Versicherungsname</string>
     <string name="insurance_type">Versicherungstyp</string>
+
+    <string name="plus_str">+</string>
 </resources>
