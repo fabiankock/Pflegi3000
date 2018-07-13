@@ -24,7 +24,7 @@ public class ControllerAppointmentFragment {
 
     public void changeVisibility(){
 
-        ConstraintLayout edit_layout = this.activity.findViewById(R.id.fragment_appointment_edit);
+        ConstraintLayout edit_layout = this.activity.findViewById(R.id.fragment_appointment_add);
         ConstraintLayout show_layout = this.activity.findViewById(R.id.fragment_appointment_show);
 
         if(edit_layout.getVisibility() == View.VISIBLE){

@@ -68,7 +68,7 @@ public class AppointmentFragment extends Fragment {
         this.add_button.setOnClickListener(this.controller.getBtnListener());
         this.save_button.setOnClickListener(this.controller.getBtnListener());
 
-        this.edit_layout = (ConstraintLayout) view.findViewById(R.id.fragment_appointment_edit);
+        this.edit_layout = (ConstraintLayout) view.findViewById(R.id.fragment_appointment_add);
         this.show_layout = (ConstraintLayout) view.findViewById(R.id.fragment_appointment_show);
 
         this.edit_layout.setVisibility(View.INVISIBLE);
