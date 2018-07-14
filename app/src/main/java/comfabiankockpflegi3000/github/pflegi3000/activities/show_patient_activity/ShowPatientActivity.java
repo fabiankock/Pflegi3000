@@ -25,7 +25,7 @@ import comfabiankockpflegi3000.github.pflegi3000.activities.show_patient_activit
 import comfabiankockpflegi3000.github.pflegi3000.android_helper.AndroidHelper;
 import comfabiankockpflegi3000.github.pflegi3000.controller.show_patient_controller.MedikamentFragment.ControllerMedikamentFragment;
 import comfabiankockpflegi3000.github.pflegi3000.controller.show_patient_controller.ControllerAppointmentFragment.ControllerAppointmentFragment;
-import comfabiankockpflegi3000.github.pflegi3000.controller.show_patient_controller.ControllerPatientFragment;
+import comfabiankockpflegi3000.github.pflegi3000.controller.show_patient_controller.ControllerPatientFragment.ControllerPatientFragment;
 
 public class ShowPatientActivity extends AppCompatActivity
         implements PatientFragment.OnFragmentInteractionListener, MedikamenteFragment.OnFragmentInteractionListener,
@@ -107,7 +107,7 @@ public class ShowPatientActivity extends AppCompatActivity
 
             case R.id.action_enable_editable:
                 if (position == 0) {
-                    controllerPatientFragment.changeTextState();
+                    controllerPatientFragment.switchView();
                 }
 
 

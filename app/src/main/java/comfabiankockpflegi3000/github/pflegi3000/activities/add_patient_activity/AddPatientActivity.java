@@ -1,10 +1,12 @@
 package comfabiankockpflegi3000.github.pflegi3000.activities.add_patient_activity;
 
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 
 import java.util.List;
@@ -18,7 +20,8 @@ public class AddPatientActivity extends AppCompatActivity {
 
     private Button backBtn;
     private Button submitBtn;
-    private EditText firstNameEditText, lastNameEditText, genderEditText, insuranceNrEditText;
+    private EditText firstNameEditText, lastNameEditText, insuranceNrEditText;
+    private RadioButton femaleRbtn, maleRbtn;
     private Spinner insuranceSpinner;
     private ControllerAddPatientActivity controller;
 
@@ -37,7 +40,9 @@ public class AddPatientActivity extends AppCompatActivity {
 
         this.firstNameEditText = (EditText) findViewById(R.id.edittext_firstname);
         this.lastNameEditText = (EditText) findViewById(R.id.edittext_lastname);
-        this.genderEditText = (EditText) findViewById(R.id.edittext_gender);
+        this.maleRbtn = (RadioButton) findViewById(R.id.radio_male);
+        this.maleRbtn.setChecked(true);
+        this.femaleRbtn = (RadioButton) findViewById(R.id.radio_female);
         this.insuranceNrEditText = (EditText) findViewById(R.id.edittext_insuranceNr);
 
         this.insuranceSpinner = (Spinner) findViewById(R.id.insurance_spinner);
@@ -58,7 +63,18 @@ public class AddPatientActivity extends AppCompatActivity {
 
     public String getLastNameValue() { return this.lastNameEditText.getText().toString(); }
 
-    public String getGenderValue() { return this.genderEditText.getText().toString(); }
+    public char getGenderValue() {
+
+        if (this.femaleRbtn.isChecked()){
+            return 'f';
+        }
+        else if(this.maleRbtn.isChecked()){
+            return 'm';
+        }
+        else{
+            return '-';
+        }
+    }
 
     public String getInsuranceNrValue() { return this.insuranceNrEditText.getText().toString(); }
 

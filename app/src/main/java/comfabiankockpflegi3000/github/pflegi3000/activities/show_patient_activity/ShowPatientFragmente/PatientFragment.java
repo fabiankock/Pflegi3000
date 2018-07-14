@@ -4,21 +4,23 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.sql.SQLException;
+import java.util.List;
 
 import comfabiankockpflegi3000.github.pflegi3000.R;
-import comfabiankockpflegi3000.github.pflegi3000.controller.show_patient_controller.ControllerPatientFragment;
+import comfabiankockpflegi3000.github.pflegi3000.controller.show_patient_controller.ControllerPatientFragment.ControllerPatientFragment;
+import comfabiankockpflegi3000.github.pflegi3000.database.tables.InsuranceEntity;
 import comfabiankockpflegi3000.github.pflegi3000.database.tables.PatientEntity;
 
 public class PatientFragment extends Fragment {
@@ -35,6 +37,7 @@ public class PatientFragment extends Fragment {
     private RadioGroup rgGender;
     private EditText insuranceNrText;
     private Spinner insuranceTypeSpinner;
+    private ConstraintLayout showLayout, editLayout;
 
     //Nicht editierbare Felder
     private TextView firstNameView, lastNameView;
@@ -87,25 +90,57 @@ public class PatientFragment extends Fragment {
             insuranceNrText.setText(Integer.toString(this.the_patient.getInsuranceNumber()));
 
             insuranceTypeSpinner = view.findViewById(R.id.spinner_insuranceType);
+            List<InsuranceEntity> items = this.controller.getAllInsurances();
+            if(items != null){
+
+                String[] itemList = new String[items.size()];
+                for(int i = 0; i < items.size(); i++){
+                    itemList[i] = items.get(i).getName();
+                }
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(this.getContext(), android.R.layout.simple_spinner_dropdown_item, itemList);
+                this.insuranceTypeSpinner.setAdapter(adapter);
+            }
 
             //nicht editierbare Felder
             firstNameView = view.findViewById(R.id.view_firstname);
-            firstNameView.setText(this.the_patient.getFirstname());
+            firstNameView.setText("Vorname: " + this.the_patient.getFirstname());
 
             lastNameView = view.findViewById(R.id.view_lastname);
-            lastNameView.setText(this.the_patient.getLastname());
+            lastNameView.setText("Nachname: " + this.the_patient.getLastname());
 
             genderView = view.findViewById(R.id.view_gender);
-            genderView.setText(Character.toString(this.the_patient.getGender()));
+            if(this.the_patient.getGender() == 'm')
+                genderView.setText("Geschlecht: männlich");
+            else
+                genderView.setText("Geschlecht: weiblich");
 
             insuranceNrView = view.findViewById(R.id.view_insuranceNr);
-            insuranceNrView.setText(Integer.toString(this.the_patient.getInsuranceNumber()));
+            insuranceNrView.setText("Versicherungsnummer: " + Integer.toString(this.the_patient.getInsuranceNumber()));
 
             insuranceTypeView = view.findViewById(R.id.view_insuranceType);
-            //insuranceTypeView.setText(this.the_patient.getInsuranceEntity().getName());
+            try {
+                insuranceTypeView.setText("Versicherung: " + this.controller.getInsuranceOfPatient(this.patient_id).getName()
+                                            + "(" + this.controller.getInsuranceOfPatient(this.patient_id).getType() + ")");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            this.showLayout = view.findViewById(R.id.show_layout_patient);
+            this.editLayout = view.findViewById(R.id.edit_layout_patient);
+
+            this.showLayout.setVisibility(View.VISIBLE);
+            this.editLayout.setVisibility(View.INVISIBLE);
         }
         return view;
 
+    }
+
+    public ConstraintLayout getEditLayout() {
+        return editLayout;
+    }
+
+    public ConstraintLayout getShowLayout() {
+        return showLayout;
     }
 
     public void onButtonPressed(Uri uri) {
