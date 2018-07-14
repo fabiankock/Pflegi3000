@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import java.sql.SQLException;
 import java.util.Date;
 
 import comfabiankockpflegi3000.github.pflegi3000.R;
@@ -107,6 +108,13 @@ public class ShowPatientActivity extends AppCompatActivity
 
             case R.id.action_enable_editable:
                 if (position == 0) {
+                    try {
+                        if(this.fPatient.isEditActive()){
+                            this.controllerPatientFragment.updatePatient(this.patient_id);
+                        }
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
                     controllerPatientFragment.switchView();
                 }
 

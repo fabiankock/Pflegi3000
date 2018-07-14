@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -35,6 +36,7 @@ public class PatientFragment extends Fragment {
     //Editierbare Felder
     private EditText firstNameText, lastNameText;
     private RadioGroup rgGender;
+    private RadioButton maleBtn, femaleBtn;
     private EditText insuranceNrText;
     private Spinner insuranceTypeSpinner;
     private ConstraintLayout showLayout, editLayout;
@@ -85,6 +87,14 @@ public class PatientFragment extends Fragment {
             lastNameText.setText(this.the_patient.getLastname());
 
             rgGender = view.findViewById(R.id.radio_gender);
+            maleBtn = view.findViewById(R.id.radio_male);
+            femaleBtn = view.findViewById(R.id.radio_female);
+            if(this.the_patient.getGender() == 'm'){
+                maleBtn.setChecked(true);
+            }
+            else {
+                femaleBtn.setChecked(true);
+            }
 
             insuranceNrText = view.findViewById(R.id.text_insuranceNr);
             insuranceNrText.setText(Integer.toString(this.the_patient.getInsuranceNumber()));
@@ -135,6 +145,16 @@ public class PatientFragment extends Fragment {
 
     }
 
+    public boolean isEditActive(){
+
+        if(this.editLayout.getVisibility() == View.VISIBLE){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
     public ConstraintLayout getEditLayout() {
         return editLayout;
     }
@@ -143,11 +163,23 @@ public class PatientFragment extends Fragment {
         return showLayout;
     }
 
+    public RadioButton getFemaleBtn() {
+        return femaleBtn;
+    }
+
+    public RadioButton getMaleBtn() {
+        return maleBtn;
+    }
+
+    public int getInsuranceListPos() { return this.insuranceTypeSpinner.getSelectedItemPosition();}
+
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
     }
+
+
 
     @Override
     public void onAttach(Context context) {

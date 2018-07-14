@@ -25,6 +25,31 @@ public class ControllerPatientFragment {
         this.daoFactory = (DaoFactory) mainActivity.getApplication();
     }
 
+    public void updatePatient(int id) throws SQLException {
+
+
+        Dao<InsuranceEntity, Integer> iDao = daoFactory.getInsuranceDAO();
+        //Get the insurance Data
+        InsuranceEntity insuranceEntity = iDao.queryForAll().get(this.activity.getInsuranceListPos());
+
+        Dao<PatientEntity, Integer> pDao = this.daoFactory.getPatientDAO();
+        PatientEntity entity = pDao.queryForId(id);
+
+        entity.setFirstname(this.activity.getFirstNameText().getText().toString());
+        entity.setLastname(this.activity.getLastNameText().getText().toString());
+        if(this.activity.getFemaleBtn().isChecked()){
+            entity.setGender('w');
+        }
+        else{
+            entity.setGender('m');
+        }
+        int num = Integer.parseInt(this.activity.getInsuranceNrText().getText().toString());
+        entity.setInsuranceNumber(num);
+        entity.setInsuranceEntity(insuranceEntity);
+
+        pDao.update(entity);
+    }
+
     public PatientEntity getPatientByID(int id) throws SQLException {
 
         Dao<PatientEntity, Integer> pDao = this.daoFactory.getPatientDAO();
