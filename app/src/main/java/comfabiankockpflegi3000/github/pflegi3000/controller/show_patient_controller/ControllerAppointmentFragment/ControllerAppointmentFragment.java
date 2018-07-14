@@ -76,8 +76,9 @@ public class ControllerAppointmentFragment {
 
             PatientEntity patient = pDao.queryForId(this.activity.getPatient_id());
 
-            AppointmentEntity appointmentEntity = new AppointmentEntity(fragment.getName(), fragment.getDate(), fragment.getDescription(), fragment.getAddress(), patient);
+            AppointmentEntity appointmentEntity = new AppointmentEntity(fragment.getName(), this.selectedDate.getTime(), fragment.getDescription(), fragment.getAddress(), patient);
             aDao.create(appointmentEntity);
+            Log.i("appointments", "Appointment created");
 
         }catch(SQLException e){
             e.printStackTrace();
@@ -101,12 +102,47 @@ public class ControllerAppointmentFragment {
         }
     }
 
+    public void moveToDate(Date date){
+
+        this.activity.moveToDateAppointment(date);
+    }
+
+    public boolean checkForAppointment(Date date){
+
+        List<AppointmentEntity> allAppointments = this.getAllAppointments();
+        for(int i = 0; i < allAppointments.size(); i++){
+
+            if(allAppointments.get(i).getTimestamp() == date.getTime()){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void setSelectedDate(Date selectedDate) {
         this.selectedDate = selectedDate;
     }
 
     public Date getSelectedDate() {
         return selectedDate;
+    }
+
+    public void setAppointmentInfoText(Date date){
+
+        List<AppointmentEntity> allAppointments = this.getAllAppointments();
+        for(int i = 0; i < allAppointments.size(); i++){
+
+            if(allAppointments.get(i).getTimestamp() == date.getTime()){
+
+                AppointmentEntity entity = allAppointments.get(i);
+                this.activity.getfAppointment().setInfoText("Name: " + entity.getTName() + "\nDescription: " + entity.getTDescription()
+                                                            + "\nAddresse: " + entity.getTAddress());
+            }
+        }
+    }
+
+    public void setAppointmentInfoTextEmpty(){
+        this.activity.getfAppointment().setInfoText("");
     }
 
     public CalendarListener getCalendarListener() {

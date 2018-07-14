@@ -2,9 +2,12 @@ package comfabiankockpflegi3000.github.pflegi3000.activities.show_patient_activi
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.DrawableUtils;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -14,8 +17,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.EditText;
+import android.widget.TextView;
 
+import com.roomorama.caldroid.CaldroidFragment;
+
+import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import comfabiankockpflegi3000.github.pflegi3000.R;
@@ -41,6 +49,9 @@ public class AppointmentFragment extends Fragment {
     private CalendarView calendarView;
     private EditText a_name,description,address;
     private ConstraintLayout edit_layout, show_layout;
+    private HashMap<Date, Drawable> eventMap;
+    private CaldroidFragment caldroidFragment;
+    private TextView infoText;
 
     private View view;
     private ControllerAppointmentFragment controller;
@@ -78,7 +89,6 @@ public class AppointmentFragment extends Fragment {
         this.save_button.setOnClickListener(this.controller.getBtnListener());
 
         this.calendarView = (CalendarView) view.findViewById(R.id.calendar_view);
-        this.calendarView.setOnDateChangeListener(this.controller.getCalendarListener());
 
         this.edit_layout = (ConstraintLayout) view.findViewById(R.id.fragment_appointment_add);
         this.show_layout = (ConstraintLayout) view.findViewById(R.id.fragment_appointment_show);
@@ -87,10 +97,23 @@ public class AppointmentFragment extends Fragment {
         this.description = view.findViewById(R.id.edittext_appointment_description);
         this.address = view.findViewById(R.id.edittext_appointment_address);
 
+        this.infoText = (TextView) view.findViewById(R.id.display_appointment_info);
+
         this.edit_layout.setVisibility(View.INVISIBLE);
         this.show_layout.setVisibility(View.VISIBLE);
 
+        //Calendar
+        this.caldroidFragment = new CaldroidFragment();
+        Bundle args = new Bundle();
+        Calendar cal = Calendar.getInstance();
+        args.putInt(CaldroidFragment.MONTH, cal.get(Calendar.MONTH) + 1);
+        args.putInt(CaldroidFragment.YEAR, cal.get(Calendar.YEAR));
+        caldroidFragment.setArguments(args);
+
         List<AppointmentEntity> aEntities = this.controller.getAllAppointments();
+        this.eventMap = new HashMap<>();
+        ColorDrawable red = new ColorDrawable(getResources().getColor(R.color.red));
+        Date tempDate;
 
         for(int i = 0; i < aEntities.size(); i++){
 
@@ -98,7 +121,16 @@ public class AppointmentFragment extends Fragment {
                                         + aEntities.get(i).getTimestamp() + " "
                                         + aEntities.get(i).getTDescription() + " "
                                         + aEntities.get(i).getTAddress());
+            tempDate = new Date(aEntities.get(i).getTimestamp());
+            caldroidFragment.setTextColorForDate(R.color.red, tempDate);
+            //this.eventMap.put(tempDate, red);
         }
+        //caldroidFragment.setBackgroundDrawableForDates(this.eventMap);
+        caldroidFragment.setCaldroidListener(this.controller.getCalendarListener());
+
+        android.support.v4.app.FragmentTransaction t = getActivity().getSupportFragmentManager().beginTransaction();
+        t.replace(R.id.calendar_view, caldroidFragment);
+        t.commit();
 
         return view;
     }
@@ -113,8 +145,17 @@ public class AppointmentFragment extends Fragment {
         return this.address.getText().toString();
     }
 
-    public long getDate(){
-        return this.calendarView.getDate();
+    public void setInfoText(String text){
+
+        this.infoText.setText(text);
+    }
+
+    public void moveToDate(Date date){
+
+        this.caldroidFragment.clearSelectedDates();
+        this.caldroidFragment.setSelectedDate(date);
+        this.controller.setSelectedDate(date);
+        this.caldroidFragment.refreshView();
     }
 
     // TODO: Rename method, update argument and hook method into UI event

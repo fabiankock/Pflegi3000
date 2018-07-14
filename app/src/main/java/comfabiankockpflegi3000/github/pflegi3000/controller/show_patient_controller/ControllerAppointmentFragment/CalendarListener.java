@@ -2,11 +2,16 @@ package comfabiankockpflegi3000.github.pflegi3000.controller.show_patient_contro
 
 import android.provider.CalendarContract;
 import android.support.annotation.NonNull;
+import android.util.Log;
+import android.view.View;
 import android.widget.CalendarView;
+
+import com.roomorama.caldroid.CaldroidFragment;
+import com.roomorama.caldroid.CaldroidListener;
 
 import java.util.Date;
 
-public class CalendarListener implements CalendarView.OnDateChangeListener {
+public class CalendarListener extends CaldroidListener {
 
     ControllerAppointmentFragment controller;
 
@@ -16,11 +21,17 @@ public class CalendarListener implements CalendarView.OnDateChangeListener {
     }
 
     @Override
-    public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int dayOfMonth) {
+    public void onSelectDate(Date date, View view) {
 
-        //add code here
-        Date theDate = new Date(calendarView.getDate());
+        Log.i("appointments", "sel date: " + date.getTime());
+        this.controller.moveToDate(date);
+        if(this.controller.checkForAppointment(date) == true){
 
-        this.controller.setSelectedDate(theDate);
+            Log.i("appointments", "there is appointment");
+            this.controller.setAppointmentInfoText(date);
+        }
+        else{
+            this.controller.setAppointmentInfoTextEmpty();
+        }
     }
 }

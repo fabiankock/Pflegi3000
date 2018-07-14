@@ -1,5 +1,6 @@
 package comfabiankockpflegi3000.github.pflegi3000.controller.show_patient_controller.ControllerAppointmentFragment;
 
+import android.util.Log;
 import android.view.View;
 
 import comfabiankockpflegi3000.github.pflegi3000.R;
@@ -20,6 +21,7 @@ public class AppointmentFragmentButtonListener implements View.OnClickListener {
         switch(view.getId()){
 
             case R.id.add_appointment_button:
+                Log.i("appointments", "sel date: " + this.controller.getSelectedDate());
                 if(this.controller != null)
                     this.controller.changeVisibility();
                 break;

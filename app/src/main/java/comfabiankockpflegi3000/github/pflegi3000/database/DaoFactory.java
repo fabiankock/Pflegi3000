@@ -90,6 +90,11 @@ public class DaoFactory extends android.app.Application {
         TableUtils.dropTable(this.getPatientDAO(), true);
     }
 
+    public void dropAppointmentTable() throws SQLException{
+
+        TableUtils.dropTable(this.getAppointmentDAO(), true);
+    }
+
     @Override
     public void onTerminate() {
 

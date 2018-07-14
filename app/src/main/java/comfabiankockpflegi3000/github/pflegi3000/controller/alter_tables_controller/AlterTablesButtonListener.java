@@ -1,5 +1,6 @@
 package comfabiankockpflegi3000.github.pflegi3000.controller.alter_tables_controller;
 
+import android.util.Log;
 import android.view.View;
 
 import java.sql.SQLException;
@@ -40,6 +41,16 @@ public class AlterTablesButtonListener implements View.OnClickListener{
                 try {
                     this.daoFactory.dropInsuranceTable();
                 } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                break;
+
+
+            case R.id.drop_appointmenttable_button:
+                Log.i("appointments", "drop table");
+                try{
+                    this.daoFactory.dropAppointmentTable();
+                }catch (SQLException e){
                     e.printStackTrace();
                 }
                 break;

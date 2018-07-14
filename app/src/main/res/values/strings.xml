@@ -37,6 +37,7 @@
     <string name="drop_patient_table">Drop Patient Table</string>
     <string name="edit_insurance_table">Versicherung hinzufügen</string>
     <string name="drop_insurance_table">Drop Insurance Table</string>
+    <string name="drop_appointment_table">Drop Appointment Table</string>
     <string name="insurance_name">Versicherungsname</string>
     <string name="insurance_type">Versicherungstyp</string>
 

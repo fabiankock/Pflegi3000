@@ -9,7 +9,7 @@ import comfabiankockpflegi3000.github.pflegi3000.controller.alter_tables_control
 
 public class AlterTablesActivity extends AppCompatActivity {
 
-    private Button backBtn, dropPatientTBtn, dropInsuranceTBtn, editInsuranceTBtn;
+    private Button backBtn, dropPatientTBtn, dropInsuranceTBtn, editInsuranceTBtn, dropAppointmentBtn;
     private ControllerAlterTablesActivity controller;
 
     @Override
@@ -29,5 +29,8 @@ public class AlterTablesActivity extends AppCompatActivity {
 
         this.editInsuranceTBtn = (Button) findViewById(R.id.edit_insurancetable_button);
         this.editInsuranceTBtn.setOnClickListener(this.controller.getBtnListener());
+
+        this.dropAppointmentBtn = (Button) findViewById(R.id.drop_appointmenttable_button);
+        this.dropAppointmentBtn.setOnClickListener(this.controller.getBtnListener());
     }
 }
