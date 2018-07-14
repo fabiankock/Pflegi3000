@@ -4,10 +4,13 @@ import android.support.constraint.ConstraintLayout;
 import android.view.View;
 
 import comfabiankockpflegi3000.github.pflegi3000.R;
+import comfabiankockpflegi3000.github.pflegi3000.activities.show_patient_activity.ShowPatientFragmente.MedikamenteFragment;
+import comfabiankockpflegi3000.github.pflegi3000.database.tables.MedikamentEntity;
 
 public class ListenerMedikamentFragment implements View.OnClickListener{
 
     private ControllerMedikamentFragment controller;
+    private int medi;
 
     public ListenerMedikamentFragment (ControllerMedikamentFragment controller) {
 

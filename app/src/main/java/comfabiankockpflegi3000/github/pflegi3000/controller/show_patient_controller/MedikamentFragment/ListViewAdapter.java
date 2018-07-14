@@ -20,9 +20,11 @@ public class ListViewAdapter extends BaseAdapter {
     private Context context;
     private LayoutInflater inflater;
     private List<MedikamentEntity> medication;
+    private ControllerMedikamentFragment controller;
 
-    public ListViewAdapter (Context c, List<MedikamentEntity> mediaction) {
+    public ListViewAdapter (Context c, List<MedikamentEntity> mediaction, ControllerMedikamentFragment controller) {
         this.context = c;
+        this.controller = controller;
         this.medication = mediaction;
         this.inflater = LayoutInflater.from(context);
     }
@@ -32,23 +34,27 @@ public class ListViewAdapter extends BaseAdapter {
         final ViewHolder holder;
         if (view == null) {
             holder = new ViewHolder();
+            ListenerCheckButton listener = new ListenerCheckButton(medication.get(position), controller);
             view = inflater.inflate(R.layout.listview_medication, null);
             // Locate the TextViews in listview_item.xml
             holder.name = (TextView) view.findViewById(R.id.name);
             holder.box = (CheckBox) view.findViewById(R.id.box);
+
+            holder.box.setOnCheckedChangeListener(listener);
             view.setTag(holder);
         } else {
             holder = (ViewHolder) view.getTag();
         }
         // Set the results into TextViews
         holder.name.setText(medication.get(position).getMName() + "\n" + "Dosierung: " + medication.get(position).getMDose() + "mg");
+
         if (medication.get(position).getGenommen() == true) {
             holder.box.setChecked(true);
         } else {
             holder.box.setChecked(false);
         }
 
-        Log.i("medicationinView",medication.get(position).getMName() + "\n" + "Dosierung: " + medication.get(position).getMDose() + "mg");
+        Log.i("medicationinView",medication.get(position).getMName() + "\n" + "Dosierung: " + medication.get(position).getMDose() + " mg\n Wann: ");
 
         return view;
     }

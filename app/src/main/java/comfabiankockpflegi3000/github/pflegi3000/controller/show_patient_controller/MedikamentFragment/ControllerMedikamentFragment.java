@@ -42,36 +42,35 @@ public class ControllerMedikamentFragment  {
     public List<MedikamentEntity> getAllMedication() {
 
         int patientID = mainactivity.getPatient_id();
-        PatientEntity patient;
-
 
         try{
             Dao<MedikamentEntity, Integer> aDao = daofactory.getMedikamentDAO();
             Dao<PatientMedikamentConnection, Integer> pmDao = daofactory.getPatientMedikamentDAO();
             Dao<PatientEntity, Integer> pDao = daofactory.getPatientDAO();
 
-            patient = pDao.queryForId(patientID);
             List<MedikamentEntity> allMedikamentEntities = aDao.queryForAll();
+            List<MedikamentEntity> filteredMedikamentEntities = new ArrayList<>();
             List<PatientMedikamentConnection> allConnectionEntities = pmDao.queryForAll();
             List<PatientMedikamentConnection> filteredConnectinoEntities = new ArrayList<>();
 
 
             for (PatientMedikamentConnection cTemp : allConnectionEntities) {
-                if (cTemp.getP_ID() == patient) {
+                if (cTemp.getP_ID().getP_id() == patientID) {
 
                     filteredConnectinoEntities.add(cTemp);
                 }
             }
+
             for (MedikamentEntity temp : allMedikamentEntities) {
                 for (PatientMedikamentConnection connection : filteredConnectinoEntities) {
 
-                    if (temp != connection.getM_ID()) {
-                        allMedikamentEntities.remove(temp);
+                    if (temp.getId() == connection.getM_ID().getId()) {
+                        filteredMedikamentEntities.add(temp);
                     }
                 }
             }
 
-            return allMedikamentEntities;
+            return filteredMedikamentEntities;
 
         }catch (SQLException e){
             e.printStackTrace();
@@ -82,7 +81,7 @@ public class ControllerMedikamentFragment  {
     public void processInput() {
 
         activity = mainactivity.getfMedikament();
-        int patientID = activity.getPatient_id();
+        int patientID = mainactivity.getPatient_id();
 
         String mName = activity.getMNameValue();
         int mDosis = Integer.parseInt(activity.getMDosisValue());
@@ -124,10 +123,24 @@ public class ControllerMedikamentFragment  {
     public ListViewAdapter getListViewAdapter() {
 
         if (this.listViewAdapter == null) {
-            this.listViewAdapter = new ListViewAdapter(mainactivity.getApplicationContext() ,getAllMedication());
+            this.listViewAdapter = new ListViewAdapter(mainactivity.getApplicationContext() ,getAllMedication(), this);
 
         }
         return this.listViewAdapter;
+    }
+
+    public void checkGenommen(MedikamentEntity medi, boolean b) {
+
+        try {
+
+            Dao<MedikamentEntity, Integer> mDao= daofactory.getMedikamentDAO();
+            medi.setGenommen(b);
+            mDao.update(medi);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 
 }
