@@ -10,6 +10,7 @@ public class MedikamentEntity {
     @DatabaseField private String MName;
     @DatabaseField private int MDose;
     @DatabaseField private int MStundenAbstand;
+    @DatabaseField private boolean genommen = false;
 
     public MedikamentEntity() {/*Default Constructor*/}
 
@@ -18,6 +19,7 @@ public class MedikamentEntity {
         this.MName = MName;
         this.MDose = MDose;
         this.MStundenAbstand = MStundenAbstand;
+
     }
 
     /*----------------Getter----------------*/
@@ -38,6 +40,10 @@ public class MedikamentEntity {
         return this.MStundenAbstand;
     }
 
+    public boolean getGenommen() {
+        return this.genommen;
+    }
+
     /*----------------Setter----------------*/
     public void setMName(String name) {
         this.MName = name;
@@ -49,6 +55,10 @@ public class MedikamentEntity {
 
     public void setMStundenAbstand (int abstand) {
         this.MStundenAbstand = abstand;
+    }
+
+    public void setGenommen (boolean geonmmen) {
+        this.genommen = geonmmen;
     }
 }
 

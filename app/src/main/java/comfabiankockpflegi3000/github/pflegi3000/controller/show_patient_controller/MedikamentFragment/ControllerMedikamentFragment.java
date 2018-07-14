@@ -26,34 +26,57 @@ public class ControllerMedikamentFragment  {
     private MedikamenteFragment activity;
     private ShowPatientActivity mainactivity;
     private DaoFactory daofactory;
+    private ListViewAdapter listViewAdapter;
 
     public ControllerMedikamentFragment(MedikamenteFragment activity, ShowPatientActivity mainactivity) {
         this.activity = activity;
         this.mainactivity = mainactivity;
         this.daofactory = (DaoFactory) mainactivity.getApplication();
 
+
     }
 
     //allen Medikamenten aus der Tabelle auslesen und die Liste damit füllen
     // TODO muss noch nach Patient gefiltert werden
 
-    public ArrayList<MedikamentEntity> getAllMedicals() {
+    public List<MedikamentEntity> getAllMedication() {
 
-        PatientNames tmp;
-        ArrayList<MedikamentEntity> list = new ArrayList<>();
+        int patientID = mainactivity.getPatient_id();
+        PatientEntity patient;
+
 
         try{
             Dao<MedikamentEntity, Integer> aDao = daofactory.getMedikamentDAO();
+            Dao<PatientMedikamentConnection, Integer> pmDao = daofactory.getPatientMedikamentDAO();
+            Dao<PatientEntity, Integer> pDao = daofactory.getPatientDAO();
 
+            patient = pDao.queryForId(patientID);
             List<MedikamentEntity> allMedikamentEntities = aDao.queryForAll();
-            for(int i = 0; i < allMedikamentEntities.size(); i++){
+            List<PatientMedikamentConnection> allConnectionEntities = pmDao.queryForAll();
+            List<PatientMedikamentConnection> filteredConnectinoEntities = new ArrayList<>();
 
-                list.add(allMedikamentEntities.get(i));
+
+            for (PatientMedikamentConnection cTemp : allConnectionEntities) {
+                if (cTemp.getP_ID() == patient) {
+
+                    filteredConnectinoEntities.add(cTemp);
+                }
             }
+            for (MedikamentEntity temp : allMedikamentEntities) {
+                for (PatientMedikamentConnection connection : filteredConnectinoEntities) {
+
+                    if (temp != connection.getM_ID()) {
+                        allMedikamentEntities.remove(temp);
+                    }
+                }
+            }
+
+            return allMedikamentEntities;
+
         }catch (SQLException e){
             e.printStackTrace();
         }
-        return list;
+        return null;
     }
 
     public void processInput() {
@@ -97,4 +120,14 @@ public class ControllerMedikamentFragment  {
             show.setVisibility(View.VISIBLE);
         }
     }
+
+    public ListViewAdapter getListViewAdapter() {
+
+        if (this.listViewAdapter == null) {
+            this.listViewAdapter = new ListViewAdapter(mainactivity.getApplicationContext() ,getAllMedication());
+
+        }
+        return this.listViewAdapter;
+    }
+
 }

@@ -16,9 +16,12 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import java.util.List;
+
 import comfabiankockpflegi3000.github.pflegi3000.R;
 import comfabiankockpflegi3000.github.pflegi3000.controller.show_patient_controller.MedikamentFragment.ControllerMedikamentFragment;
 import comfabiankockpflegi3000.github.pflegi3000.controller.show_patient_controller.MedikamentFragment.ListenerMedikamentFragment;
+import comfabiankockpflegi3000.github.pflegi3000.database.tables.MedikamentEntity;
 
 @SuppressLint("ValidFragment")
 public class MedikamenteFragment extends Fragment {
@@ -37,6 +40,8 @@ public class MedikamenteFragment extends Fragment {
     //Liste für die Medikamente
     private ListView list;
     private FloatingActionButton fab;
+
+    public MedikamenteFragment() {}
 
     @SuppressLint("ValidFragment")
     public MedikamenteFragment(int p_id, ControllerMedikamentFragment c) {
@@ -64,6 +69,8 @@ public class MedikamenteFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_medikamente, container, false);
 
         list = (ListView) view.findViewById(R.id.medikamente_list);
+        list.setAdapter(controller.getListViewAdapter());
+
         fab = (FloatingActionButton) view.findViewById(R.id.fab);
         fab.setOnClickListener(MFListener);
 
@@ -72,6 +79,15 @@ public class MedikamenteFragment extends Fragment {
         mStundenAbstand = (EditText) view.findViewById(R.id.add_mStundenAbstand);
         mCommit = (Button) view.findViewById(R.id.add_mCommit);
         mCommit.setOnClickListener(MFListener);
+
+        List<MedikamentEntity> aEntities = this.controller.getAllMedication();
+
+        for(int i = 0; i < aEntities.size(); i++){
+
+            Log.i("medications", aEntities.get(i).getMName() + " "
+                    + aEntities.get(i).getMDose() + " "
+                    + aEntities.get(i).getMStundenAbstand());
+        }
 
         return view;
     }
