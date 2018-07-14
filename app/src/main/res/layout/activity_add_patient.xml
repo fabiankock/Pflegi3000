@@ -39,13 +39,23 @@
         android:inputType="text"
         app:layout_constraintTop_toBottomOf="@id/edittext_firstname" />
 
-    <EditText
-        android:id="@+id/edittext_gender"
-        android:layout_width="fill_parent"
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/radio_gender"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/gender"
-        android:inputType="text"
-        app:layout_constraintTop_toBottomOf="@id/edittext_lastname" />
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/edittext_lastname"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+        <RadioButton android:id="@+id/radio_male"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Männlich"/>
+        <RadioButton android:id="@+id/radio_female"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Weiblich"/>
+    </RadioGroup>
 
     <EditText
         android:id="@+id/edittext_insuranceNr"
@@ -53,7 +63,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/insuranceNr"
         android:inputType="numberDecimal"
-        app:layout_constraintTop_toBottomOf="@id/edittext_gender" />
+        app:layout_constraintTop_toBottomOf="@id/radio_gender" />
 
     <Spinner
         android:id="@+id/insurance_spinner"

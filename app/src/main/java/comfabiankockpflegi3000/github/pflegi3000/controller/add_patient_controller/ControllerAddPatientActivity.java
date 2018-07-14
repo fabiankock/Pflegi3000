@@ -46,7 +46,7 @@ public class ControllerAddPatientActivity {
     public void processInput() {
 
         int insNr = Integer.parseInt(this.addPatientActivity.getInsuranceNrValue());
-        char gender = this.addPatientActivity.getGenderValue().toCharArray()[0];
+        char gender = this.addPatientActivity.getGenderValue();
 
         try {
 

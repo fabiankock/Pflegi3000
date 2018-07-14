@@ -21,9 +21,6 @@ public class SearchPatientButtonListener implements View.OnClickListener {
                 AndroidHelper.startNewActivity(view.getContext(), MainActivity.class);
                 break;
 
-            case R.id.open_showpatients_button:
-                AndroidHelper.startNewActivity(view.getContext(), ShowPatientActivity.class);
-
             default:
                 break;
         }

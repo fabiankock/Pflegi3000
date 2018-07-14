@@ -21,7 +21,7 @@ public class PatientEntity {
         this.lastname = lastname;
         this.gender = gender;
         this.insuranceNumber = insuranceNumber;
-        this.insuranceEntity = null;
+        this.insuranceEntity = insuranceEntity;
     }
 
     /*----------------Getter----------------*/
