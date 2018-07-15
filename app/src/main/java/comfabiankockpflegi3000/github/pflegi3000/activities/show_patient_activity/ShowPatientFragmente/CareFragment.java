@@ -7,17 +7,20 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import comfabiankockpflegi3000.github.pflegi3000.R;
 
-public class PflegeFragment extends Fragment {
+public class CareFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
+    private TextView defecationView, mealView, washingView;
+    private View view;
 
-    public PflegeFragment() {}
+    public CareFragment() {}
 
-    public static PflegeFragment newInstance() {
-        PflegeFragment fragment = new PflegeFragment();
+    public static CareFragment newInstance() {
+        CareFragment fragment = new CareFragment();
         return fragment;
     }
 
@@ -32,7 +35,18 @@ public class PflegeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_pflege, container, false);
+        this.view = inflater.inflate(R.layout.fragment_care, container, false);
+
+        this.defecationView = (TextView) view.findViewById(R.id.last_defecation);
+        this.defecationView.setText("Letzte Darmentleerung: ");
+
+        this.mealView = (TextView) view.findViewById(R.id.last_meal);
+        this.mealView.setText("Letzte Mahlzeit: ");
+
+        this.washingView = (TextView) view.findViewById(R.id.last_washing);
+        this.washingView.setText("Letzte Waschung: ");
+
+        return this.view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

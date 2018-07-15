@@ -22,7 +22,7 @@ import comfabiankockpflegi3000.github.pflegi3000.R;
 import comfabiankockpflegi3000.github.pflegi3000.activities.show_patient_activity.ShowPatientFragmente.AppointmentFragment;
 import comfabiankockpflegi3000.github.pflegi3000.activities.show_patient_activity.ShowPatientFragmente.MedikamenteFragment;
 import comfabiankockpflegi3000.github.pflegi3000.activities.show_patient_activity.ShowPatientFragmente.PatientFragment;
-import comfabiankockpflegi3000.github.pflegi3000.activities.show_patient_activity.ShowPatientFragmente.PflegeFragment;
+import comfabiankockpflegi3000.github.pflegi3000.activities.show_patient_activity.ShowPatientFragmente.CareFragment;
 import comfabiankockpflegi3000.github.pflegi3000.android_helper.AndroidHelper;
 import comfabiankockpflegi3000.github.pflegi3000.controller.show_patient_controller.MedikamentFragment.ControllerMedikamentFragment;
 import comfabiankockpflegi3000.github.pflegi3000.controller.show_patient_controller.ControllerAppointmentFragment.ControllerAppointmentFragment;
@@ -30,7 +30,7 @@ import comfabiankockpflegi3000.github.pflegi3000.controller.show_patient_control
 
 public class ShowPatientActivity extends AppCompatActivity
         implements PatientFragment.OnFragmentInteractionListener, MedikamenteFragment.OnFragmentInteractionListener,
-                    PflegeFragment.OnFragmentInteractionListener, AppointmentFragment.OnFragmentInteractionListener {
+                    CareFragment.OnFragmentInteractionListener, AppointmentFragment.OnFragmentInteractionListener {
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
@@ -172,7 +172,7 @@ public class ShowPatientActivity extends AppCompatActivity
                     return fMedikament;
 
                 case 2:
-                    return PflegeFragment.newInstance();
+                    return CareFragment.newInstance();
 
                 case 3:
                     fAppointment = AppointmentFragment.newInstance(patient_id, controllerAppointmentFragment);
