@@ -29,28 +29,10 @@ public class AlterTablesButtonListener implements View.OnClickListener{
                 AndroidHelper.startNewActivity(view.getContext(), MainActivity.class);
                 break;
 
-            case R.id.drop_patienttable_button:
-                try {
-                    this.daoFactory.dropPatientTable();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-                break;
-
             case R.id.drop_insurancetable_button:
                 try {
                     this.daoFactory.dropInsuranceTable();
                 } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-                break;
-
-
-            case R.id.drop_appointmenttable_button:
-                Log.i("appointments", "drop table");
-                try{
-                    this.daoFactory.dropAppointmentTable();
-                }catch (SQLException e){
                     e.printStackTrace();
                 }
                 break;

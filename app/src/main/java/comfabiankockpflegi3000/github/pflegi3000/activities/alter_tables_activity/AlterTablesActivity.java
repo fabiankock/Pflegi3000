@@ -21,16 +21,10 @@ public class AlterTablesActivity extends AppCompatActivity {
         this.backBtn = (Button) findViewById(R.id.back_button_altertable);
         this.backBtn.setOnClickListener(this.controller.getBtnListener());
 
-        this.dropPatientTBtn = (Button) findViewById(R.id.drop_patienttable_button);
-        this.dropPatientTBtn.setOnClickListener(this.controller.getBtnListener());
-
         this.dropInsuranceTBtn = (Button) findViewById(R.id.drop_insurancetable_button);
         this.dropInsuranceTBtn.setOnClickListener(this.controller.getBtnListener());
 
         this.editInsuranceTBtn = (Button) findViewById(R.id.edit_insurancetable_button);
         this.editInsuranceTBtn.setOnClickListener(this.controller.getBtnListener());
-
-        this.dropAppointmentBtn = (Button) findViewById(R.id.drop_appointmenttable_button);
-        this.dropAppointmentBtn.setOnClickListener(this.controller.getBtnListener());
     }
 }
