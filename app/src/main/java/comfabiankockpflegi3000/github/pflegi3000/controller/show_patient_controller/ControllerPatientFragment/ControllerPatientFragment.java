@@ -146,6 +146,15 @@ public class ControllerPatientFragment {
             }
             ArrayAdapter<String> adapter = new ArrayAdapter<>(this.activity.getContext(), android.R.layout.simple_spinner_dropdown_item, itemList);
             this.activity.getInsuranceTypeSpinner().setAdapter(adapter);
+            for(int i = 0; i < items.size(); i++){
+
+                if(theEntity.getInsuranceEntity().getId() == items.get(i).getId()){
+
+                    this.activity.getInsuranceTypeSpinner().setSelection(i);
+                }
+
+            }
+
         }
     }
 }
