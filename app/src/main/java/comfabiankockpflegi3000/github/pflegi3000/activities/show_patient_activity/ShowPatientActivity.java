@@ -60,7 +60,7 @@ public class ShowPatientActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         //Controller für die einzelnen Fragmente!
-        this.controllerPatientFragment = new ControllerPatientFragment(null, this);
+        this.controllerPatientFragment = new ControllerPatientFragment(null, this, this.patient_id);
         this.controllerMedikamentFragment = new ControllerMedikamentFragment(null, this);
         this.controllerAppointmentFragment = new ControllerAppointmentFragment(this);
 
@@ -163,7 +163,7 @@ public class ShowPatientActivity extends AppCompatActivity
 
                 case 0:
                     fPatient = PatientFragment.newInstance(patient_id, controllerPatientFragment);
-                    controllerPatientFragment = new ControllerPatientFragment(fPatient, this.sp_activity);
+                    controllerPatientFragment = new ControllerPatientFragment(fPatient, this.sp_activity, patient_id);
                     return fPatient;
 
                 case 1:

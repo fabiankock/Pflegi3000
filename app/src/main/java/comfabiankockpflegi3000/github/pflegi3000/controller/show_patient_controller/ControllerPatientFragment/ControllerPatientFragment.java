@@ -19,11 +19,13 @@ public class ControllerPatientFragment {
 
     private PatientFragment activity;
     private DaoFactory daoFactory;
+    private PatientFragmentButtonListener btnListener;
 
-    public ControllerPatientFragment(PatientFragment activity, ShowPatientActivity mainActivity) {
+    public ControllerPatientFragment(PatientFragment activity, ShowPatientActivity mainActivity, int id) {
 
         this.activity = activity;
         this.daoFactory = (DaoFactory) mainActivity.getApplication();
+        this.btnListener = new PatientFragmentButtonListener(this, id);
     }
 
     public void updatePatient(int id) throws SQLException {
@@ -77,6 +79,14 @@ public class ControllerPatientFragment {
         }
 
         return null;
+    }
+
+    public void deletePatientById(int id) throws SQLException {
+
+        Dao<PatientEntity, Integer> pDao = this.daoFactory.getPatientDAO();
+        PatientEntity entity = pDao.queryForId(id);
+
+        pDao.delete(entity);
     }
 
     public List<InsuranceEntity> getAllInsurances(){
@@ -156,5 +166,9 @@ public class ControllerPatientFragment {
             }
 
         }
+    }
+
+    public PatientFragmentButtonListener getBtnListener() {
+        return btnListener;
     }
 }

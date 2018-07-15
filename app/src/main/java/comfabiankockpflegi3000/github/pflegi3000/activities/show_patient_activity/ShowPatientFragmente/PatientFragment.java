@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -40,6 +41,7 @@ public class PatientFragment extends Fragment {
     private EditText insuranceNrText;
     private Spinner insuranceTypeSpinner;
     private ConstraintLayout showLayout, editLayout;
+    private Button deleteButton;
 
     //Nicht editierbare Felder
     private TextView firstNameView, lastNameView;
@@ -110,6 +112,9 @@ public class PatientFragment extends Fragment {
                 ArrayAdapter<String> adapter = new ArrayAdapter<>(this.getContext(), android.R.layout.simple_spinner_dropdown_item, itemList);
                 this.insuranceTypeSpinner.setAdapter(adapter);
             }
+
+            this.deleteButton = (Button) view.findViewById(R.id.delete_button);
+            this.deleteButton.setOnClickListener(this.controller.getBtnListener());
 
             //nicht editierbare Felder
             firstNameView = view.findViewById(R.id.view_firstname);
