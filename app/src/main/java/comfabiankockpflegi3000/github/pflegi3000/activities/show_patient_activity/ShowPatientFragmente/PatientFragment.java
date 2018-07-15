@@ -204,7 +204,7 @@ public class PatientFragment extends Fragment {
 
     /*----------getter----------*/
 
-    //nicht editierbare Felder
+    //editierbare Felder
     public EditText getLastNameText() {
         return lastNameText;
     }
@@ -221,7 +221,7 @@ public class PatientFragment extends Fragment {
         return insuranceTypeSpinner;
     }
 
-    //editierbare Felder
+    //nicht editierbare Felder
     public TextView getLastNameView() {
         return lastNameView;
     }

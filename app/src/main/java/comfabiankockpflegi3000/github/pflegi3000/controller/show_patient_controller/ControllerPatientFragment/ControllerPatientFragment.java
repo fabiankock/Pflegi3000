@@ -2,6 +2,7 @@ package comfabiankockpflegi3000.github.pflegi3000.controller.show_patient_contro
 
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 
 import com.j256.ormlite.dao.Dao;
 
@@ -48,6 +49,7 @@ public class ControllerPatientFragment {
         entity.setInsuranceEntity(insuranceEntity);
 
         pDao.update(entity);
+        this.realodViews(entity);
     }
 
     public PatientEntity getPatientByID(int id) throws SQLException {
@@ -105,6 +107,45 @@ public class ControllerPatientFragment {
 
             activity.getEditLayout().setVisibility(View.VISIBLE);
             activity.getShowLayout().setVisibility(View.INVISIBLE);
+        }
+    }
+
+    public void realodViews(PatientEntity theEntity){
+
+        //nicht editierbare felder
+        this.activity.getFirstNameView().setText("Vorname: " + theEntity.getFirstname());
+        this.activity.getLastNameView().setText("Nachname: " + theEntity.getLastname());
+        if(theEntity.getGender() == 'w'){
+            this.activity.getGenderView().setText("Geschlecht: weiblich");
+        }
+        else {
+            this.activity.getGenderView().setText("Geschlecht: männlich");
+        }
+
+        this.activity.getInsuranceNrView().setText("Versicherungsnummer: " + Integer.toString(theEntity.getInsuranceNumber()));
+        this.activity.getInsuranceTypeView().setText("Versicherung: " + theEntity.getInsuranceEntity().getName() + " ("+theEntity.getInsuranceEntity().getType()+")");
+
+        //editierbare Felder
+        this.activity.getFirstNameText().setText(theEntity.getFirstname());
+        this.activity.getLastNameText().setText(theEntity.getLastname());
+        if(theEntity.getGender() == 'w'){
+            this.activity.getFemaleBtn().setChecked(true);
+            this.activity.getMaleBtn().setChecked(false);
+        }
+        else{
+            this.activity.getFemaleBtn().setChecked(false);
+            this.activity.getMaleBtn().setChecked(true);
+        }
+        this.activity.getInsuranceNrText().setText(Integer.toString(theEntity.getInsuranceNumber()));
+        List<InsuranceEntity> items = this.getAllInsurances();
+        if(items != null){
+
+            String[] itemList = new String[items.size()];
+            for(int i = 0; i < items.size(); i++){
+                itemList[i] = items.get(i).getName();
+            }
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(this.activity.getContext(), android.R.layout.simple_spinner_dropdown_item, itemList);
+            this.activity.getInsuranceTypeSpinner().setAdapter(adapter);
         }
     }
 }
