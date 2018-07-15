@@ -31,7 +31,7 @@ public class AppointmentFragmentButtonListener implements View.OnClickListener {
                 this.controller.insertAppointment();
                 if(this.controller != null)
                     this.controller.changeVisibility();
-
+                this.controller.repaintCalendar();
                 break;
 
             default:

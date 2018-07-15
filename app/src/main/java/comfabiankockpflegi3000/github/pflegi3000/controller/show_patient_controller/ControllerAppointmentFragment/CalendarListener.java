@@ -9,6 +9,7 @@ import android.widget.CalendarView;
 import com.roomorama.caldroid.CaldroidFragment;
 import com.roomorama.caldroid.CaldroidListener;
 
+import java.sql.SQLException;
 import java.util.Date;
 
 public class CalendarListener extends CaldroidListener {
@@ -32,6 +33,20 @@ public class CalendarListener extends CaldroidListener {
         }
         else{
             this.controller.setAppointmentInfoTextEmpty();
+        }
+    }
+
+    @Override
+    public void onLongClickDate(Date date, View view) {
+
+        if(this.controller.checkForAppointment(date) == true){
+
+            try {
+                this.controller.deleteAppointment(date);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            this.controller.repaintCalendar();
         }
     }
 }

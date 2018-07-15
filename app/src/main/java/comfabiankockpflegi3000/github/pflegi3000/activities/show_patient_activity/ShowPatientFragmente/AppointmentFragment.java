@@ -144,6 +144,7 @@ public class AppointmentFragment extends Fragment {
     public String getAddress(){
         return this.address.getText().toString();
     }
+    public CaldroidFragment getCaldroidFragment() { return caldroidFragment; }
 
     public void setInfoText(String text){
 
