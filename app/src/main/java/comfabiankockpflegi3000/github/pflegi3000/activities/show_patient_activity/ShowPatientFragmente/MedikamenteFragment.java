@@ -1,12 +1,17 @@
 package comfabiankockpflegi3000.github.pflegi3000.activities.show_patient_activity.ShowPatientFragmente;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.text.Editable;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,10 +20,13 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TimePicker;
 
+import java.util.Calendar;
 import java.util.List;
 
 import comfabiankockpflegi3000.github.pflegi3000.R;
+import comfabiankockpflegi3000.github.pflegi3000.activities.show_patient_activity.TimePickerFragment;
 import comfabiankockpflegi3000.github.pflegi3000.controller.show_patient_controller.MedikamentFragment.ControllerMedikamentFragment;
 import comfabiankockpflegi3000.github.pflegi3000.controller.show_patient_controller.MedikamentFragment.ListenerMedikamentFragment;
 import comfabiankockpflegi3000.github.pflegi3000.database.tables.MedikamentEntity;
@@ -35,11 +43,13 @@ public class MedikamenteFragment extends Fragment {
     private EditText mName;
     private EditText mDosis;
     private EditText mStundenAbstand;
+    private Button mPicker;
     private Button mCommit;
 
     //Liste für die Medikamente
     private ListView list;
     private FloatingActionButton fab;
+    private FragmentManager supportFragmentManager;
 
     public MedikamenteFragment() {}
 
@@ -48,7 +58,7 @@ public class MedikamenteFragment extends Fragment {
 
         patient_id = p_id;
         this.controller = c;
-        this.MFListener = new ListenerMedikamentFragment(controller);
+
     }
 
     public static MedikamenteFragment newInstance(int p_id, ControllerMedikamentFragment c) {
@@ -68,6 +78,8 @@ public class MedikamenteFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_medikamente, container, false);
 
+        this.MFListener = new ListenerMedikamentFragment(controller, this);
+
         list = (ListView) view.findViewById(R.id.medikamente_list);
         list.setAdapter(controller.getListViewAdapter());
 
@@ -76,18 +88,14 @@ public class MedikamenteFragment extends Fragment {
 
         mName = (EditText) view.findViewById(R.id.add_mName);
         mDosis = (EditText) view.findViewById(R.id.add_mDosis);
-        mStundenAbstand = (EditText) view.findViewById(R.id.add_mStundenAbstand);
+
+        mPicker = (Button) view.findViewById(R.id.open_picker);
+        mPicker.setOnClickListener(MFListener);
+
         mCommit = (Button) view.findViewById(R.id.add_mCommit);
         mCommit.setOnClickListener(MFListener);
 
         List<MedikamentEntity> aEntities = this.controller.getAllMedication();
-
-        for(int i = 0; i < aEntities.size(); i++){
-
-            Log.i("medications", aEntities.get(i).getMName() + " "
-                    + aEntities.get(i).getMDose() + " "
-                    + aEntities.get(i).getMStundenAbstand());
-        }
 
         return view;
     }
@@ -135,8 +143,13 @@ public class MedikamenteFragment extends Fragment {
         mListener = null;
     }
 
+    public FragmentManager getSupportFragmentManager() {
+        return supportFragmentManager;
+    }
+
     public interface OnFragmentInteractionListener {
 
         void onFragmentInteraction(Uri uri);
     }
+
 }

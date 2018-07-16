@@ -66,13 +66,12 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"/>
 
-        <EditText
-            android:layout_width="match_parent"
+        <Button
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/add_mStundenAbstand"
-            android:hint="Abstand in h"
-            android:inputType="numberDecimal"
-            app:layout_constraintTop_toBottomOf="@id/add_mDosis"
+            android:id="@+id/open_picker"
+            android:text="Uhrzeit"
+            app:layout_constraintTop_toBottomOf="@+id/add_mDosis"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"/>
 

@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import comfabiankockpflegi3000.github.pflegi3000.R;
@@ -21,6 +22,7 @@ public class ListViewAdapter extends BaseAdapter {
     private LayoutInflater inflater;
     private List<MedikamentEntity> medication;
     private ControllerMedikamentFragment controller;
+    private DecimalFormat format = new DecimalFormat("00");
 
     public ListViewAdapter (Context c, List<MedikamentEntity> mediaction, ControllerMedikamentFragment controller) {
         this.context = c;
@@ -46,13 +48,16 @@ public class ListViewAdapter extends BaseAdapter {
             holder = (ViewHolder) view.getTag();
         }
         // Set the results into TextViews
-        holder.name.setText(medication.get(position).getMName() + "\n" + "Dosierung: " + medication.get(position).getMDose() + "mg");
+        holder.name.setText(medication.get(position).getMName() + "\n" + "Dosierung: " + medication.get(position).getMDose() + "mg" +
+                "   Uhrzeit: " + medication.get(position).getHour() + ":" + medication.get(position).getMinute() + " Uhr");
 
         if (medication.get(position).getGenommen() == true) {
             holder.box.setChecked(true);
         } else {
             holder.box.setChecked(false);
         }
+
+        holder.id = medication.get(position).getId();
 
         Log.i("medicationinView",medication.get(position).getMName() + "\n" + "Dosierung: " + medication.get(position).getMDose() + " mg\n Wann: ");
 
@@ -62,6 +67,7 @@ public class ListViewAdapter extends BaseAdapter {
     public class ViewHolder {
         TextView name;
         CheckBox box;
+        int id;
     }
 
 

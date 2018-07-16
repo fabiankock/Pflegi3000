@@ -21,12 +21,16 @@ import comfabiankockpflegi3000.github.pflegi3000.database.tables.MedikamentEntit
 import comfabiankockpflegi3000.github.pflegi3000.database.tables.PatientEntity;
 import comfabiankockpflegi3000.github.pflegi3000.database.tables.PatientMedikamentConnection;
 
-public class ControllerMedikamentFragment  {
+public class ControllerMedikamentFragment {
 
     private MedikamenteFragment activity;
     private ShowPatientActivity mainactivity;
     private DaoFactory daofactory;
     private ListViewAdapter listViewAdapter;
+
+    //Für die Uhrzeit
+    private int hour;
+    private int minute;
 
     public ControllerMedikamentFragment(MedikamenteFragment activity, ShowPatientActivity mainactivity) {
         this.activity = activity;
@@ -43,7 +47,7 @@ public class ControllerMedikamentFragment  {
 
         int patientID = mainactivity.getPatient_id();
 
-        try{
+        try {
             Dao<MedikamentEntity, Integer> aDao = daofactory.getMedikamentDAO();
             Dao<PatientMedikamentConnection, Integer> pmDao = daofactory.getPatientMedikamentDAO();
             Dao<PatientEntity, Integer> pDao = daofactory.getPatientDAO();
@@ -72,7 +76,7 @@ public class ControllerMedikamentFragment  {
 
             return filteredMedikamentEntities;
 
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
@@ -85,7 +89,7 @@ public class ControllerMedikamentFragment  {
 
         String mName = activity.getMNameValue();
         int mDosis = Integer.parseInt(activity.getMDosisValue());
-        int mStundenAbstand = Integer.parseInt(activity.getMStundenAbstandValue());
+
 
         try {
 
@@ -93,7 +97,8 @@ public class ControllerMedikamentFragment  {
             Dao<PatientMedikamentConnection, Integer> pmDao = daofactory.getPatientMedikamentDAO();
             Dao<PatientEntity, Integer> pDao = daofactory.getPatientDAO();
 
-            MedikamentEntity newMedikament = new MedikamentEntity(mName, mDosis,mStundenAbstand);
+            MedikamentEntity newMedikament = new MedikamentEntity(mName, mDosis, hour, minute);
+
             PatientMedikamentConnection newConnection = new PatientMedikamentConnection(pDao.queryForId(patientID), newMedikament);
 
             mDao.create(newMedikament);
@@ -123,7 +128,7 @@ public class ControllerMedikamentFragment  {
     public ListViewAdapter getListViewAdapter() {
 
         if (this.listViewAdapter == null) {
-            this.listViewAdapter = new ListViewAdapter(mainactivity.getApplicationContext() ,getAllMedication(), this);
+            this.listViewAdapter = new ListViewAdapter(mainactivity.getApplicationContext(), getAllMedication(), this);
 
         }
         return this.listViewAdapter;
@@ -133,7 +138,7 @@ public class ControllerMedikamentFragment  {
 
         try {
 
-            Dao<MedikamentEntity, Integer> mDao= daofactory.getMedikamentDAO();
+            Dao<MedikamentEntity, Integer> mDao = daofactory.getMedikamentDAO();
             medi.setGenommen(b);
             mDao.update(medi);
 
@@ -143,4 +148,12 @@ public class ControllerMedikamentFragment  {
 
     }
 
+
+    public void setHour(int hour) {
+        this.hour = hour;
+    }
+
+    public void setMinute(int minute) {
+        this.minute = minute;
+    }
 }
