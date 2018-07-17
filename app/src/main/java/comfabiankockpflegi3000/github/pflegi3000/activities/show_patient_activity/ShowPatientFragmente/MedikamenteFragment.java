@@ -157,7 +157,13 @@ public class MedikamenteFragment extends Fragment {
     }
 
     public void setmTime (int hour, int minute) {
-        mTime.setText(hour + ":" + minute + " Uhr");
+
+        if(minute < 10){
+            mTime.setText(hour + ":" + minute + "0 Uhr");
+        }
+        else{
+            mTime.setText(hour + ":" + minute + " Uhr");
+        }
     }
 
 }

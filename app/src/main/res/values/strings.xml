@@ -54,6 +54,6 @@
     <!--strings for Care Fragment-->
     <string name="last_defestication">Letzter Stuhlgang</string>
     <string name="last_meal">Letzte Mahlzeit</string>
-    <string name="last_washed">Zueletzt gewaschen</string>
+    <string name="last_washed">Zuletzt gewaschen</string>
     <string name="now">Jetzt</string>
 </resources>

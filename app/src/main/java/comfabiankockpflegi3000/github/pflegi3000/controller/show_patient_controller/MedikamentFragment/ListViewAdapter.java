@@ -55,8 +55,14 @@ public class ListViewAdapter extends BaseAdapter {
 
         holder.name.setOnLongClickListener(listener);
         // Set the results into TextViews
-        holder.name.setText(medication.get(position).getMName() + "\n" + "Dosierung: " + medication.get(position).getMDose() + "mg" +
-                "   Uhrzeit: " + medication.get(position).getHour() + ":" + medication.get(position).getMinute() + " Uhr");
+        if(medication.get(position).getMinute() < 10) {
+            holder.name.setText(medication.get(position).getMName() + "\n" + "Dosierung: " + medication.get(position).getMDose() + "mg" +
+                    "   Uhrzeit: " + medication.get(position).getHour() + ":" + medication.get(position).getMinute() + "0 Uhr");
+        }
+        else{
+            holder.name.setText(medication.get(position).getMName() + "\n" + "Dosierung: " + medication.get(position).getMDose() + "mg" +
+                    "   Uhrzeit: " + medication.get(position).getHour() + ":" + medication.get(position).getMinute() + " Uhr");
+        }
 
         if (medication.get(position).getGenommen() == true) {
             holder.box.setChecked(true);
