@@ -6,22 +6,45 @@
     android:layout_height="match_parent"
     tools:context=".activities.add_insurance_activity.AddInsuranceActivity">
 
+    <TextView
+        android:id="@+id/head_edit_insuranceName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Versicherungsname"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="10dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
     <EditText
         android:id="@+id/edittext_insuranceName"
-        android:layout_width="fill_parent"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:hint="@string/insurance_name"
         android:inputType="text"
-        android:layout_marginTop="100dp"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:background="@drawable/patient_border"
+        android:textSize="25dp"
+        app:layout_constraintTop_toBottomOf="@id/head_edit_insuranceName"
+        app:layout_constraintLeft_toLeftOf="@id/head_edit_insuranceName"/>
+
+
+    <TextView
+        android:id="@+id/head_edit_insuranceType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Versicherungstyp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/edittext_insuranceName"
+        app:layout_constraintLeft_toLeftOf="@id/head_edit_insuranceName"/>
 
     <EditText
         android:id="@+id/edittext_insuranceType"
-        android:layout_width="fill_parent"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:hint="@string/insurance_type"
         android:inputType="text"
-        app:layout_constraintTop_toBottomOf="@id/edittext_insuranceName" />
+        android:background="@drawable/patient_border"
+        android:textSize="25dp"
+        app:layout_constraintTop_toBottomOf="@id/head_edit_insuranceType"
+        app:layout_constraintLeft_toLeftOf="@id/head_edit_insuranceName"/>
 
     <Button
         android:id="@+id/back_button_add_insurance"
@@ -29,8 +52,7 @@
         android:layout_height="wrap_content"
         android:text="@string/back"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-         />
+        app:layout_constraintLeft_toLeftOf="parent"/>
 
     <Button
         android:id="@+id/submit_button_add_insurance"
@@ -38,7 +60,6 @@
         android:layout_height="wrap_content"
         android:text="@string/submit"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-         />
+        app:layout_constraintRight_toRightOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>
