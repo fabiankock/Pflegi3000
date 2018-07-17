@@ -1,6 +1,7 @@
 package comfabiankockpflegi3000.github.pflegi3000.controller.add_patient_controller;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import com.j256.ormlite.dao.Dao;
 
@@ -44,32 +45,43 @@ public class ControllerAddPatientActivity {
         return insurances;
     }
 
-    public void processInput() {
-
-        int insNr = Integer.parseInt(this.addPatientActivity.getInsuranceNrValue());
-        char gender = this.addPatientActivity.getGenderValue();
+    public boolean processInput() {
 
         try {
 
-            Dao<PatientEntity, Integer> pDao = daofactory.getPatientDAO();
-            Dao<InsuranceEntity, Integer> iDao = daofactory.getInsuranceDAO();
-            Dao<CareEntity, Integer> cDao = daofactory.getCareDAO();
+            if(!this.addPatientActivity.getInsuranceNrValue().matches("") ||
+                !this.addPatientActivity.getFirstNameValue().matches("") ||
+                !this.addPatientActivity.getLastNameValue().matches("")){
 
-            //Get the insurance Data
-            InsuranceEntity insuranceEntity = iDao.queryForAll().get(this.addPatientActivity.getInsuranceListPos());
-            AppointmentEntity tpTermin = new AppointmentEntity();
-            PatientEntity tpPatient = new PatientEntity(this.addPatientActivity.getFirstNameValue(), this.addPatientActivity.getLastNameValue(),
-                                                        gender, insNr,
-                                                        insuranceEntity);
+                int insNr = Integer.parseInt(this.addPatientActivity.getInsuranceNrValue());
+                char gender = this.addPatientActivity.getGenderValue();
 
-            CareEntity careEntity = new CareEntity(0,0,0, tpPatient);
-            cDao.create(careEntity);
-            pDao.create(tpPatient);
-            //Send Database query to insert new Patient
+                Dao<PatientEntity, Integer> pDao = daofactory.getPatientDAO();
+                Dao<InsuranceEntity, Integer> iDao = daofactory.getInsuranceDAO();
+                Dao<CareEntity, Integer> cDao = daofactory.getCareDAO();
+
+                //Get the insurance Data
+                InsuranceEntity insuranceEntity = iDao.queryForAll().get(this.addPatientActivity.getInsuranceListPos());
+                AppointmentEntity tpTermin = new AppointmentEntity();
+                PatientEntity tpPatient = new PatientEntity(this.addPatientActivity.getFirstNameValue(), this.addPatientActivity.getLastNameValue(),
+                        gender, insNr,
+                        insuranceEntity);
+
+                CareEntity careEntity = new CareEntity(0,0,0, tpPatient);
+                cDao.create(careEntity);
+                pDao.create(tpPatient);
+                //Send Database query to insert new Patient
+                return true;
+            }
+            else{
+                return false;
+            }
 
         } catch (SQLException e) {
             System.out.println(e);
         }
+
+        return false;
     }
 
     public AddPatientButtonListener getButtonListener() {
