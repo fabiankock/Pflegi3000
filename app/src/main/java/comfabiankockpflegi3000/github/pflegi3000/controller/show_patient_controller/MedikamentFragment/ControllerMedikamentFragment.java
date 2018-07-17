@@ -34,8 +34,8 @@ public class ControllerMedikamentFragment {
     private ListViewAdapter listViewAdapter;
 
     //Für die Uhrzeit
-    private int hour = 0;
-    private int minute = 0;
+    private int hour = -1;
+    private int minute = -1;
 
     public ControllerMedikamentFragment(MedikamenteFragment activity, ShowPatientActivity mainactivity) {
         this.activity = activity;
@@ -98,10 +98,10 @@ public class ControllerMedikamentFragment {
         if (activity.getMDosisValue().matches("")) {
             return false;
         }
-        if (hour == 0) {
+        if (hour < 0) {
             return false;
         }
-        if (minute == 0) {
+        if (minute < 0) {
             return false;
         }
 
