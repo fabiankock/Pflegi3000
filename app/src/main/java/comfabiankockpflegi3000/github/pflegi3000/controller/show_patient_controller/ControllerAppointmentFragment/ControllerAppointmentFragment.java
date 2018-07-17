@@ -68,7 +68,7 @@ public class ControllerAppointmentFragment {
         return list;
     }
 
-    public void insertAppointment(){
+    public boolean insertAppointment(){
 
         AppointmentFragment fragment = this.activity.getfAppointment();
 
@@ -77,14 +77,26 @@ public class ControllerAppointmentFragment {
             Dao<AppointmentEntity, Integer> aDao = this.daoFactory.getAppointmentDAO();
             Dao<PatientEntity, Integer> pDao = this.daoFactory.getPatientDAO();
 
-            PatientEntity patient = pDao.queryForId(this.activity.getPatient_id());
+            if(!fragment.getDescription().matches("") &&
+                !fragment.getName().matches("") &&
+                this.selectedDate.getTime() > 0) {
 
-            AppointmentEntity appointmentEntity = new AppointmentEntity(fragment.getName(), this.selectedDate.getTime(), fragment.getDescription(), fragment.getAddress(), patient);
-            aDao.create(appointmentEntity);
-            Log.i("appointments", "Appointment created");
+                PatientEntity patient = pDao.queryForId(this.activity.getPatient_id());
+
+                AppointmentEntity appointmentEntity = new AppointmentEntity(fragment.getName(), this.selectedDate.getTime(), fragment.getDescription(), fragment.getAddress(), patient);
+                aDao.create(appointmentEntity);
+                Log.i("appointments", "Appointment created");
+
+                return true;
+            }
+            else{
+                return false;
+            }
 
         }catch(SQLException e){
             e.printStackTrace();
+
+            return false;
         }
     }
 
@@ -137,6 +149,15 @@ public class ControllerAppointmentFragment {
                     + aEntities.get(i).getTAddress());
             tempDate = new Date(aEntities.get(i).getTimestamp());
             this.activity.getfAppointment().getCaldroidFragment().setTextColorForDate(R.color.red, tempDate);
+        }
+        this.activity.getfAppointment().getCaldroidFragment().refreshView();
+        if(this.checkForAppointment(this.selectedDate) == true){
+
+            Log.i("appointments", "there is appointment");
+            this.setAppointmentInfoText(this.selectedDate);
+        }
+        else{
+            this.setAppointmentInfoTextEmpty();
         }
     }
 
