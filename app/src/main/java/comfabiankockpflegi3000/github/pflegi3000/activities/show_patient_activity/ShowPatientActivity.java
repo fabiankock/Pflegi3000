@@ -2,6 +2,7 @@ package comfabiankockpflegi3000.github.pflegi3000.activities.show_patient_activi
 
 import android.net.Uri;
 import android.support.design.widget.TabLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -59,6 +60,8 @@ public class ShowPatientActivity extends AppCompatActivity
         String patient_id_str = getIntent().getStringExtra(AndroidHelper.PATIENT_POSITION_EXTRA);
         this.patient_id = Integer.parseInt(patient_id_str);
         Log.i("Show", "p_id: " + this.patient_id);
+
+        this.getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.caldroid_black));
 
         //Controller für die einzelnen Fragmente!
         this.controllerPatientFragment = new ControllerPatientFragment(null, this, this.patient_id);
