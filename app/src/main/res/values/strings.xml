@@ -6,11 +6,12 @@
     <string name="addpatient_str">Patient hinzufügen</string>
     <string name="altertables_str">Tabellen bearbeiten</string>
 
-    <!--strings for add patient activity !-->
+    <!--strings for add/show patient activity !-->
     <string name="firstname">Vorname</string>
     <string name="lastname">Nachname</string>
     <string name="gender">Geschlecht</string>
     <string name="insuranceNr">Versicherungsnummer</string>
+    <string name="insuranceType">Versicherungstyp</string>
 
     <!--string for search patient activity!-->
     <string name="search_hint">Patienten suchen</string>

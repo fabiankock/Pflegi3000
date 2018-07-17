@@ -111,6 +111,14 @@ public class PatientFragment extends Fragment {
                 }
                 ArrayAdapter<String> adapter = new ArrayAdapter<>(this.getContext(), android.R.layout.simple_spinner_dropdown_item, itemList);
                 this.insuranceTypeSpinner.setAdapter(adapter);
+
+                for(int i = 0; i < items.size(); i++){
+
+                    if(this.the_patient.getInsuranceEntity().getId() == items.get(i).getId()){
+
+                        this.insuranceTypeSpinner.setSelection(i);
+                    }
+                }
             }
 
             this.deleteButton = (Button) view.findViewById(R.id.delete_button);
@@ -118,23 +126,23 @@ public class PatientFragment extends Fragment {
 
             //nicht editierbare Felder
             firstNameView = view.findViewById(R.id.view_firstname);
-            firstNameView.setText("Vorname: " + this.the_patient.getFirstname());
+            firstNameView.setText(this.the_patient.getFirstname());
 
             lastNameView = view.findViewById(R.id.view_lastname);
-            lastNameView.setText("Nachname: " + this.the_patient.getLastname());
+            lastNameView.setText(this.the_patient.getLastname());
 
             genderView = view.findViewById(R.id.view_gender);
             if(this.the_patient.getGender() == 'm')
-                genderView.setText("Geschlecht: männlich");
+                genderView.setText("männlich");
             else
-                genderView.setText("Geschlecht: weiblich");
+                genderView.setText("weiblich");
 
             insuranceNrView = view.findViewById(R.id.view_insuranceNr);
-            insuranceNrView.setText("Versicherungsnummer: " + Integer.toString(this.the_patient.getInsuranceNumber()));
+            insuranceNrView.setText(Integer.toString(this.the_patient.getInsuranceNumber()));
 
             insuranceTypeView = view.findViewById(R.id.view_insuranceType);
             try {
-                insuranceTypeView.setText("Versicherung: " + this.controller.getInsuranceOfPatient(this.patient_id).getName()
+                insuranceTypeView.setText(this.controller.getInsuranceOfPatient(this.patient_id).getName()
                                             + "(" + this.controller.getInsuranceOfPatient(this.patient_id).getType() + ")");
             } catch (SQLException e) {
                 e.printStackTrace();

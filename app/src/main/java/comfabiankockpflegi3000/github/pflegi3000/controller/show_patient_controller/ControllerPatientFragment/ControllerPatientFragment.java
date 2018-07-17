@@ -123,17 +123,17 @@ public class ControllerPatientFragment {
     public void realodViews(PatientEntity theEntity){
 
         //nicht editierbare felder
-        this.activity.getFirstNameView().setText("Vorname: " + theEntity.getFirstname());
-        this.activity.getLastNameView().setText("Nachname: " + theEntity.getLastname());
+        this.activity.getFirstNameView().setText(theEntity.getFirstname());
+        this.activity.getLastNameView().setText(theEntity.getLastname());
         if(theEntity.getGender() == 'w'){
-            this.activity.getGenderView().setText("Geschlecht: weiblich");
+            this.activity.getGenderView().setText("weiblich");
         }
         else {
-            this.activity.getGenderView().setText("Geschlecht: männlich");
+            this.activity.getGenderView().setText("männlich");
         }
 
-        this.activity.getInsuranceNrView().setText("Versicherungsnummer: " + Integer.toString(theEntity.getInsuranceNumber()));
-        this.activity.getInsuranceTypeView().setText("Versicherung: " + theEntity.getInsuranceEntity().getName() + " ("+theEntity.getInsuranceEntity().getType()+")");
+        this.activity.getInsuranceNrView().setText(Integer.toString(theEntity.getInsuranceNumber()));
+        this.activity.getInsuranceTypeView().setText(theEntity.getInsuranceEntity().getName() + " ("+theEntity.getInsuranceEntity().getType()+")");
 
         //editierbare Felder
         this.activity.getFirstNameText().setText(theEntity.getFirstname());
@@ -147,6 +147,7 @@ public class ControllerPatientFragment {
             this.activity.getMaleBtn().setChecked(true);
         }
         this.activity.getInsuranceNrText().setText(Integer.toString(theEntity.getInsuranceNumber()));
+
         List<InsuranceEntity> items = this.getAllInsurances();
         if(items != null){
 
