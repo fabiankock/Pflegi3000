@@ -1,5 +1,7 @@
 package comfabiankockpflegi3000.github.pflegi3000.controller.show_patient_controller.ControllerPatientFragment;
 
+import android.annotation.SuppressLint;
+import android.support.annotation.DrawableRes;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -39,20 +41,20 @@ public class ControllerPatientFragment {
 
         Dao<InsuranceEntity, Integer> iDao = daoFactory.getInsuranceDAO();
         //Get the insurance Data
-        InsuranceEntity insuranceEntity = iDao.queryForAll().get(this.activity.getInsuranceListPos());
+        InsuranceEntity insuranceEntity = iDao.queryForAll().get(this.mainactivity.getfPatient().getInsuranceListPos());
 
         Dao<PatientEntity, Integer> pDao = this.daoFactory.getPatientDAO();
         PatientEntity entity = pDao.queryForId(id);
 
-        entity.setFirstname(this.activity.getFirstNameText().getText().toString());
-        entity.setLastname(this.activity.getLastNameText().getText().toString());
-        if(this.activity.getFemaleBtn().isChecked()){
+        entity.setFirstname(this.mainactivity.getfPatient().getFirstNameText().getText().toString());
+        entity.setLastname(this.mainactivity.getfPatient().getLastNameText().getText().toString());
+        if(this.mainactivity.getfPatient().getFemaleBtn().isChecked()){
             entity.setGender('w');
         }
         else{
             entity.setGender('m');
         }
-        int num = Integer.parseInt(this.activity.getInsuranceNrText().getText().toString());
+        int num = Integer.parseInt(this.mainactivity.getfPatient().getInsuranceNrText().getText().toString());
         entity.setInsuranceNumber(num);
         entity.setInsuranceEntity(insuranceEntity);
 
@@ -114,23 +116,26 @@ public class ControllerPatientFragment {
         return insurances;
     }
 
-    public void switchView(){
+    @SuppressLint("RestrictedApi")
+    public void switchView()throws SQLException{
 
-        if(activity.getEditLayout().getVisibility() == View.VISIBLE){
+        if(mainactivity.getfPatient().getEditLayout().getVisibility() == View.VISIBLE){
 
-            activity.getEditLayout().setVisibility(View.INVISIBLE);
-            activity.getShowLayout().setVisibility(View.VISIBLE);
+            mainactivity.getfPatient().getEditLayout().setVisibility(View.INVISIBLE);
+            mainactivity.getfPatient().getShowLayout().setVisibility(View.VISIBLE);
+            this.updatePatient(mainactivity.getPatient_id());
         }
 
         else{
 
-            activity.getEditLayout().setVisibility(View.VISIBLE);
-            activity.getShowLayout().setVisibility(View.INVISIBLE);
+            mainactivity.getfPatient().getEditLayout().setVisibility(View.VISIBLE);
+            mainactivity.getfPatient().getShowLayout().setVisibility(View.INVISIBLE);
         }
     }
 
     public void realodViews(PatientEntity theEntity){
 
+        this.activity = mainactivity.getfPatient();
         //nicht editierbare felder
         this.activity.getFirstNameView().setText(theEntity.getFirstname());
         this.activity.getLastNameView().setText(theEntity.getLastname());

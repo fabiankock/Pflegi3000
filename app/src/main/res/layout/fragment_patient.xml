@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -15,9 +14,9 @@
         <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/edit_layout_patient"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/edit_layout_patient"
             tools:context=".activities.add_patient_activity.AddPatientActivity">
 
             <TextView
@@ -26,19 +25,19 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="@string/firstname"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintLeft_toLeftOf="@id/text_firstname"/>
+                app:layout_constraintLeft_toLeftOf="@id/text_firstname"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
                 android:id="@+id/text_firstname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
+                android:background="@drawable/patient_border"
+                android:inputType="text"
                 android:paddingLeft="20dp"
                 android:textSize="30sp"
-                android:background="@drawable/patient_border"
                 app:layout_constraintTop_toBottomOf="@id/head_firstname" />
 
             <TextView
@@ -47,8 +46,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="@string/lastname"
-                app:layout_constraintTop_toBottomOf="@id/text_firstname"
-                app:layout_constraintLeft_toLeftOf="@id/text_firstname"/>
+                app:layout_constraintLeft_toLeftOf="@id/text_firstname"
+                app:layout_constraintTop_toBottomOf="@id/text_firstname" />
 
             <EditText
                 android:id="@+id/text_lastname"
@@ -56,10 +55,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:paddingLeft="20dp"
-                android:inputType="text"
-                android:textSize="30sp"
                 android:background="@drawable/patient_border"
+                android:inputType="text"
+                android:paddingLeft="20dp"
+                android:textSize="30sp"
                 app:layout_constraintTop_toBottomOf="@id/head_lastname" />
 
             <TextView
@@ -68,22 +67,22 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="Geburtstag"
-                app:layout_constraintTop_toBottomOf="@id/text_lastname"
-                app:layout_constraintLeft_toLeftOf="@id/text_firstname"/>
+                app:layout_constraintLeft_toLeftOf="@id/text_firstname"
+                app:layout_constraintTop_toBottomOf="@id/text_lastname" />
 
             <TextView
                 android:id="@+id/date_picker"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Geburtsdatum"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
+                android:background="@drawable/patient_border"
                 android:paddingLeft="20dp"
+                android:text="Geburtsdatum"
                 android:textColor="@color/caldroid_black"
                 android:textSize="30sp"
-                android:background="@drawable/patient_border"
-                app:layout_constraintTop_toBottomOf="@id/head_date_picker"
-                app:layout_constraintLeft_toLeftOf="parent"/>
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/head_date_picker" />
 
             <TextView
                 android:id="@id/head_gender"
@@ -91,8 +90,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="@string/gender"
-                app:layout_constraintTop_toBottomOf="@id/date_picker"
-                app:layout_constraintLeft_toLeftOf="@id/text_lastname"/>
+                app:layout_constraintLeft_toLeftOf="@id/text_lastname"
+                app:layout_constraintTop_toBottomOf="@id/date_picker" />
 
             <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/radio_gender"
@@ -100,18 +99,22 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:orientation="horizontal"
                 android:background="@drawable/patient_border"
-                app:layout_constraintTop_toBottomOf="@+id/head_gender"
-                app:layout_constraintLeft_toLeftOf="parent">
-                <RadioButton android:id="@+id/radio_male"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/head_gender">
+
+                <RadioButton
+                    android:id="@+id/radio_male"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Männlich"/>
-                <RadioButton android:id="@+id/radio_female"
+                    android:text="Männlich" />
+
+                <RadioButton
+                    android:id="@+id/radio_female"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Weiblich"/>
+                    android:text="Weiblich" />
             </RadioGroup>
 
             <TextView
@@ -120,21 +123,21 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="@string/insuranceNr"
-                app:layout_constraintTop_toBottomOf="@id/radio_gender"
-                app:layout_constraintLeft_toLeftOf="@id/text_firstname"/>
+                app:layout_constraintLeft_toLeftOf="@id/text_firstname"
+                app:layout_constraintTop_toBottomOf="@id/radio_gender" />
 
             <EditText
                 android:id="@+id/text_insuranceNr"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
+                android:background="@drawable/patient_border"
+                android:inputType="numberDecimal"
                 android:paddingLeft="20dp"
                 android:textSize="30sp"
-                android:background="@drawable/patient_border"
-                app:layout_constraintTop_toBottomOf="@id/head_insuranceNr"
-                app:layout_constraintLeft_toLeftOf="parent" />
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/head_insuranceNr" />
 
             <TextView
                 android:id="@id/head_insuranceType"
@@ -142,30 +145,30 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="@string/insurance_type"
-                app:layout_constraintTop_toBottomOf="@id/text_insuranceNr"
-                app:layout_constraintLeft_toLeftOf="@id/text_firstname"/>
+                app:layout_constraintLeft_toLeftOf="@id/text_firstname"
+                app:layout_constraintTop_toBottomOf="@id/text_insuranceNr" />
 
             <Spinner
                 android:id="@+id/spinner_insuranceType"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:spinnerMode="dropdown"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:paddingLeft="20dp"
                 android:background="@drawable/patient_border"
-                app:layout_constraintTop_toBottomOf="@id/head_insuranceType"
-                app:layout_constraintLeft_toLeftOf="parent" />
+                android:paddingLeft="20dp"
+                android:spinnerMode="dropdown"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/head_insuranceType" />
 
 
             <Button
                 android:id="@+id/delete_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/delete"
-                android:layout_marginTop="20dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/delete"
                 app:layout_constraintTop_toBottomOf="@id/spinner_insuranceType" />
 
         </android.support.constraint.ConstraintLayout>
@@ -173,135 +176,146 @@
         <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/show_layout_patient"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/show_layout_patient"
             tools:context=".activities.add_patient_activity.AddPatientActivity">
 
 
-                <TextView
-                    android:id="@+id/head_firstname"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="@string/firstname"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintLeft_toLeftOf="@id/view_firstname"/>
+            <TextView
+                android:id="@+id/head_firstname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/firstname"
+                app:layout_constraintLeft_toLeftOf="@id/view_firstname"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/view_firstname"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/patient_border"
-                    android:paddingLeft="20dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:textSize="30sp"
-                    app:layout_constraintTop_toBottomOf="@id/head_firstname" />
+            <TextView
+                android:id="@+id/view_firstname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/patient_border"
+                android:paddingLeft="20dp"
+                android:textSize="30sp"
+                app:layout_constraintTop_toBottomOf="@id/head_firstname" />
 
-                <TextView
-                    android:id="@+id/head_lastname"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="@string/lastname"
-                    app:layout_constraintTop_toBottomOf="@id/view_firstname"
-                    app:layout_constraintLeft_toLeftOf="@id/view_firstname"/>
+            <TextView
+                android:id="@+id/head_lastname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/lastname"
+                app:layout_constraintLeft_toLeftOf="@id/view_firstname"
+                app:layout_constraintTop_toBottomOf="@id/view_firstname" />
 
-                <TextView
-                    android:id="@+id/view_lastname"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/patient_border"
-                    android:paddingLeft="20dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:textSize="30sp"
-                    app:layout_constraintTop_toBottomOf="@id/head_lastname" />
+            <TextView
+                android:id="@+id/view_lastname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/patient_border"
+                android:paddingLeft="20dp"
+                android:textSize="30sp"
+                app:layout_constraintTop_toBottomOf="@id/head_lastname" />
 
-                <TextView
-                    android:id="@+id/head_birthday"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Geburtstag"
-                    app:layout_constraintTop_toBottomOf="@id/view_lastname"
-                    app:layout_constraintLeft_toLeftOf="@id/view_firstname"/>
+            <TextView
+                android:id="@+id/head_birthday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Geburtstag"
+                app:layout_constraintLeft_toLeftOf="@id/view_firstname"
+                app:layout_constraintTop_toBottomOf="@id/view_lastname" />
 
-                <TextView
-                    android:id="@+id/view_birthday"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:paddingLeft="20dp"
-                    android:textSize="30sp"
-                    android:background="@drawable/patient_border"
-                    app:layout_constraintTop_toBottomOf="@id/head_birthday"
-                    app:layout_constraintLeft_toLeftOf="@id/view_firstname"/>
+            <TextView
+                android:id="@+id/view_birthday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/patient_border"
+                android:paddingLeft="20dp"
+                android:textSize="30sp"
+                app:layout_constraintLeft_toLeftOf="@id/view_firstname"
+                app:layout_constraintTop_toBottomOf="@id/head_birthday" />
 
-                <TextView
-                    android:id="@+id/head_gender"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="@string/gender"
-                    app:layout_constraintTop_toBottomOf="@id/view_birthday"
-                    app:layout_constraintLeft_toLeftOf="@id/view_firstname"/>
+            <TextView
+                android:id="@+id/head_gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/gender"
+                app:layout_constraintLeft_toLeftOf="@id/view_firstname"
+                app:layout_constraintTop_toBottomOf="@id/view_birthday" />
 
-                <TextView
-                    android:id="@+id/view_gender"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/patient_border"
-                    android:paddingLeft="20dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:textSize="30sp"
-                    app:layout_constraintTop_toBottomOf="@id/head_gender"  />
+            <TextView
+                android:id="@+id/view_gender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/patient_border"
+                android:paddingLeft="20dp"
+                android:textSize="30sp"
+                app:layout_constraintTop_toBottomOf="@id/head_gender" />
 
-                <TextView
-                    android:id="@+id/head_insuranceNr"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="@string/insuranceNr"
-                    app:layout_constraintTop_toBottomOf="@id/view_gender"
-                    app:layout_constraintLeft_toLeftOf="@id/view_firstname"/>
+            <TextView
+                android:id="@+id/head_insuranceNr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/insuranceNr"
+                app:layout_constraintLeft_toLeftOf="@id/view_firstname"
+                app:layout_constraintTop_toBottomOf="@id/view_gender" />
 
-                <TextView
-                    android:id="@+id/view_insuranceNr"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/patient_border"
-                    android:paddingLeft="20dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:textSize="30sp"
-                    app:layout_constraintTop_toBottomOf="@id/head_insuranceNr" />
+            <TextView
+                android:id="@+id/view_insuranceNr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/patient_border"
+                android:paddingLeft="20dp"
+                android:textSize="30sp"
+                app:layout_constraintTop_toBottomOf="@id/head_insuranceNr" />
 
-                <TextView
-                    android:id="@+id/head_insuranceType"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="@string/insurance_type"
-                    app:layout_constraintTop_toBottomOf="@id/view_insuranceNr"
-                    app:layout_constraintLeft_toLeftOf="@id/view_firstname"/>
+            <TextView
+                android:id="@+id/head_insuranceType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/insurance_type"
+                app:layout_constraintLeft_toLeftOf="@id/view_firstname"
+                app:layout_constraintTop_toBottomOf="@id/view_insuranceNr" />
 
-                <TextView
-                    android:id="@+id/view_insuranceType"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/patient_border"
-                    android:paddingLeft="20dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:textSize="30sp"
-                    app:layout_constraintTop_toBottomOf="@id/head_insuranceType"
-                    app:layout_constraintLeft_toLeftOf="parent" />
+            <TextView
+                android:id="@+id/view_insuranceType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/patient_border"
+                android:paddingLeft="20dp"
+                android:textSize="30sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/head_insuranceType" />
 
-            </android.support.constraint.ConstraintLayout>
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabPatient"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="17dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/editing_pencil_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

@@ -45,6 +45,14 @@ public class PatientFragmentButtonListener implements View.OnClickListener{
                     e.printStackTrace();
                 }
                 AndroidHelper.startNewActivity(view.getContext(), MainActivity.class);
+                break;
+
+            case R.id.fabPatient:
+                try {
+                    controller.switchView();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
         }
     }
 }

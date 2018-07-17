@@ -5,6 +5,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
@@ -50,6 +51,7 @@ public class PatientFragment extends Fragment {
     private TextView firstNameView, lastNameView;
     private TextView genderView, insuranceNrView, insuranceTypeView;
     private TextView birthday;
+    private FloatingActionButton fButton;
 
     private View view;
 
@@ -161,6 +163,9 @@ public class PatientFragment extends Fragment {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+
+            this.fButton = view.findViewById(R.id.fabPatient);
+            this.fButton.setOnClickListener(this.controller.getBtnListener());
 
             this.showLayout = view.findViewById(R.id.show_layout_patient);
             this.editLayout = view.findViewById(R.id.edit_layout_patient);
@@ -275,5 +280,9 @@ public class PatientFragment extends Fragment {
     }
     public TextView getInsuranceTypeView() {
         return insuranceTypeView;
+    }
+
+    public FloatingActionButton getfButton() {
+        return fButton;
     }
 }
