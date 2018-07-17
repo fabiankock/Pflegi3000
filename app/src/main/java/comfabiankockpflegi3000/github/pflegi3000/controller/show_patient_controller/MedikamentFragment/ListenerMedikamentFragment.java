@@ -33,10 +33,11 @@ public class ListenerMedikamentFragment implements View.OnClickListener{
             case R.id.add_mCommit:
 
                 controller.processInput();
+                controller.refreshList();
                 controller.switchAddShow();
                 break;
 
-            case R.id.open_picker:
+            case R.id.add_time:
 
                 DialogFragment newFragment = new TimePickerFragment(controller);
                 newFragment.show(activity.getFragmentManager(), "Uhrzeit");

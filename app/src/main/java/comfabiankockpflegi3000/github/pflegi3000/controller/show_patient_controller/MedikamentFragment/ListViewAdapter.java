@@ -22,7 +22,7 @@ public class ListViewAdapter extends BaseAdapter {
     private LayoutInflater inflater;
     private List<MedikamentEntity> medication;
     private ControllerMedikamentFragment controller;
-    private DecimalFormat format = new DecimalFormat("00");
+    private ListenerListView listener;
 
     public ListViewAdapter (Context c, List<MedikamentEntity> mediaction, ControllerMedikamentFragment controller) {
         this.context = c;
@@ -34,6 +34,8 @@ public class ListViewAdapter extends BaseAdapter {
     @Override
     public View getView(final int position, View view, ViewGroup parent) {
         final ViewHolder holder;
+
+
         if (view == null) {
             holder = new ViewHolder();
             ListenerCheckButton listener = new ListenerCheckButton(medication.get(position), controller);
@@ -47,6 +49,11 @@ public class ListViewAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) view.getTag();
         }
+        //listener erstellen
+
+        listener = new ListenerListView(controller, medication.get(position).getId(), medication);
+
+        holder.name.setOnLongClickListener(listener);
         // Set the results into TextViews
         holder.name.setText(medication.get(position).getMName() + "\n" + "Dosierung: " + medication.get(position).getMDose() + "mg" +
                 "   Uhrzeit: " + medication.get(position).getHour() + ":" + medication.get(position).getMinute() + " Uhr");

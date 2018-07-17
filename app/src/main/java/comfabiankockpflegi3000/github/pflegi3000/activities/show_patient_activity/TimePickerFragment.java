@@ -37,8 +37,10 @@ public class TimePickerFragment extends DialogFragment
 
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 
-        controller.setHour(hourOfDay);
-        controller.setMinute(minute);
+        controller.setTime(hourOfDay, minute);
+
 
     }
+
+
 }

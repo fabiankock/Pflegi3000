@@ -134,6 +134,11 @@ public class ControllerMedikamentFragment {
         return this.listViewAdapter;
     }
 
+    public ListViewAdapter getNewListViewAdapter() {
+        listViewAdapter = new ListViewAdapter(mainactivity.getApplicationContext(), getAllMedication(), this);
+        return listViewAdapter;
+    }
+
     public void checkGenommen(MedikamentEntity medi, boolean b) {
 
         try {
@@ -148,12 +153,29 @@ public class ControllerMedikamentFragment {
 
     }
 
+    public void deleteMedication(MedikamentEntity medi) throws SQLException{
 
-    public void setHour(int hour) {
+        Dao<MedikamentEntity, Integer> mDao = daofactory.getMedikamentDAO();
+        mDao.delete(medi);
+    }
+
+    public void refreshList() {
+
+        activity = mainactivity.getfMedikament();
+        activity.refreshList();
+
+
+
+    }
+
+
+    public void setTime(int hour, int minute) {
         this.hour = hour;
+        this.minute = minute;
+
+        activity = mainactivity.getfMedikament();
+        activity.setmTime(hour, minute);
+
     }
 
-    public void setMinute(int minute) {
-        this.minute = minute;
-    }
 }

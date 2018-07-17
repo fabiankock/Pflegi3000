@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.TimePicker;
 
 import java.util.Calendar;
@@ -28,6 +29,8 @@ import java.util.List;
 import comfabiankockpflegi3000.github.pflegi3000.R;
 import comfabiankockpflegi3000.github.pflegi3000.activities.show_patient_activity.TimePickerFragment;
 import comfabiankockpflegi3000.github.pflegi3000.controller.show_patient_controller.MedikamentFragment.ControllerMedikamentFragment;
+import comfabiankockpflegi3000.github.pflegi3000.controller.show_patient_controller.MedikamentFragment.ListViewAdapter;
+import comfabiankockpflegi3000.github.pflegi3000.controller.show_patient_controller.MedikamentFragment.ListenerListView;
 import comfabiankockpflegi3000.github.pflegi3000.controller.show_patient_controller.MedikamentFragment.ListenerMedikamentFragment;
 import comfabiankockpflegi3000.github.pflegi3000.database.tables.MedikamentEntity;
 
@@ -38,18 +41,17 @@ public class MedikamenteFragment extends Fragment {
     private ListenerMedikamentFragment MFListener;
     private ControllerMedikamentFragment controller;
     private int patient_id;
+    private ListenerListView lvListener;
 
     //Adding
     private EditText mName;
     private EditText mDosis;
-    private EditText mStundenAbstand;
-    private Button mPicker;
     private Button mCommit;
+    private TextView mTime;
 
     //Liste für die Medikamente
     private ListView list;
     private FloatingActionButton fab;
-    private FragmentManager supportFragmentManager;
 
     public MedikamenteFragment() {}
 
@@ -88,16 +90,17 @@ public class MedikamenteFragment extends Fragment {
 
         mName = (EditText) view.findViewById(R.id.add_mName);
         mDosis = (EditText) view.findViewById(R.id.add_mDosis);
-
-        mPicker = (Button) view.findViewById(R.id.open_picker);
-        mPicker.setOnClickListener(MFListener);
+        mTime = (TextView) view.findViewById(R.id.add_time);
+        mTime.setOnClickListener(MFListener);
 
         mCommit = (Button) view.findViewById(R.id.add_mCommit);
         mCommit.setOnClickListener(MFListener);
 
-        List<MedikamentEntity> aEntities = this.controller.getAllMedication();
-
         return view;
+    }
+
+    public void refreshList() {
+        list.setAdapter(controller.getNewListViewAdapter());
     }
 
     /*----------getter----------*/
@@ -110,15 +113,13 @@ public class MedikamenteFragment extends Fragment {
         return  mDosis.getText().toString();
     }
 
-    public String getMStundenAbstandValue() {
-        return  mStundenAbstand.getText().toString();
-    }
-
     public int getPatient_id() {
         return patient_id;
     }
 
-    //keine ahnung was das is
+    //
+
+
 
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
@@ -143,13 +144,13 @@ public class MedikamenteFragment extends Fragment {
         mListener = null;
     }
 
-    public FragmentManager getSupportFragmentManager() {
-        return supportFragmentManager;
-    }
-
     public interface OnFragmentInteractionListener {
 
         void onFragmentInteraction(Uri uri);
+    }
+
+    public void setmTime (int hour, int minute) {
+        mTime.setText(hour + ":" + minute + " Uhr");
     }
 
 }
