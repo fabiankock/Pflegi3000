@@ -68,7 +68,7 @@ public class ControllerAppointmentFragment {
         return list;
     }
 
-    public boolean insertAppointment(){
+    public boolean processInput(){
 
         AppointmentFragment fragment = this.activity.getfAppointment();
 
@@ -195,7 +195,7 @@ public class ControllerAppointmentFragment {
 
                 AppointmentEntity entity = allAppointments.get(i);
                 this.activity.getfAppointment().setInfoText("Name: " + entity.getTName() + "\nDescription: " + entity.getTDescription()
-                                                            + "\nAddresse: " + entity.getTAddress());
+                                                            + "\nAdresse: " + entity.getTAddress());
             }
         }
     }

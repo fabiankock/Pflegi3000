@@ -35,7 +35,7 @@ public class AppointmentFragmentButtonListener implements View.OnClickListener {
 
             case R.id.save_appointment_button:
 
-                if(!this.controller.insertAppointment()){
+                if(!this.controller.processInput()){
                     Toast t = Toast.makeText(view.getContext(), "Bitte alle Felder ausfüllen", Toast.LENGTH_SHORT);
                     t.show();
                 }
