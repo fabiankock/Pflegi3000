@@ -11,6 +11,9 @@ public class PatientEntity {
     @DatabaseField(columnName = "Gender") private char gender;
     @DatabaseField(columnName = "InsuranceNr") private int insuranceNumber;
     @DatabaseField(columnName = "InsuranceType", foreign = true) private InsuranceEntity insuranceEntity;
+    @DatabaseField private int day;
+    @DatabaseField private int month;
+    @DatabaseField private int year;
 
     public PatientEntity() {/*ORMLite needs a default Constructor*/};
 
@@ -42,6 +45,18 @@ public class PatientEntity {
 
     public InsuranceEntity getInsuranceEntity() { return insuranceEntity; }
 
+    public int getDay() {
+        return day;
+    }
+
+    public int getMonth() {
+        return month;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
     /*----------------Setter----------------*/
     public void setFirstname(String name) {
         this.firstname = name;
@@ -56,4 +71,10 @@ public class PatientEntity {
     public void setInsuranceNumber(int insuranceNumber) { this.insuranceNumber = insuranceNumber; }
 
     public void setInsuranceEntity(InsuranceEntity insuranceEntity) { this.insuranceEntity = insuranceEntity; }
+
+    public void setBirthdate(int day, int month, int year) {
+        this.day = day;
+        this.month = month;
+        this.year = year;
+    }
 }

@@ -19,14 +19,19 @@ import comfabiankockpflegi3000.github.pflegi3000.database.tables.PatientEntity;
 public class ControllerPatientFragment {
 
     private PatientFragment activity;
+    private ShowPatientActivity mainactivity;
     private DaoFactory daoFactory;
     private PatientFragmentButtonListener btnListener;
 
+    private int day, month, year;
+
+
     public ControllerPatientFragment(PatientFragment activity, ShowPatientActivity mainActivity, int id) {
 
+        this.mainactivity = mainActivity;
         this.activity = activity;
         this.daoFactory = (DaoFactory) mainActivity.getApplication();
-        this.btnListener = new PatientFragmentButtonListener(this, id);
+        this.btnListener = new PatientFragmentButtonListener(this, id, mainActivity);
     }
 
     public void updatePatient(int id) throws SQLException {
@@ -129,6 +134,7 @@ public class ControllerPatientFragment {
         //nicht editierbare felder
         this.activity.getFirstNameView().setText(theEntity.getFirstname());
         this.activity.getLastNameView().setText(theEntity.getLastname());
+        this.activity.getBirthday().setText(theEntity.getDay() + "." + theEntity.getMonth()+ "." + theEntity.getYear());
         if(theEntity.getGender() == 'w'){
             this.activity.getGenderView().setText("weiblich");
         }
@@ -142,6 +148,7 @@ public class ControllerPatientFragment {
         //editierbare Felder
         this.activity.getFirstNameText().setText(theEntity.getFirstname());
         this.activity.getLastNameText().setText(theEntity.getLastname());
+        this.activity.getDatePicker().setText(theEntity.getDay() + "." + theEntity.getMonth()+ "." + theEntity.getYear());
         if(theEntity.getGender() == 'w'){
             this.activity.getFemaleBtn().setChecked(true);
             this.activity.getMaleBtn().setChecked(false);
@@ -167,10 +174,22 @@ public class ControllerPatientFragment {
 
                     this.activity.getInsuranceTypeSpinner().setSelection(i);
                 }
-
             }
-
         }
+    }
+
+    public void setDate(int day, int month, int year) throws SQLException {
+        this.day = day;
+        this.month = month+1;
+        this.year = year;
+
+        mainactivity.getfPatient().setDate(this.day, this.month, this.year);
+
+        Dao<PatientEntity, Integer> pDao = daoFactory.getPatientDAO();
+        PatientEntity temp = pDao.queryForId(mainactivity.getPatient_id());
+        temp.setBirthdate(this.day, this.month, this.year);
+        pDao.update(temp);
+
     }
 
     public PatientFragmentButtonListener getBtnListener() {

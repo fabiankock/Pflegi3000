@@ -22,10 +22,12 @@ public class ControllerAddPatientActivity {
     private AddPatientActivity addPatientActivity;
     private AddPatientButtonListener btnListener;
 
+    private int day,month, year;
+
     public ControllerAddPatientActivity(AddPatientActivity theActivity){
 
         this.addPatientActivity = theActivity;
-        this.btnListener = new AddPatientButtonListener(this);
+        this.btnListener = new AddPatientButtonListener(addPatientActivity, this);
         this.daofactory = (DaoFactory) addPatientActivity.getApplication();
     }
 
@@ -49,8 +51,8 @@ public class ControllerAddPatientActivity {
 
         try {
 
-            if(!this.addPatientActivity.getInsuranceNrValue().matches("") ||
-                !this.addPatientActivity.getFirstNameValue().matches("") ||
+            if(!this.addPatientActivity.getInsuranceNrValue().matches("") &&
+                !this.addPatientActivity.getFirstNameValue().matches("") &&
                 !this.addPatientActivity.getLastNameValue().matches("")){
 
                 int insNr = Integer.parseInt(this.addPatientActivity.getInsuranceNrValue());
@@ -66,6 +68,7 @@ public class ControllerAddPatientActivity {
                 PatientEntity tpPatient = new PatientEntity(this.addPatientActivity.getFirstNameValue(), this.addPatientActivity.getLastNameValue(),
                         gender, insNr,
                         insuranceEntity);
+                tpPatient.setBirthdate(day, month, year);
 
                 CareEntity careEntity = new CareEntity(0,0,0, tpPatient);
                 cDao.create(careEntity);
@@ -79,13 +82,21 @@ public class ControllerAddPatientActivity {
 
         } catch (SQLException e) {
             System.out.println(e);
+            return false;
         }
-
-        return false;
     }
 
     public AddPatientButtonListener getButtonListener() {
 
         return btnListener;
+    }
+
+    public void setDate(int day, int month, int year) {
+
+        this.day = day;
+        this.month = month+1;
+        this.year = year;
+
+        addPatientActivity.setBirthdate(this.day, this.month, this.year);
     }
 }

@@ -146,6 +146,10 @@ public class ShowPatientActivity extends AppCompatActivity
     }
     public CareFragment getfCare() { return fCare; }
 
+    public PatientFragment getfPatient() {
+        return fPatient;
+    }
+
     public int getPatient_id() {
         return patient_id;
     }
@@ -168,7 +172,7 @@ public class ShowPatientActivity extends AppCompatActivity
             switch(position) {
 
                 case 0:
-                    fPatient = PatientFragment.newInstance(patient_id, controllerPatientFragment);
+                    fPatient = PatientFragment.newInstance(patient_id, controllerPatientFragment, sp_activity);
                     controllerPatientFragment = new ControllerPatientFragment(fPatient, this.sp_activity, patient_id);
                     return fPatient;
 
