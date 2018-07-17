@@ -24,7 +24,7 @@
                 android:id="@id/head_firstname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/firstname"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="@id/text_firstname"/>
@@ -63,12 +63,35 @@
                 app:layout_constraintTop_toBottomOf="@id/head_lastname" />
 
             <TextView
+                android:id="@+id/head_date_picker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Geburtstag"
+                app:layout_constraintTop_toBottomOf="@id/text_lastname"
+                app:layout_constraintLeft_toLeftOf="@id/text_firstname"/>
+
+            <TextView
+                android:id="@+id/date_picker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Geburtsdatum"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:paddingLeft="20dp"
+                android:textColor="@color/caldroid_black"
+                android:textSize="30sp"
+                android:background="@drawable/patient_border"
+                app:layout_constraintTop_toBottomOf="@id/head_date_picker"
+                app:layout_constraintLeft_toLeftOf="parent"/>
+
+            <TextView
                 android:id="@id/head_gender"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="@string/gender"
-                app:layout_constraintTop_toBottomOf="@id/text_lastname"
+                app:layout_constraintTop_toBottomOf="@id/date_picker"
                 app:layout_constraintLeft_toLeftOf="@id/text_lastname"/>
 
             <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
@@ -133,6 +156,7 @@
                 app:layout_constraintTop_toBottomOf="@id/head_insuranceType"
                 app:layout_constraintLeft_toLeftOf="parent" />
 
+
             <Button
                 android:id="@+id/delete_button"
                 android:layout_width="match_parent"
@@ -158,7 +182,7 @@
                     android:id="@+id/head_firstname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="50dp"
+                    android:layout_marginTop="10dp"
                     android:text="@string/firstname"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintLeft_toLeftOf="@id/view_firstname"/>
@@ -195,12 +219,33 @@
                     app:layout_constraintTop_toBottomOf="@id/head_lastname" />
 
                 <TextView
+                    android:id="@+id/head_birthday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Geburtstag"
+                    app:layout_constraintTop_toBottomOf="@id/view_lastname"
+                    app:layout_constraintLeft_toLeftOf="@id/view_firstname"/>
+
+                <TextView
+                    android:id="@+id/view_birthday"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:paddingLeft="20dp"
+                    android:textSize="30sp"
+                    android:background="@drawable/patient_border"
+                    app:layout_constraintTop_toBottomOf="@id/head_birthday"
+                    app:layout_constraintLeft_toLeftOf="@id/view_firstname"/>
+
+                <TextView
                     android:id="@+id/head_gender"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="@string/gender"
-                    app:layout_constraintTop_toBottomOf="@id/view_lastname"
+                    app:layout_constraintTop_toBottomOf="@id/view_birthday"
                     app:layout_constraintLeft_toLeftOf="@id/view_firstname"/>
 
                 <TextView

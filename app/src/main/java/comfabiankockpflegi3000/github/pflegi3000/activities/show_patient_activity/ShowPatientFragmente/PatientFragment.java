@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import comfabiankockpflegi3000.github.pflegi3000.R;
+import comfabiankockpflegi3000.github.pflegi3000.activities.show_patient_activity.ShowPatientActivity;
 import comfabiankockpflegi3000.github.pflegi3000.controller.show_patient_controller.ControllerPatientFragment.ControllerPatientFragment;
 import comfabiankockpflegi3000.github.pflegi3000.database.tables.InsuranceEntity;
 import comfabiankockpflegi3000.github.pflegi3000.database.tables.PatientEntity;
@@ -42,24 +44,29 @@ public class PatientFragment extends Fragment {
     private Spinner insuranceTypeSpinner;
     private ConstraintLayout showLayout, editLayout;
     private Button deleteButton;
+    private TextView datePicker;
 
     //Nicht editierbare Felder
     private TextView firstNameView, lastNameView;
     private TextView genderView, insuranceNrView, insuranceTypeView;
+    private TextView birthday;
 
     private View view;
+
+    private ShowPatientActivity mainactivity;
 
     public PatientFragment() {}
 
     @SuppressLint("ValidFragment")
-    public PatientFragment(int p_id, ControllerPatientFragment c) {
+    public PatientFragment(int p_id, ControllerPatientFragment c, ShowPatientActivity mainactivity) {
         this.patient_id = p_id;
         this.controller = c;
+        this.mainactivity = mainactivity;
     }
 
-    public static PatientFragment newInstance(int p_id, ControllerPatientFragment c) {
+    public static PatientFragment newInstance(int p_id, ControllerPatientFragment c, ShowPatientActivity mainactivity) {
 
-        PatientFragment fragment = new PatientFragment(p_id, c);
+        PatientFragment fragment = new PatientFragment(p_id, c, mainactivity);
 
         return fragment;
     }
@@ -121,6 +128,10 @@ public class PatientFragment extends Fragment {
                 }
             }
 
+            this.datePicker = (TextView) view.findViewById(R.id.date_picker);
+            this.datePicker.setText(this.the_patient.getDay() + "." + this.the_patient.getMonth() + "." + this.the_patient.getYear());
+            this.datePicker.setOnClickListener(this.controller.getBtnListener());
+
             this.deleteButton = (Button) view.findViewById(R.id.delete_button);
             this.deleteButton.setOnClickListener(this.controller.getBtnListener());
 
@@ -130,6 +141,9 @@ public class PatientFragment extends Fragment {
 
             lastNameView = view.findViewById(R.id.view_lastname);
             lastNameView.setText(this.the_patient.getLastname());
+
+            this.birthday = view.findViewById(R.id.view_birthday);
+            birthday.setText(this.the_patient.getDay() + "." + this.the_patient.getMonth() + "." + this.the_patient.getYear());
 
             genderView = view.findViewById(R.id.view_gender);
             if(this.the_patient.getGender() == 'm')
@@ -215,6 +229,14 @@ public class PatientFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
+    public void setDate(int day, int month, int year) {
+        datePicker.setText(day + "." + month + "." + year);
+    }
+
+    public ShowPatientActivity getMainactivity() {
+        return mainactivity;
+    }
+
     /*----------getter----------*/
 
     //editierbare Felder
@@ -223,6 +245,9 @@ public class PatientFragment extends Fragment {
     }
     public EditText getFirstNameText() {
         return firstNameText;
+    }
+    public TextView getDatePicker() {
+        return datePicker;
     }
     public RadioGroup getRgGender() {
         return rgGender;
@@ -241,6 +266,7 @@ public class PatientFragment extends Fragment {
     public TextView getFirstNameView() {
         return firstNameView;
     }
+    public TextView getBirthday() {return birthday;}
     public TextView getGenderView() {
         return genderView;
     }

@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -21,6 +22,7 @@ public class AddPatientActivity extends AppCompatActivity {
     private Button backBtn;
     private Button submitBtn;
     private EditText firstNameEditText, lastNameEditText, insuranceNrEditText;
+    private TextView dayPicker;
     private RadioButton femaleRbtn, maleRbtn;
     private Spinner insuranceSpinner;
     private ControllerAddPatientActivity controller;
@@ -40,9 +42,14 @@ public class AddPatientActivity extends AppCompatActivity {
 
         this.firstNameEditText = (EditText) findViewById(R.id.edittext_firstname);
         this.lastNameEditText = (EditText) findViewById(R.id.edittext_lastname);
+
+        this.dayPicker = (TextView) findViewById(R.id.add_datePicker);
+        this.dayPicker.setOnClickListener(this.controller.getButtonListener());
+
         this.maleRbtn = (RadioButton) findViewById(R.id.radio_male);
         this.maleRbtn.setChecked(true);
         this.femaleRbtn = (RadioButton) findViewById(R.id.radio_female);
+
         this.insuranceNrEditText = (EditText) findViewById(R.id.edittext_insuranceNr);
 
         this.insuranceSpinner = (Spinner) findViewById(R.id.insurance_spinner);
@@ -79,4 +86,9 @@ public class AddPatientActivity extends AppCompatActivity {
     public String getInsuranceNrValue() { return this.insuranceNrEditText.getText().toString(); }
 
     public int getInsuranceListPos() { return this.insuranceSpinner.getSelectedItemPosition();}
+
+    public void setBirthdate(int day, int month, int year) {
+
+        this.dayPicker.setText(day + "." + month + "." + year);
+    }
 }

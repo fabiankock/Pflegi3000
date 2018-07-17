@@ -5,6 +5,7 @@ import android.support.v4.app.DialogFragment;
 import android.view.View;
 
 import comfabiankockpflegi3000.github.pflegi3000.R;
+import comfabiankockpflegi3000.github.pflegi3000.activities.show_patient_activity.DatePickerFragment;
 import comfabiankockpflegi3000.github.pflegi3000.activities.show_patient_activity.ShowPatientFragmente.MedikamenteFragment;
 import comfabiankockpflegi3000.github.pflegi3000.activities.show_patient_activity.TimePickerFragment;
 import comfabiankockpflegi3000.github.pflegi3000.database.tables.MedikamentEntity;
@@ -39,8 +40,10 @@ public class ListenerMedikamentFragment implements View.OnClickListener{
 
             case R.id.add_time:
 
-                DialogFragment newFragment = new TimePickerFragment(controller);
-                newFragment.show(activity.getFragmentManager(), "Uhrzeit");
+                DialogFragment timeFragment = new TimePickerFragment(controller);
+                timeFragment.show(activity.getFragmentManager(), "Uhrzeit");
+                break;
+
 
         }
     }

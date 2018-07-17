@@ -20,10 +20,12 @@ public class ControllerAddPatientActivity {
     private AddPatientActivity addPatientActivity;
     private AddPatientButtonListener btnListener;
 
+    private int day,month, year;
+
     public ControllerAddPatientActivity(AddPatientActivity theActivity){
 
         this.addPatientActivity = theActivity;
-        this.btnListener = new AddPatientButtonListener(this);
+        this.btnListener = new AddPatientButtonListener(addPatientActivity, this);
         this.daofactory = (DaoFactory) addPatientActivity.getApplication();
     }
 
@@ -59,6 +61,7 @@ public class ControllerAddPatientActivity {
             PatientEntity tpPatient = new PatientEntity(this.addPatientActivity.getFirstNameValue(), this.addPatientActivity.getLastNameValue(),
                                                         gender, insNr,
                                                         insuranceEntity);
+            tpPatient.setBirthdate(day, month, year);
 
             pDao.create(tpPatient);
             //Send Database query to insert new Patient
@@ -71,5 +74,14 @@ public class ControllerAddPatientActivity {
     public AddPatientButtonListener getButtonListener() {
 
         return btnListener;
+    }
+
+    public void setDate(int day, int month, int year) {
+
+        this.day = day;
+        this.month = month+1;
+        this.year = year;
+
+
     }
 }
