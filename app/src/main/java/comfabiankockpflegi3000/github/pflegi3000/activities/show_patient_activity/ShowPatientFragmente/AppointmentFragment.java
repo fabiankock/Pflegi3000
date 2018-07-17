@@ -52,6 +52,7 @@ public class AppointmentFragment extends Fragment {
     private HashMap<Date, Drawable> eventMap;
     private CaldroidFragment caldroidFragment;
     private TextView infoText;
+    private Button backBtn;
 
     private View view;
     private ControllerAppointmentFragment controller;
