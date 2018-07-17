@@ -22,7 +22,7 @@ public class ControllerAddPatientActivity {
     private AddPatientActivity addPatientActivity;
     private AddPatientButtonListener btnListener;
 
-    private int day,month, year;
+    private int day = 0,month = 0, year = 0;
 
     public ControllerAddPatientActivity(AddPatientActivity theActivity){
 
@@ -53,7 +53,8 @@ public class ControllerAddPatientActivity {
 
             if(!this.addPatientActivity.getInsuranceNrValue().matches("") &&
                 !this.addPatientActivity.getFirstNameValue().matches("") &&
-                !this.addPatientActivity.getLastNameValue().matches("")){
+                !this.addPatientActivity.getLastNameValue().matches("") &&
+                day != 0 && month != 0 && year != 0 ) {
 
                 int insNr = Integer.parseInt(this.addPatientActivity.getInsuranceNrValue());
                 char gender = this.addPatientActivity.getGenderValue();
@@ -62,19 +63,24 @@ public class ControllerAddPatientActivity {
                 Dao<InsuranceEntity, Integer> iDao = daofactory.getInsuranceDAO();
                 Dao<CareEntity, Integer> cDao = daofactory.getCareDAO();
 
-                //Get the insurance Data
-                InsuranceEntity insuranceEntity = iDao.queryForAll().get(this.addPatientActivity.getInsuranceListPos());
-                AppointmentEntity tpTermin = new AppointmentEntity();
-                PatientEntity tpPatient = new PatientEntity(this.addPatientActivity.getFirstNameValue(), this.addPatientActivity.getLastNameValue(),
-                        gender, insNr,
-                        insuranceEntity);
-                tpPatient.setBirthdate(day, month, year);
+                if(this.addPatientActivity.getInsuranceListPos() > -1) {
+                    //Get the insurance Data
+                    InsuranceEntity insuranceEntity = iDao.queryForAll().get(this.addPatientActivity.getInsuranceListPos());
+                    AppointmentEntity tpTermin = new AppointmentEntity();
+                    PatientEntity tpPatient = new PatientEntity(this.addPatientActivity.getFirstNameValue(), this.addPatientActivity.getLastNameValue(),
+                            gender, insNr,
+                            insuranceEntity);
+                    tpPatient.setBirthdate(day, month, year);
 
-                CareEntity careEntity = new CareEntity(0,0,0, tpPatient);
-                cDao.create(careEntity);
-                pDao.create(tpPatient);
-                //Send Database query to insert new Patient
-                return true;
+                    CareEntity careEntity = new CareEntity(0, 0, 0, tpPatient);
+                    cDao.create(careEntity);
+                    pDao.create(tpPatient);
+                    //Send Database query to insert new Patient
+                    return true;
+                }
+                else{
+                    return false;
+                }
             }
             else{
                 return false;

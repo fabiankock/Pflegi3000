@@ -60,9 +60,6 @@ public class ShowPatientActivity extends AppCompatActivity
         this.patient_id = Integer.parseInt(patient_id_str);
         Log.i("Show", "p_id: " + this.patient_id);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
         //Controller für die einzelnen Fragmente!
         this.controllerPatientFragment = new ControllerPatientFragment(null, this, this.patient_id);
         this.controllerMedikamentFragment = new ControllerMedikamentFragment(null, this);
@@ -100,31 +97,12 @@ public class ShowPatientActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.show_patient_bar, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        int id = item.getItemId();
-        switch (id) {
-
-            case R.id.action_enable_editable:
-                if (position == 0) {
-                    try {
-                        if(this.fPatient.isEditActive()){
-                            this.controllerPatientFragment.updatePatient(this.patient_id);
-                        }
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                    controllerPatientFragment.switchView();
-                }
-
-
-        }
         return false;
     }
 
