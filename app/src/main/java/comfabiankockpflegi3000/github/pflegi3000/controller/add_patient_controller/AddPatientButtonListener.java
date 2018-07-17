@@ -5,6 +5,7 @@ import android.support.v4.app.DialogFragment;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.view.View;
+import android.widget.Toast;
 
 import comfabiankockpflegi3000.github.pflegi3000.R;
 import comfabiankockpflegi3000.github.pflegi3000.activities.add_patient_activity.AddDatePickerFragment;
@@ -37,8 +38,12 @@ public class AddPatientButtonListener implements View.OnClickListener {
                 break;
 
             case R.id.submit_button_addPatientActivity:
-                this.controller.processInput();
-                AndroidHelper.startNewActivity(view.getContext(), MainActivity.class);
+                if(this.controller.processInput())
+                    AndroidHelper.startNewActivity(view.getContext(), MainActivity.class);
+                else {
+                    Toast t = Toast.makeText(view.getContext(), "Bitte alle Felder ausfüllen", Toast.LENGTH_SHORT);
+                    t.show();
+                }
                 break;
 
             case R.id.add_datePicker:

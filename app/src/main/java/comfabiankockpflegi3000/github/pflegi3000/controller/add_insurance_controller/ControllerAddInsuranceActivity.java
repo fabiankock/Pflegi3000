@@ -20,7 +20,7 @@ public class ControllerAddInsuranceActivity {
         this.theActivity = a;
     }
 
-    public void processInput(){
+    public boolean processInput(){
 
         this.daofactory = (DaoFactory) theActivity.getApplication();
 
@@ -28,14 +28,23 @@ public class ControllerAddInsuranceActivity {
 
             Dao<InsuranceEntity, Integer> iDao = daofactory.getInsuranceDAO();
 
-            InsuranceEntity insuranceEntity = new InsuranceEntity(this.theActivity.getInsuranceNameValue(),
-                                                                  this.theActivity.getInsuranceTypeValue());
+            if(!this.theActivity.getInsuranceNameValue().matches("") &&
+                !this.theActivity.getInsuranceTypeValue().matches("")) {
 
-            iDao.create(insuranceEntity);
-            //Send Database query to insert new Insurance
+                InsuranceEntity insuranceEntity = new InsuranceEntity(this.theActivity.getInsuranceNameValue(),
+                        this.theActivity.getInsuranceTypeValue());
+
+                iDao.create(insuranceEntity);
+                //Send Database query to insert new Insurance
+                return true;
+            }
+            else{
+                return false;
+            }
 
         } catch (SQLException e) {
             System.out.println(e);
+            return false;
         }
     }
 

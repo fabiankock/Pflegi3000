@@ -1,6 +1,7 @@
 package comfabiankockpflegi3000.github.pflegi3000.controller.add_insurance_controller;
 
 import android.view.View;
+import android.widget.Toast;
 
 import comfabiankockpflegi3000.github.pflegi3000.R;
 import comfabiankockpflegi3000.github.pflegi3000.activities.main_activity.MainActivity;
@@ -24,8 +25,12 @@ public class AddInsuranceButtonListener implements View.OnClickListener {
                 break;
 
             case R.id.submit_button_add_insurance:
-                this.theController.processInput();
-                AndroidHelper.startNewActivity(view.getContext(), MainActivity.class);
+                if(this.theController.processInput())
+                    AndroidHelper.startNewActivity(view.getContext(), MainActivity.class);
+                else {
+                    Toast t = Toast.makeText(view.getContext(), "Bitte alle Felder ausfüllen", Toast.LENGTH_SHORT);
+                    t.show();
+                }
                 break;
         }
     }

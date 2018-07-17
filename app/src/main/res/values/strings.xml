@@ -26,7 +26,7 @@
     <string name="action_enable_editable">bearbeiten</string>
     <string name="title_activity_show_patient2">ShowPatientActivity2</string>
     <string name="tab_text_1">Patient</string>
-    <string name="tab_text_2">Medikamente</string>
+    <string name="tab_text_2">Medis</string>
     <string name="tab_text_3">Pflege</string>
     <string name="tab_text_4">Termine</string>
     <string name="action_settings">Settings</string>
