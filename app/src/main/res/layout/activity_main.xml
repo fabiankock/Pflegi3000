@@ -58,7 +58,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:text="@string/altertables_str"
+        android:text="@string/edit_insurance_table"
         app:layout_constraintTop_toBottomOf="@id/addpatient_button"/>
 
 </android.support.constraint.ConstraintLayout>

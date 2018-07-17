@@ -9,6 +9,7 @@ import java.util.List;
 
 import comfabiankockpflegi3000.github.pflegi3000.activities.add_patient_activity.AddPatientActivity;
 import comfabiankockpflegi3000.github.pflegi3000.database.DaoFactory;
+import comfabiankockpflegi3000.github.pflegi3000.database.tables.CareEntity;
 import comfabiankockpflegi3000.github.pflegi3000.database.tables.InsuranceEntity;
 import comfabiankockpflegi3000.github.pflegi3000.database.tables.MedikamentEntity;
 import comfabiankockpflegi3000.github.pflegi3000.database.tables.PatientEntity;
@@ -54,6 +55,7 @@ public class ControllerAddPatientActivity {
 
             Dao<PatientEntity, Integer> pDao = daofactory.getPatientDAO();
             Dao<InsuranceEntity, Integer> iDao = daofactory.getInsuranceDAO();
+            Dao<CareEntity, Integer> cDao = daofactory.getCareDAO();
 
             //Get the insurance Data
             InsuranceEntity insuranceEntity = iDao.queryForAll().get(this.addPatientActivity.getInsuranceListPos());
@@ -63,6 +65,8 @@ public class ControllerAddPatientActivity {
                                                         insuranceEntity);
             tpPatient.setBirthdate(day, month, year);
 
+            CareEntity careEntity = new CareEntity(0,0,0, tpPatient);
+            cDao.create(careEntity);
             pDao.create(tpPatient);
             //Send Database query to insert new Patient
 

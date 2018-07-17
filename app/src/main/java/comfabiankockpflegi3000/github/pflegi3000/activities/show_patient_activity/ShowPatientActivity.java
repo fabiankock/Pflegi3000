@@ -24,6 +24,7 @@ import comfabiankockpflegi3000.github.pflegi3000.activities.show_patient_activit
 import comfabiankockpflegi3000.github.pflegi3000.activities.show_patient_activity.ShowPatientFragmente.PatientFragment;
 import comfabiankockpflegi3000.github.pflegi3000.activities.show_patient_activity.ShowPatientFragmente.CareFragment;
 import comfabiankockpflegi3000.github.pflegi3000.android_helper.AndroidHelper;
+import comfabiankockpflegi3000.github.pflegi3000.controller.show_patient_controller.ControllerCareFragment.ControllerCareFragment;
 import comfabiankockpflegi3000.github.pflegi3000.controller.show_patient_controller.MedikamentFragment.ControllerMedikamentFragment;
 import comfabiankockpflegi3000.github.pflegi3000.controller.show_patient_controller.ControllerAppointmentFragment.ControllerAppointmentFragment;
 import comfabiankockpflegi3000.github.pflegi3000.controller.show_patient_controller.ControllerPatientFragment.ControllerPatientFragment;
@@ -45,6 +46,9 @@ public class ShowPatientActivity extends AppCompatActivity
     private ControllerAppointmentFragment controllerAppointmentFragment;
     private AppointmentFragment fAppointment;
 
+    private ControllerCareFragment controllerCareFragment;
+    private CareFragment fCare;
+
     private int patient_id;
 
     @Override
@@ -63,6 +67,7 @@ public class ShowPatientActivity extends AppCompatActivity
         this.controllerPatientFragment = new ControllerPatientFragment(null, this, this.patient_id);
         this.controllerMedikamentFragment = new ControllerMedikamentFragment(null, this);
         this.controllerAppointmentFragment = new ControllerAppointmentFragment(this);
+        this.controllerCareFragment = new ControllerCareFragment(this.patient_id, this);
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), this);
 
@@ -139,6 +144,7 @@ public class ShowPatientActivity extends AppCompatActivity
     public AppointmentFragment getfAppointment() {
         return fAppointment;
     }
+    public CareFragment getfCare() { return fCare; }
 
     public PatientFragment getfPatient() {
         return fPatient;
@@ -176,7 +182,9 @@ public class ShowPatientActivity extends AppCompatActivity
                     return fMedikament;
 
                 case 2:
-                    return CareFragment.newInstance();
+                    fCare = CareFragment.newInstance(patient_id, controllerCareFragment);
+                    controllerCareFragment = new ControllerCareFragment(patient_id, this.sp_activity);
+                    return fCare;
 
                 case 3:
                     fAppointment = AppointmentFragment.newInstance(patient_id, controllerAppointmentFragment);

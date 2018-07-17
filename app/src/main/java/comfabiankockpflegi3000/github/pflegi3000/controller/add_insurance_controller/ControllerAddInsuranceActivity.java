@@ -4,7 +4,7 @@ import com.j256.ormlite.dao.Dao;
 
 import java.sql.SQLException;
 
-import comfabiankockpflegi3000.github.pflegi3000.activities.alter_tables_activity.add_insurance_activity.AddInsuranceActivity;
+import comfabiankockpflegi3000.github.pflegi3000.activities.add_insurance_activity.AddInsuranceActivity;
 import comfabiankockpflegi3000.github.pflegi3000.database.DaoFactory;
 import comfabiankockpflegi3000.github.pflegi3000.database.tables.InsuranceEntity;
 

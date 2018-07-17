@@ -50,4 +50,10 @@
     <string name="appointment_address_str">Adresse</string>
 
     <string name="plus_str">+</string>
+
+    <!--strings for Care Fragment-->
+    <string name="last_defestication">Letzter Stuhlgang</string>
+    <string name="last_meal">Letzte Mahlzeit</string>
+    <string name="last_washed">Zueletzt gewaschen</string>
+    <string name="now">Jetzt</string>
 </resources>

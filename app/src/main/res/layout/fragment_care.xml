@@ -7,25 +7,93 @@
     tools:context=".activities.show_patient_activity.ShowPatientFragmente.CareFragment">
 
     <TextView
-        android:id="@+id/last_defecation"
+        android:id="@+id/head_last_defecation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
+        android:text="@string/last_defestication"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintLeft_toLeftOf="@id/last_defecation" />
+
+    <TextView
+        android:id="@+id/last_defecation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:paddingTop="7dp"
+        android:paddingBottom="7dp"
+        android:background="@drawable/patient_border"
+        android:textSize="30sp"
+        app:layout_constraintTop_toBottomOf="@id/head_last_defecation"/>
+
+    <Button
+        android:id="@+id/now_button_defecation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/now"
+        app:layout_constraintTop_toTopOf="@id/last_defecation"
+        app:layout_constraintBottom_toBottomOf="@id/last_defecation"
+        app:layout_constraintRight_toRightOf="@id/last_defecation"/>
+
+    <TextView
+        android:id="@+id/head_last_meal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/last_meal"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/last_defecation"
+        app:layout_constraintLeft_toLeftOf="@id/last_defecation" />
 
     <TextView
         android:id="@+id/last_meal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:paddingTop="7dp"
+        android:paddingBottom="7dp"
+        android:background="@drawable/patient_border"
+        android:textSize="30sp"
+        app:layout_constraintTop_toBottomOf="@id/head_last_meal"/>
+
+    <Button
+        android:id="@+id/now_button_meal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/last_defecation"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        android:text="@string/now"
+        app:layout_constraintTop_toTopOf="@id/last_meal"
+        app:layout_constraintBottom_toBottomOf="@id/last_meal"
+        app:layout_constraintRight_toRightOf="@id/last_meal"/>
 
     <TextView
-        android:id="@+id/last_washing"
+        android:id="@+id/head_last_washed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/last_washed"
+        android:layout_marginTop="10dp"
         app:layout_constraintTop_toBottomOf="@id/last_meal"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintLeft_toLeftOf="@id/last_defecation" />
+
+    <TextView
+        android:id="@+id/last_washed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:paddingTop="7dp"
+        android:paddingBottom="7dp"
+        android:background="@drawable/patient_border"
+        android:textSize="30sp"
+        app:layout_constraintTop_toBottomOf="@id/head_last_washed"/>
+
+    <Button
+        android:id="@+id/now_button_washed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/now"
+        app:layout_constraintBottom_toBottomOf="@id/last_washed"
+        app:layout_constraintTop_toTopOf="@id/last_washed"
+        app:layout_constraintRight_toRightOf="@id/last_washed"/>
 
 </android.support.constraint.ConstraintLayout>
