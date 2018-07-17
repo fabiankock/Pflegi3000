@@ -1,4 +1,4 @@
-package comfabiankockpflegi3000.github.pflegi3000.activities.alter_tables_activity.add_insurance_activity;
+package comfabiankockpflegi3000.github.pflegi3000.activities.add_insurance_activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
