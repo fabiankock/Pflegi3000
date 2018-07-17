@@ -6,8 +6,11 @@ import android.view.View;
 
 import com.j256.ormlite.dao.Dao;
 
+
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import comfabiankockpflegi3000.github.pflegi3000.R;
@@ -20,6 +23,8 @@ import comfabiankockpflegi3000.github.pflegi3000.database.tables.InsuranceEntity
 import comfabiankockpflegi3000.github.pflegi3000.database.tables.MedikamentEntity;
 import comfabiankockpflegi3000.github.pflegi3000.database.tables.PatientEntity;
 import comfabiankockpflegi3000.github.pflegi3000.database.tables.PatientMedikamentConnection;
+
+import static android.text.format.DateFormat.*;
 
 public class ControllerMedikamentFragment {
 
@@ -175,6 +180,25 @@ public class ControllerMedikamentFragment {
 
         activity = mainactivity.getfMedikament();
         activity.setmTime(hour, minute);
+
+    }
+
+    public void checkDayCounter() throws SQLException {
+
+        Date date = new Date();
+        int day = Integer.parseInt((String) format("dd", date));
+
+        Dao<MedikamentEntity, Integer> mDao = daofactory.getMedikamentDAO();
+        List<MedikamentEntity> medication = mDao.queryForAll();
+
+        for (int i=0; i<medication.size(); i++) {
+            if (medication.get(i).getDaycounter() < day) {
+                medication.get(i).setGenommen(false);
+                medication.get(i).setDaycounter(day);
+
+                mDao.update(medication.get(i));
+            }
+        }
 
     }
 

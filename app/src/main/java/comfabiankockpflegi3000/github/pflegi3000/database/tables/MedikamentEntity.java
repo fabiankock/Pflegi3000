@@ -1,7 +1,11 @@
 package comfabiankockpflegi3000.github.pflegi3000.database.tables;
 
+import android.text.format.DateFormat;
+
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
+
+import java.util.Date;
 
 @DatabaseTable(tableName = "medikament")
 public class MedikamentEntity {
@@ -12,6 +16,7 @@ public class MedikamentEntity {
     @DatabaseField private int hour;
     @DatabaseField private int minute;
     @DatabaseField private boolean genommen = false;
+    @DatabaseField private int daycounter;
 
     public MedikamentEntity() {/*Default Constructor*/}
 
@@ -21,6 +26,9 @@ public class MedikamentEntity {
         this.MDose = MDose;
         this.hour = hour;
         this.minute = minute;
+
+        Date date = new Date();
+        this.daycounter = Integer.parseInt((String) DateFormat.format("dd", date));
 
     }
 
@@ -50,6 +58,11 @@ public class MedikamentEntity {
         return minute;
     }
 
+    public int getDaycounter() {
+        return this.daycounter;
+    }
+
+
     /*----------------Setter----------------*/
     public void setMName(String name) {
         this.MName = name;
@@ -62,6 +75,11 @@ public class MedikamentEntity {
     public void setGenommen (boolean geonmmen) {
         this.genommen = geonmmen;
     }
+
+    public void setDaycounter (int day) {
+        this.daycounter = day;
+    }
+
 }
 
 

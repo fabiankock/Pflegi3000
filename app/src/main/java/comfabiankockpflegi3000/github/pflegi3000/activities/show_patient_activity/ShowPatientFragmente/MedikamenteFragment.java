@@ -23,6 +23,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.List;
 
@@ -60,6 +61,12 @@ public class MedikamenteFragment extends Fragment {
 
         patient_id = p_id;
         this.controller = c;
+
+        try {
+            controller.checkDayCounter();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 
