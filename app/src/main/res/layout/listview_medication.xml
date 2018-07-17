@@ -8,11 +8,14 @@
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textColor="@color/caldroid_black"
+        android:textSize="18dp"/>
     <CheckBox
         android:id="@+id/box"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
         android:layout_marginLeft="300dp"/>
 
 </RelativeLayout>

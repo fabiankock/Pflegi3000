@@ -25,7 +25,7 @@
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/editing_pencil_icon"
+            android:src="@drawable/plus"
             android:layout_marginBottom="67dp"
             android:layout_marginRight="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -44,43 +44,69 @@
         android:visibility="invisible"
         tools:context=".activities.show_patient_activity.ShowPatientFragmente.MedikamentFragment">
 
+        <TextView
+            android:id="@+id/head_bezeichnung"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="10dp"
+            android:text="Bezeichnung"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
         <EditText
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:id="@+id/add_mName"
-            android:hint="Bezeichnung"
             android:inputType="text"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/add_mDosis"
-            android:hint="Dosierung in mg"
-            android:inputType="numberDecimal"
-            app:layout_constraintTop_toBottomOf="@id/add_mName"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"/>
+            android:textSize="30sp"
+            android:background="@drawable/patient_border"
+            app:layout_constraintTop_toBottomOf="@id/head_bezeichnung"
+            app:layout_constraintLeft_toLeftOf="@id/head_bezeichnung"/>
 
         <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/head_Dosierung"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/add_time"
+            android:text="Dosierung in mg"
+            app:layout_constraintTop_toBottomOf="@id/add_mName"
+            app:layout_constraintLeft_toLeftOf="@id/head_bezeichnung"/>
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/add_mDosis"
+            android:inputType="numberDecimal"
+            android:textSize="30sp"
+            android:background="@drawable/patient_border"
+            app:layout_constraintTop_toBottomOf="@id/head_Dosierung"
+            app:layout_constraintLeft_toLeftOf="@id/head_bezeichnung"/>
+
+        <TextView
+            android:id="@+id/head_uhrzeit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="Uhrzeit"
             app:layout_constraintTop_toBottomOf="@id/add_mDosis"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"/>
+            app:layout_constraintLeft_toLeftOf="@id/head_bezeichnung"/>
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/add_time"
+            android:textSize="30sp"
+            android:textColor="@color/caldroid_black"
+            android:background="@drawable/patient_border"
+            app:layout_constraintTop_toBottomOf="@id/head_uhrzeit"
+            app:layout_constraintLeft_toLeftOf="@id/head_bezeichnung"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/add_mCommit"
-            android:layout_marginBottom="70dp"
             android:text="abschließen"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="30dp"
+            app:layout_constraintTop_toBottomOf="@id/add_time"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"/>
 
