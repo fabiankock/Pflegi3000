@@ -86,6 +86,6 @@ public class ControllerAddPatientActivity {
         this.month = month+1;
         this.year = year;
 
-
+        addPatientActivity.setBirthdate(this.day, this.month, this.year);
     }
 }
