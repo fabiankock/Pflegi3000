@@ -11,6 +11,7 @@ import com.j256.ormlite.table.TableUtils;
 import java.sql.SQLException;
 
 import comfabiankockpflegi3000.github.pflegi3000.database.tables.AppointmentEntity;
+import comfabiankockpflegi3000.github.pflegi3000.database.tables.CareEntity;
 import comfabiankockpflegi3000.github.pflegi3000.database.tables.InsuranceEntity;
 import comfabiankockpflegi3000.github.pflegi3000.database.tables.MedikamentEntity;
 import comfabiankockpflegi3000.github.pflegi3000.database.tables.PatientEntity;
@@ -25,6 +26,7 @@ public class DaoFactory extends android.app.Application {
     private Dao<InsuranceEntity, Integer> insuranceDAO = null;
     private Dao<AppointmentEntity, Integer> appointmentDAO = null;
     private Dao<MedikamentEntity, Integer> medikamentDAO = null;
+    private Dao<CareEntity, Integer> careDAO = null;
     private Dao<PatientMedikamentConnection, Integer> patientMedikamentDAO = null;
 
     public DaoFactory(){
@@ -78,6 +80,13 @@ public class DaoFactory extends android.app.Application {
             patientMedikamentDAO = databaseHelper.getDao(PatientMedikamentConnection.class);
         }
         return patientMedikamentDAO;
+    }
+
+    public Dao<CareEntity, Integer> getCareDAO() throws SQLException {
+        if (careDAO == null) {
+            careDAO = databaseHelper.getDao(CareEntity.class);
+        }
+        return careDAO;
     }
 
     public void dropInsuranceTable() throws SQLException {

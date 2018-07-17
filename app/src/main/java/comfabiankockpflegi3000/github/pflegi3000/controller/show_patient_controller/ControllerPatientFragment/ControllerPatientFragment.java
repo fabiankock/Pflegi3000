@@ -12,6 +12,7 @@ import java.util.List;
 import comfabiankockpflegi3000.github.pflegi3000.activities.show_patient_activity.ShowPatientActivity;
 import comfabiankockpflegi3000.github.pflegi3000.activities.show_patient_activity.ShowPatientFragmente.PatientFragment;
 import comfabiankockpflegi3000.github.pflegi3000.database.DaoFactory;
+import comfabiankockpflegi3000.github.pflegi3000.database.tables.CareEntity;
 import comfabiankockpflegi3000.github.pflegi3000.database.tables.InsuranceEntity;
 import comfabiankockpflegi3000.github.pflegi3000.database.tables.PatientEntity;
 
@@ -84,9 +85,12 @@ public class ControllerPatientFragment {
     public void deletePatientById(int id) throws SQLException {
 
         Dao<PatientEntity, Integer> pDao = this.daoFactory.getPatientDAO();
+        Dao<CareEntity, Integer> cDao = this.daoFactory.getCareDAO();
         PatientEntity entity = pDao.queryForId(id);
+        CareEntity careEntity = cDao.queryForId(id);
 
         pDao.delete(entity);
+        cDao.delete(careEntity);
     }
 
     public List<InsuranceEntity> getAllInsurances(){

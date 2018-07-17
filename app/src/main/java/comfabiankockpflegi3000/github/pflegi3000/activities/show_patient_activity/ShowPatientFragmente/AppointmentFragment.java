@@ -58,6 +58,8 @@ public class AppointmentFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
+    public AppointmentFragment() {}
+
     @SuppressLint("ValidFragment")
     public AppointmentFragment(int p_id, ControllerAppointmentFragment c) {
         // Required empty public constructor
