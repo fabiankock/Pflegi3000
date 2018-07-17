@@ -3,11 +3,14 @@ package comfabiankockpflegi3000.github.pflegi3000.controller.show_patient_contro
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.DialogFragment;
 import android.view.View;
+import android.widget.Toast;
 
 import comfabiankockpflegi3000.github.pflegi3000.R;
+import comfabiankockpflegi3000.github.pflegi3000.activities.main_activity.MainActivity;
 import comfabiankockpflegi3000.github.pflegi3000.activities.show_patient_activity.DatePickerFragment;
 import comfabiankockpflegi3000.github.pflegi3000.activities.show_patient_activity.ShowPatientFragmente.MedikamenteFragment;
 import comfabiankockpflegi3000.github.pflegi3000.activities.show_patient_activity.TimePickerFragment;
+import comfabiankockpflegi3000.github.pflegi3000.android_helper.AndroidHelper;
 import comfabiankockpflegi3000.github.pflegi3000.database.tables.MedikamentEntity;
 
 public class ListenerMedikamentFragment implements View.OnClickListener{
@@ -33,9 +36,16 @@ public class ListenerMedikamentFragment implements View.OnClickListener{
 
             case R.id.add_mCommit:
 
-                controller.processInput();
-                controller.refreshList();
-                controller.switchAddShow();
+
+                if(this.controller.processInput()) {
+
+                    controller.refreshList();
+                    controller.switchAddShow();
+                }
+                else {
+                    Toast t = Toast.makeText(view.getContext(), "Bitte alle Felder ausfüllen", Toast.LENGTH_SHORT);
+                    t.show();
+                }
                 break;
 
             case R.id.add_time:

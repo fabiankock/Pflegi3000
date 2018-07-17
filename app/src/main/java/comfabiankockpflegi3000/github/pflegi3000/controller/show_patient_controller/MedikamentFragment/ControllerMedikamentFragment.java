@@ -34,8 +34,8 @@ public class ControllerMedikamentFragment {
     private ListViewAdapter listViewAdapter;
 
     //Für die Uhrzeit
-    private int hour;
-    private int minute;
+    private int hour = 0;
+    private int minute = 0;
 
     public ControllerMedikamentFragment(MedikamenteFragment activity, ShowPatientActivity mainactivity) {
         this.activity = activity;
@@ -87,14 +87,26 @@ public class ControllerMedikamentFragment {
         return null;
     }
 
-    public void processInput() {
+    public boolean processInput() {
 
         activity = mainactivity.getfMedikament();
         int patientID = mainactivity.getPatient_id();
 
+        if (activity.getMNameValue().matches("")) {
+            return false;
+        }
+        if (activity.getMDosisValue().matches("")) {
+            return false;
+        }
+        if (hour == 0) {
+            return false;
+        }
+        if (minute == 0) {
+            return false;
+        }
+
         String mName = activity.getMNameValue();
         int mDosis = Integer.parseInt(activity.getMDosisValue());
-
 
         try {
 
@@ -112,6 +124,8 @@ public class ControllerMedikamentFragment {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        return true;
     }
 
 
